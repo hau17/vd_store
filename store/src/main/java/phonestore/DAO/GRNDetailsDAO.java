@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import phonestore.BUS.SuplierBUS;
 import phonestore.DTO.GRNDetailsDTO;
+import phonestore.DTO.SuplierDTO;
 import phonestore.config.JDBCUtil;
 
 public class GRNDetailsDAO implements DAOInterface<GRNDetailsDTO> {
@@ -16,7 +18,7 @@ public class GRNDetailsDAO implements DAOInterface<GRNDetailsDTO> {
 
     @Override
     public int insert(GRNDetailsDTO t) {
-        Connection con = JDBCUtil.getConnection();
+        Connection con = JDBCUtil.getInstance().getConnection();
         int result = 0;
         try {
             String sql = "INSERT INTO GRNDetail(grn_details_id,grn_id,quantity,product_id,price_grn) VALUES(?,?,?,?,?)";
@@ -27,9 +29,10 @@ public class GRNDetailsDAO implements DAOInterface<GRNDetailsDTO> {
             ps.setInt(4, t.getProductId());
             ps.setBigDecimal(5, t.getPrice());
             result = ps.executeUpdate();
-            JDBCUtil.closeConnection(con);
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            JDBCUtil.getInstance().closeconnection();
         }
         return result;
     }
@@ -37,15 +40,16 @@ public class GRNDetailsDAO implements DAOInterface<GRNDetailsDTO> {
     @Override
     public int delete(GRNDetailsDTO t) {
         int result = 0;
-        Connection con = JDBCUtil.getConnection();
+        Connection con = JDBCUtil.getInstance().getConnection();
         try {
             String sql = "DELETE FROM GRNDetail WHERE grn_details_id = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, t.getGrnDetailsId());
             result = ps.executeUpdate();
-            JDBCUtil.closeConnection(con);
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            JDBCUtil.getInstance().closeconnection();
         }
         return result;
     }
@@ -53,7 +57,7 @@ public class GRNDetailsDAO implements DAOInterface<GRNDetailsDTO> {
     @Override
     public int update(GRNDetailsDTO t) {
         int result = 0;
-        Connection con = JDBCUtil.getConnection();
+        Connection con = JDBCUtil.getInstance().getConnection();
         try {
             String sql = "UPDATE GRNDetail SET grn_id = ?, quantity = ?, product_id = ?, price_grn = ? WHERE grn_details_id = ?";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -63,9 +67,10 @@ public class GRNDetailsDAO implements DAOInterface<GRNDetailsDTO> {
             ps.setBigDecimal(4, t.getPrice());
             ps.setInt(5, t.getGrnDetailsId());
             result = ps.executeUpdate();
-            JDBCUtil.closeConnection(con);
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            JDBCUtil.getInstance().closeconnection();
         }
         return result;
     }
@@ -73,7 +78,7 @@ public class GRNDetailsDAO implements DAOInterface<GRNDetailsDTO> {
     @Override
     public ArrayList<GRNDetailsDTO> getselectAll() {
         ArrayList<GRNDetailsDTO> arr = new ArrayList<>();
-        Connection con = JDBCUtil.getConnection();
+        Connection con = JDBCUtil.getInstance().getConnection();
         try {
             String sql = "SELECT * FROM GRNDetail";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -87,9 +92,10 @@ public class GRNDetailsDAO implements DAOInterface<GRNDetailsDTO> {
                 GRNDetailsDTO grnDetailsDTO = new GRNDetailsDTO(grnDetailsId, grnId, quantity, productId, price);
                 arr.add(grnDetailsDTO);
             }
-            JDBCUtil.closeConnection(con);
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            JDBCUtil.getInstance().closeconnection();
         }
         return arr;
     }
@@ -97,7 +103,7 @@ public class GRNDetailsDAO implements DAOInterface<GRNDetailsDTO> {
     @Override
     public GRNDetailsDTO selectById(int id) {
         GRNDetailsDTO grnDetailsDTO = null;
-        Connection con = JDBCUtil.getConnection();
+        Connection con = JDBCUtil.getInstance().getConnection();
         try {
             String sql = "SELECT * FROM GRNDetail WHERE grn_details_id = ?";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -111,9 +117,10 @@ public class GRNDetailsDAO implements DAOInterface<GRNDetailsDTO> {
                 BigDecimal price = rs.getBigDecimal("price_grn");
                 grnDetailsDTO = new GRNDetailsDTO(grnDetailsId, grnId, quantity, productId, price);
             }
-            JDBCUtil.closeConnection(con);
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            JDBCUtil.getInstance().closeconnection();
         }
         return grnDetailsDTO;
     }

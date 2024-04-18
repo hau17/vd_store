@@ -19,35 +19,42 @@ public class SuplierDAO implements DAOInterface<SuplierDTO> {
     @Override
     public int insert(SuplierDTO t) {
         int result = 0;
-        Connection con = JDBCUtil.getConnection();
+        Connection con = JDBCUtil.getInstance().getConnection();
         try {
-            String sql = "INSERT INTO Supplier(supplier_id, supplier_name, email_address, phone_number, address) VALUES(?,?,?,?,?)";
+            String sql = "INSERT INTO Supplier(supplier_id, supplier_name, email_address, phone_number, address,status) VALUES(?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, t.getSuplierId());
             ps.setString(2, t.getSuplierName());
             ps.setString(3, t.getEmailAddress());
             ps.setString(4, t.getPhoneNumber());
             ps.setString(5, t.getAddress());
+            ps.setInt(6, 1);
             result = ps.executeUpdate();
-            JDBCUtil.closeConnection(con);
+            ps.close();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            JDBCUtil.getInstance().closeconnection();
         }
+
         return result;
     }
 
     @Override
     public int delete(SuplierDTO t) {
         int result = 0;
-        Connection con = JDBCUtil.getConnection();
+        Connection con = JDBCUtil.getInstance().getConnection();
         try {
-            String sql = "DELETE FROM Supplier WHERE supplier_id= ?";
+            String sql = "UPDATE Supplier " +
+                    "SET status= ? WHERE supplier_id= ?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, t.getSuplierId());
+            ps.setInt(1, 0);
+            ps.setInt(2, t.getSuplierId());
             result = ps.executeUpdate();
-            JDBCUtil.closeConnection(con);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            JDBCUtil.getInstance().closeconnection();
         }
         return result;
     }
@@ -55,7 +62,7 @@ public class SuplierDAO implements DAOInterface<SuplierDTO> {
     @Override
     public int update(SuplierDTO t) {
         int result = 0;
-        Connection con = JDBCUtil.getConnection();
+        Connection con = JDBCUtil.getInstance().getConnection();
         try {
             String sql = "UPDATE Supplier " +
                     "SET supplier_name= ?,email_address= ?,phone_number= ?,address= ? WHERE supplier_id= ?";
@@ -66,9 +73,10 @@ public class SuplierDAO implements DAOInterface<SuplierDTO> {
             ps.setString(4, t.getAddress());
             ps.setInt(5, t.getSuplierId());
             result = ps.executeUpdate();
-            JDBCUtil.closeConnection(con);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            JDBCUtil.getInstance().closeconnection();
         }
         return result;
     }
@@ -76,9 +84,9 @@ public class SuplierDAO implements DAOInterface<SuplierDTO> {
     @Override
     public ArrayList<SuplierDTO> getselectAll() {
         ArrayList<SuplierDTO> arr = new ArrayList<>();
-        Connection con = JDBCUtil.getConnection();
+        Connection con = JDBCUtil.getInstance().getConnection();
         try {
-            String sql = "SELECT * FROM Supplier";
+            String sql = "SELECT * FROM Supplier WHERE status= 1";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -87,12 +95,14 @@ public class SuplierDAO implements DAOInterface<SuplierDTO> {
                 String email_address = rs.getString("email_address");
                 String phone_number = rs.getString("phone_number");
                 String address = rs.getString("address");
-                SuplierDTO suplierDTO = new SuplierDTO(id, name, email_address, phone_number, address);
+                int status = rs.getInt("status");
+                SuplierDTO suplierDTO = new SuplierDTO(id, name, email_address, phone_number, address, status);
                 arr.add(suplierDTO);
             }
-            JDBCUtil.closeConnection(con);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            JDBCUtil.getInstance().closeconnection();
         }
         return arr;
     }
@@ -100,7 +110,7 @@ public class SuplierDAO implements DAOInterface<SuplierDTO> {
     @Override
     public SuplierDTO selectById(int id) {
         SuplierDTO suplierDTO = null;
-        Connection con = JDBCUtil.getConnection();
+        Connection con = JDBCUtil.getInstance().getConnection();
         try {
             String sql = "SELECT * FROM Supplier WHERE supplier_id= " + id;
             Statement st = con.createStatement();
@@ -111,18 +121,14 @@ public class SuplierDAO implements DAOInterface<SuplierDTO> {
                 String email_address = rs.getString("email_address");
                 String phone_number = rs.getString("phone_number");
                 String address = rs.getString("address");
-                suplierDTO = new SuplierDTO(sup_id, name, email_address, phone_number, address);
+                int status = rs.getInt("status");
+                suplierDTO = new SuplierDTO(sup_id, name, email_address, phone_number, address, status);
             }
-            JDBCUtil.closeConnection(con);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            JDBCUtil.getInstance().closeconnection();
         }
         return suplierDTO;
-    }
-
-    public static void main(String[] args) {
-        GRNDTO grndto = new GRNDTO(10, 1, new Date(1000, 10, 10), 1, 100);
-        System.out.println(grndto);
-        GRNDAO.getInstance().insert(grndto);
     }
 }

@@ -18,7 +18,7 @@ public class GRNDAO implements DAOInterface<GRNDTO> {
     @Override
     public int insert(GRNDTO t) {
         int result = 0;
-        Connection con = JDBCUtil.getConnection();
+        Connection con = JDBCUtil.getInstance().getConnection();
         try {
             String sql = "INSERT INTO GoodReceivedNote(grn_id, supplier_id, input_day, user_id, total_amount) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -28,9 +28,10 @@ public class GRNDAO implements DAOInterface<GRNDTO> {
             ps.setInt(4, t.getUserId());
             ps.setInt(5, t.getTotalAmount());
             result = ps.executeUpdate();
-            JDBCUtil.closeConnection(con);
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            JDBCUtil.getInstance().closeconnection();
         }
         return result;
     }
@@ -38,15 +39,16 @@ public class GRNDAO implements DAOInterface<GRNDTO> {
     @Override
     public int delete(GRNDTO t) {
         int result = 0;
-        Connection con = JDBCUtil.getConnection();
+        Connection con = JDBCUtil.getInstance().getConnection();
         try {
             String sql = "DELETE FROM GoodReceivedNote WHERE grn_id = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, t.getGrnId());
             result = ps.executeUpdate();
-            JDBCUtil.closeConnection(con);
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            JDBCUtil.getInstance().closeconnection();
         }
         return result;
     }
@@ -54,7 +56,7 @@ public class GRNDAO implements DAOInterface<GRNDTO> {
     @Override
     public int update(GRNDTO t) {
         int result = 0;
-        Connection con = JDBCUtil.getConnection();
+        Connection con = JDBCUtil.getInstance().getConnection();
         try {
             String sql = "UPDATE GoodReceivedNote SET supplier_id = ?, input_day = ?, user_id = ?, total_amount = ? WHERE grn_id = ?";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -64,9 +66,10 @@ public class GRNDAO implements DAOInterface<GRNDTO> {
             ps.setInt(4, t.getTotalAmount());
             ps.setInt(5, t.getGrnId());
             result = ps.executeUpdate();
-            JDBCUtil.closeConnection(con);
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            JDBCUtil.getInstance().closeconnection();
         }
         return result;
     }
@@ -74,7 +77,7 @@ public class GRNDAO implements DAOInterface<GRNDTO> {
     @Override
     public ArrayList<GRNDTO> getselectAll() {
         ArrayList<GRNDTO> arr = new ArrayList<>();
-        Connection con = JDBCUtil.getConnection();
+        Connection con = JDBCUtil.getInstance().getConnection();
         try {
             String sql = "SELECT * FROM GoodReceivedNote";
             Statement st = con.createStatement();
@@ -88,9 +91,10 @@ public class GRNDAO implements DAOInterface<GRNDTO> {
                 GRNDTO grnDTO = new GRNDTO(grnId, supplierId, inputDay, userId, totalAmount);
                 arr.add(grnDTO);
             }
-            JDBCUtil.closeConnection(con);
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            JDBCUtil.getInstance().closeconnection();
         }
         return arr;
     }
@@ -98,7 +102,7 @@ public class GRNDAO implements DAOInterface<GRNDTO> {
     @Override
     public GRNDTO selectById(int id) {
         GRNDTO grnDTO = null;
-        Connection con = JDBCUtil.getConnection();
+        Connection con = JDBCUtil.getInstance().getConnection();
         try {
             String sql = "SELECT * FROM GoodReceivedNote WHERE grn_id = " + id;
             Statement st = con.createStatement();
@@ -111,9 +115,10 @@ public class GRNDAO implements DAOInterface<GRNDTO> {
                 int totalAmount = rs.getInt("total_amount");
                 grnDTO = new GRNDTO(grnId, supplierId, inputDay, userId, totalAmount);
             }
-            JDBCUtil.closeConnection(con);
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            JDBCUtil.getInstance().closeconnection();
         }
         return grnDTO;
     }

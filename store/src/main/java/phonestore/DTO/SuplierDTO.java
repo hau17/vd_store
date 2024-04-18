@@ -6,16 +6,25 @@ public class SuplierDTO {
     private String emailAddress;
     private String phoneNumber;
     private String address;
+    private int status;
 
     public SuplierDTO() {
     }
 
-    public SuplierDTO(int suplierId, String suplierName, String emailAddress, String phoneNumber, String address) {
+    public SuplierDTO(int suplierId, String suplierName, String emailAddress, String phoneNumber, String address,
+            int status) {
         this.suplierId = suplierId;
         this.suplierName = suplierName;
         this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "SuplierDTO [suplierId=" + suplierId + ", suplierName=" + suplierName + ", emailAddress=" + emailAddress
+                + ", phoneNumber=" + phoneNumber + ", address=" + address + ", status=" + status + "]";
     }
 
     public int getSuplierId() {
@@ -58,10 +67,12 @@ public class SuplierDTO {
         this.address = address;
     }
 
-    @Override
-    public String toString() {
-        return "SuplierDTO [suplierId=" + suplierId + ", suplierName=" + suplierName + ", emailAddress=" + emailAddress
-                + ", phoneNumber=" + phoneNumber + ", address=" + address + "]";
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
 }
