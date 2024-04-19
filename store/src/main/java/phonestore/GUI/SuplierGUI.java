@@ -1,6 +1,7 @@
 package phonestore.GUI;
 
 import phonestore.BUS.SuplierBUS;
+import phonestore.DAO.SuplierDAO;
 import phonestore.DTO.SuplierDTO;
 
 import javax.swing.*;
@@ -12,7 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class SuplierGUI extends JDialog {
+public class SuplierGUI extends JFrame {
     public JPanel jPanelSuplier;
     public JButton jButtonAdd;
     public JButton jButtonDelete;
@@ -23,19 +24,24 @@ public class SuplierGUI extends JDialog {
     public TextField textFieldId, textFieldName, textFieldPhone, textFieldEmail, textFieldAddress;
     public JLabel labelId, labelName, labelPhone, labelEmail, labelAddress;
     public SuplierBUS suplierBUS;
+    public JTextField jTextFieldSearch;
+    public JButton jButtonSearch, jButtonRefresh;
 
     public SuplierGUI() {
+        //font chữ, kích thước button
         Font font = new Font("Arial", Font.BOLD, 12);
-        Color btnColor = new Color(50, 150, 200);
-        Dimension btnsize = new Dimension(80, 30);
+        Dimension btnsize = new Dimension(80, 19);
         jPanelSuplier = new JPanel();
-        setContentPane(jPanelSuplier);
-        setSize(800, 650);
+        setSize(900, 600);
+        setLayout(new FlowLayout());
         jPanelSuplier.setLayout(new BorderLayout());
+
+
         jButtonAdd = new JButton("add");
         jButtonAdd.setFont(font);
         jButtonAdd.setFocusable(false);
         jButtonAdd.setPreferredSize(btnsize);
+
         jButtonDelete = new JButton("delete");
         jButtonDelete.setFont(font);
         jButtonDelete.setFocusable(false);
@@ -47,11 +53,29 @@ public class SuplierGUI extends JDialog {
         suplierBUS = new SuplierBUS();
         jButtonUpdate.setPreferredSize(btnsize);
 
+        JPanel jPanel_empty = new JPanel();
+        jPanel_empty.setSize(200,19);
+
+        jTextFieldSearch = new JTextField(30);
+        jButtonSearch= new JButton("search");
+        jButtonSearch.setFont(font);
+        jButtonSearch.setFocusable(false);
+        jButtonSearch.setPreferredSize(btnsize);
+        jButtonRefresh=new JButton("Refresh");
+        jButtonRefresh.setFont(font);
+        jButtonRefresh.setFocusable(false);
+        jButtonRefresh.setPreferredSize(btnsize);
+
         // Panel chứa các nút CRUD
         JPanel jPanelCRUD = new JPanel();
         jPanelCRUD.add(jButtonAdd);
         jPanelCRUD.add(jButtonDelete);
         jPanelCRUD.add(jButtonUpdate);
+        jPanelCRUD.add(jPanel_empty);
+        jPanelCRUD.add(jTextFieldSearch);
+        jPanelCRUD.add(jButtonSearch);
+        jPanelCRUD.add(jButtonRefresh);
+        //tạo table
         jTableSuplier = new JTable();
         jScrollPaneSuplier = new JScrollPane(jTableSuplier);
         defaultTableModelSuplier = new DefaultTableModel();
@@ -105,12 +129,10 @@ public class SuplierGUI extends JDialog {
         jpanel_information.add(labelAddress, gbc);
         gbc.gridx = 1;
         jpanel_information.add(textFieldAddress, gbc);
-        
+
         jPanelSuplier.add(jPanelCRUD, BorderLayout.NORTH);
         jPanelSuplier.add(jPanelList, BorderLayout.CENTER);
         jPanelSuplier.add(jpanel_information, BorderLayout.SOUTH);
-        setVisible(true);
-        setLocationRelativeTo(null);
         showDataSuplier();
         jTableSuplier.addMouseListener(new MouseAdapter() {
             @Override
@@ -167,6 +189,23 @@ public class SuplierGUI extends JDialog {
                 showDataSuplier();
             }
         });
+        jButtonSearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String textSearch = jTextFieldSearch.getText();
+                ArrayList<SuplierDTO> arr_search= suplierBUS.arr_search_suplier(textSearch);
+                showDataSuplier(arr_search);
+            }
+        });
+        jButtonRefresh.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jTextFieldSearch.setText("");
+                showDataSuplier();
+            }
+        });
+        add(jPanelSuplier);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void showDataSuplier() {
@@ -190,8 +229,20 @@ public class SuplierGUI extends JDialog {
         textFieldPhone.setText(suplierDTO.getPhoneNumber());
         textFieldAddress.setText(suplierDTO.getAddress());
     }
+    public void showDataSuplier(ArrayList<SuplierDTO> arr) {
+        defaultTableModelSuplier.setRowCount(0);
+        // SuplierBUS suplierBUS=new SuplierBUS();
+        ArrayList<SuplierDTO> suplierDTOArrayList = arr;
+        for (SuplierDTO suplierDTO : suplierDTOArrayList) {
+            Object[] ob = new Object[] { suplierDTO.getSuplierId(), suplierDTO.getSuplierName(),
+                    suplierDTO.getEmailAddress(), suplierDTO.getPhoneNumber(), suplierDTO.getAddress() };
+            defaultTableModelSuplier.addRow(ob);
+        }
+    }
+
 
     public static void main(String[] args) {
         SuplierGUI dialog = new SuplierGUI();
+        dialog.setVisible(true);
     }
 }
