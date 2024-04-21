@@ -48,19 +48,36 @@ public class SuplierBUS {
         return check;
     }
 
-    public ArrayList<SuplierDTO> arr_search_suplier(String object) {
-        ArrayList<SuplierDTO> arr = new ArrayList<>();
-        for (SuplierDTO suplierDTO : arr_SuplierDTOs) {
-            try {
-                if (suplierDTO.getSuplierId() == Integer.parseInt(object) || suplierDTO.getSuplierName().equals(object)
-                        || suplierDTO.getEmailAddress().equals(object) || suplierDTO.getPhoneNumber().equals(object)
-                        || suplierDTO.getAddress().equals(object)) {
-                    arr.add(suplierDTO);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+//    public ArrayList<SuplierDTO> arr_search_suplier(String object) {
+//        ArrayList<SuplierDTO> arr = new ArrayList<>();
+//        for (SuplierDTO suplierDTO : arr_SuplierDTOs) {
+//            try {
+//                if (suplierDTO.getSuplierId() == Integer.parseInt(object) || suplierDTO.getSuplierName().equals(object)
+//                        || suplierDTO.getEmailAddress().equals(object) || suplierDTO.getPhoneNumber().equals(object)
+//                        || suplierDTO.getAddress().equals(object)) {
+//                    arr.add(suplierDTO);
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        return arr;
+//    }
+public ArrayList<SuplierDTO> arr_search_suplier(String object) {
+    ArrayList<SuplierDTO> arr = new ArrayList<>();
+    for (SuplierDTO suplierDTO : arr_SuplierDTOs) {
+        String id= Integer.toString(suplierDTO.getSuplierId());
+        try {
+            if (id.equals(object) || suplierDTO.getSuplierName().contains(object)
+                    || suplierDTO.getEmailAddress().contains(object) || suplierDTO.getPhoneNumber().contains(object)
+                    || suplierDTO.getAddress().contains(object)) {
+                arr.add(suplierDTO);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return arr;
     }
+    return arr;
+}
+
 }

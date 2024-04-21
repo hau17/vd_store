@@ -77,6 +77,7 @@ public class SuplierGUI extends JFrame {
         jPanelCRUD.add(jButtonRefresh);
         //tạo table
         jTableSuplier = new JTable();
+        jTableSuplier.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         jScrollPaneSuplier = new JScrollPane(jTableSuplier);
         defaultTableModelSuplier = new DefaultTableModel();
         jTableSuplier.setModel(defaultTableModelSuplier);
