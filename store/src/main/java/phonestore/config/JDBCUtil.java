@@ -7,7 +7,7 @@ import java.sql.Statement;
 public class JDBCUtil {
     private static final String url = "jdbc:mysql://localhost:3306/phone_store";
     private static final String username = "root";
-    private static final String password = "123";
+    private static final String password = "";
 
     public static Connection getConnection() {
         Connection con = null;

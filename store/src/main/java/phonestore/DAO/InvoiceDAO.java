@@ -138,12 +138,4 @@ public class InvoiceDAO implements DAOInterface<InvoiceDTO> {
         }
         return invoiceDTO;
     }
-
-    public static void main(String[] args) {
-        InvoiceDTO invoiceDTO = new InvoiceDTO();
-        invoiceDTO.setInvoiceId(1);
-
-        System.out.println(InvoiceDAO.getInstance().selectById(invoiceDTO.getInvoiceId()));
-
-    }
 }

@@ -64,5 +64,4 @@ public class SuplierBUS {
         }
         return arr;
     }
-
 }
