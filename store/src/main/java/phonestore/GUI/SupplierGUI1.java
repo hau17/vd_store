@@ -418,49 +418,18 @@ public class SupplierGUI1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
+    private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
         // TODO add your handling code here:
-                int id = Integer.parseInt(textFieldId.getText());
-                String nameString = textFieldName.getText();
-                String phoneString = textFieldPhone.getText();
-                String emailString = textFieldEmail.getText();
-                String addressString = textFieldAddress.getText();
-                SuplierDTO suplierDTO = new SuplierDTO(id, nameString, emailString, phoneString, addressString, 1);
-                suplierBUS.add_suplier(suplierDTO);
-                showAllData();
-
-    }//GEN-LAST:event_jButtonAddActionPerformed
-
-    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
-        // TODO add your handling code here:
-                        int id = Integer.parseInt(textFieldId.getText());
-                String nameString = textFieldName.getText();
-                String phoneString = textFieldPhone.getText();
-                String emailString = textFieldEmail.getText();
-                String addressString = textFieldAddress.getText();
-                SuplierDTO suplierDTO = new SuplierDTO(id, nameString, emailString, phoneString, addressString, 1);
-                suplierBUS.update_suplier(suplierDTO);
-                showAllData();
-
-    }//GEN-LAST:event_jButtonUpdateActionPerformed
-
-    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-        // TODO add your handling code here:
-                        try {
-                        suplierBUS.delete_suplier(Integer.parseInt(textFieldId.getText()));
-                        showAllData();
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(rootPane, e);
-                }
-
-    }//GEN-LAST:event_jButtonDeleteActionPerformed
+        jTextFieldSearch.setText("");
+        showAllData();
+    }//GEN-LAST:event_jButtonRefreshActionPerformed
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
         // TODO add your handling code here:
-        
-                String searString = jTextFieldSearch.getText();
-                ArrayList<SuplierDTO> arrayList = suplierBUS.arr_search_suplier(searString);
-                showDataSearch(arrayList);
+
+        String searString = jTextFieldSearch.getText();
+        ArrayList<SuplierDTO> arrayList = suplierBUS.arr_search_suplier(searString);
+        showDataSearch(arrayList);
     }//GEN-LAST:event_jButtonSearchActionPerformed
 
     private void jTableSuplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableSuplierMouseClicked
@@ -469,12 +438,39 @@ public class SupplierGUI1 extends javax.swing.JFrame {
         showDataSuplier(row);
     }//GEN-LAST:event_jTableSuplierMouseClicked
 
-    private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
+    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         // TODO add your handling code here:
-                jTextFieldSearch.setText("");
+        int id = Integer.parseInt(textFieldId.getText());
+        String nameString = textFieldName.getText();
+        String phoneString = textFieldPhone.getText();
+        String emailString = textFieldEmail.getText();
+        String addressString = textFieldAddress.getText();
+        SuplierDTO suplierDTO = new SuplierDTO(id, nameString, emailString, phoneString, addressString, 1);
+        suplierBUS.update_suplier(suplierDTO);
         showAllData();
+    }//GEN-LAST:event_jButtonUpdateActionPerformed
 
-    }//GEN-LAST:event_jButtonRefreshActionPerformed
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        // TODO add your handling code here:
+        try {
+            suplierBUS.delete_suplier(Integer.parseInt(textFieldId.getText()));
+            showAllData();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e);
+        }
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
+
+    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
+        // TODO add your handling code here:
+        int id = Integer.parseInt(textFieldId.getText());
+        String nameString = textFieldName.getText();
+        String phoneString = textFieldPhone.getText();
+        String emailString = textFieldEmail.getText();
+        String addressString = textFieldAddress.getText();
+        SuplierDTO suplierDTO = new SuplierDTO(id, nameString, emailString, phoneString, addressString, 1);
+        suplierBUS.add_suplier(suplierDTO);
+        showAllData();
+    }//GEN-LAST:event_jButtonAddActionPerformed
 
     /**
      * @param args the command line arguments

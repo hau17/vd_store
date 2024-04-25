@@ -8,12 +8,12 @@ package phonestore.GUI;
  *
  * @author congh
  */
-public class InvoiceGUI extends javax.swing.JFrame {
+public class UserGUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form InvoiceGUI
+     * Creates new form UserGUI
      */
-    public InvoiceGUI() {
+    public UserGUI() {
         initComponents();
     }
 
@@ -26,22 +26,15 @@ public class InvoiceGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        textFieldAddress = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        textFieldPhone = new javax.swing.JTextField();
-        jButtonAdd = new javax.swing.JButton();
-        jLabeId = new javax.swing.JLabel();
-        jbuttonExport = new javax.swing.JButton();
-        textFieldId = new javax.swing.JTextField();
-        jButtonDelete = new javax.swing.JButton();
         jLabelName = new javax.swing.JLabel();
         jButtonSearch = new javax.swing.JButton();
         jLabelAddress = new javax.swing.JLabel();
         jButtonRefresh = new javax.swing.JButton();
         jLabelEmal = new javax.swing.JLabel();
         jTextFieldSearch = new javax.swing.JTextField();
+        jButtonUpdate = new javax.swing.JButton();
         jLabelPhone = new javax.swing.JLabel();
+        textFieldName = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jButtonProduct = new javax.swing.JButton();
         jButtonUser = new javax.swing.JButton();
@@ -51,76 +44,30 @@ public class InvoiceGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButtonLogout = new javax.swing.JButton();
         jButtonInvoice = new javax.swing.JButton();
-        jButtonUpdate = new javax.swing.JButton();
-        textFieldName = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableSuplier = new javax.swing.JTable();
+        textFieldAddress = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        textFieldPhone = new javax.swing.JTextField();
+        jButtonAdd = new javax.swing.JButton();
+        jLabeId = new javax.swing.JLabel();
+        jbuttonExport = new javax.swing.JButton();
+        textFieldId = new javax.swing.JTextField();
         textFieldEmail = new javax.swing.JTextField();
+        jButtonDelete = new javax.swing.JButton();
+        jLabeId1 = new javax.swing.JLabel();
+        textFieldId1 = new javax.swing.JTextField();
+        jLabeId2 = new javax.swing.JLabel();
+        jLabeId4 = new javax.swing.JLabel();
+        textFieldId2 = new javax.swing.JTextField();
+        textFieldId3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        textFieldAddress.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        textFieldAddress.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldAddressActionPerformed(evt);
-            }
-        });
-
-        jPanel2.setBackground(new java.awt.Color(0, 204, 255));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("INVOICE");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        textFieldPhone.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        jButtonAdd.setBackground(new java.awt.Color(102, 204, 255));
-        jButtonAdd.setText("Add");
-        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAddActionPerformed(evt);
-            }
-        });
-
-        jLabeId.setBackground(new java.awt.Color(255, 255, 255));
-        jLabeId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabeId.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabeId.setText("Id");
-
-        jbuttonExport.setBackground(new java.awt.Color(102, 204, 255));
-        jbuttonExport.setText("Export Excel");
-
-        textFieldId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        jButtonDelete.setBackground(new java.awt.Color(102, 204, 255));
-        jButtonDelete.setText("Delete");
-        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDeleteActionPerformed(evt);
-            }
-        });
-
         jLabelName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabelName.setText("Name");
+        jLabelName.setText("User name");
 
         jButtonSearch.setBackground(new java.awt.Color(102, 204, 255));
         jButtonSearch.setText("Search");
@@ -132,7 +79,7 @@ public class InvoiceGUI extends javax.swing.JFrame {
 
         jLabelAddress.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelAddress.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabelAddress.setText("Address");
+        jLabelAddress.setText("Date of Birth");
 
         jButtonRefresh.setBackground(new java.awt.Color(102, 204, 255));
         jButtonRefresh.setText("Refresh");
@@ -144,13 +91,23 @@ public class InvoiceGUI extends javax.swing.JFrame {
 
         jLabelEmal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelEmal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabelEmal.setText("Email");
+        jLabelEmal.setText("Password");
 
         jTextFieldSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        jButtonUpdate.setBackground(new java.awt.Color(102, 204, 255));
+        jButtonUpdate.setText("Update");
+        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateActionPerformed(evt);
+            }
+        });
+
         jLabelPhone.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelPhone.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabelPhone.setText("Phone");
+        jLabelPhone.setText("Full name");
+
+        textFieldName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(0, 204, 204));
@@ -219,29 +176,19 @@ public class InvoiceGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButtonUpdate.setBackground(new java.awt.Color(102, 204, 255));
-        jButtonUpdate.setText("Update");
-        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonUpdateActionPerformed(evt);
-            }
-        });
-
-        textFieldName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
         jTableSuplier.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Name", "Email", "Phone", "Address"
+                "Id", "User name", "Password", "Full name", "Date of bitrh", "Phone number", "Email address", "Role Id"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -255,7 +202,88 @@ public class InvoiceGUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableSuplier);
 
+        textFieldAddress.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jPanel2.setBackground(new java.awt.Color(0, 204, 255));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("USER");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        textFieldPhone.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jButtonAdd.setBackground(new java.awt.Color(102, 204, 255));
+        jButtonAdd.setText("Add");
+        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddActionPerformed(evt);
+            }
+        });
+
+        jLabeId.setBackground(new java.awt.Color(255, 255, 255));
+        jLabeId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabeId.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabeId.setText("Id");
+
+        jbuttonExport.setBackground(new java.awt.Color(102, 204, 255));
+        jbuttonExport.setText("Export Excel");
+
+        textFieldId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
         textFieldEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jButtonDelete.setBackground(new java.awt.Color(102, 204, 255));
+        jButtonDelete.setText("Delete");
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteActionPerformed(evt);
+            }
+        });
+
+        jLabeId1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabeId1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabeId1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabeId1.setText("Email");
+
+        textFieldId1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        textFieldId1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldId1ActionPerformed(evt);
+            }
+        });
+
+        jLabeId2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabeId2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabeId2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabeId2.setText("Phone number");
+        jLabeId2.setAutoscrolls(true);
+
+        jLabeId4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabeId4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabeId4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabeId4.setText("Role id");
+
+        textFieldId2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        textFieldId3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -273,11 +301,11 @@ public class InvoiceGUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabeId, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldId, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
+                                .addComponent(textFieldId1, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldName))
+                                .addComponent(textFieldName, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -290,7 +318,22 @@ public class InvoiceGUI extends javax.swing.JFrame {
                                 .addComponent(jLabelEmal, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(textFieldEmail)))
-                        .addGap(0, 651, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabeId4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textFieldId3, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabeId1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(textFieldId2, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabeId2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(textFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(34, 34, 34))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -301,7 +344,7 @@ public class InvoiceGUI extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(jbuttonExport, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(84, 84, 84)
-                        .addComponent(jTextFieldSearch)
+                        .addComponent(jTextFieldSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -316,18 +359,25 @@ public class InvoiceGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabeId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textFieldId)
+                                .addComponent(jLabeId2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(textFieldId1, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabeId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldId))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldName))
+                            .addComponent(textFieldName)
+                            .addComponent(jLabeId1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldId2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelEmal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldEmail))
+                            .addComponent(textFieldEmail)
+                            .addComponent(jLabeId4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldId3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -356,13 +406,6 @@ public class InvoiceGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-    }//GEN-LAST:event_jButtonAddActionPerformed
-
-    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonDeleteActionPerformed
-
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonSearchActionPerformed
@@ -379,9 +422,17 @@ public class InvoiceGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTableSuplierMouseClicked
 
-    private void textFieldAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldAddressActionPerformed
+    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
+
+    }//GEN-LAST:event_jButtonAddActionPerformed
+
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldAddressActionPerformed
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
+
+    private void textFieldId1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldId1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldId1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -400,20 +451,20 @@ public class InvoiceGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InvoiceGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InvoiceGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InvoiceGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InvoiceGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InvoiceGUI().setVisible(true);
+                new UserGUI().setVisible(true);
             }
         });
     }
@@ -432,6 +483,9 @@ public class InvoiceGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButtonUpdate;
     private javax.swing.JButton jButtonUser;
     private javax.swing.JLabel jLabeId;
+    private javax.swing.JLabel jLabeId1;
+    private javax.swing.JLabel jLabeId2;
+    private javax.swing.JLabel jLabeId4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelAddress;
@@ -447,6 +501,9 @@ public class InvoiceGUI extends javax.swing.JFrame {
     private javax.swing.JTextField textFieldAddress;
     private javax.swing.JTextField textFieldEmail;
     private javax.swing.JTextField textFieldId;
+    private javax.swing.JTextField textFieldId1;
+    private javax.swing.JTextField textFieldId2;
+    private javax.swing.JTextField textFieldId3;
     private javax.swing.JTextField textFieldName;
     private javax.swing.JTextField textFieldPhone;
     // End of variables declaration//GEN-END:variables

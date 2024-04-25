@@ -1,10 +1,14 @@
 C:\vd_store\store\src\main\java\phonestore\DTO\InvoiceDTO.java
-C:\vd_store\store\src\main\java\phonestore\config\JDBCUtil.java
 C:\vd_store\store\src\main\java\phonestore\App.java
 C:\vd_store\store\src\main\java\phonestore\GUI\SupplierGUI1.java
 C:\vd_store\store\src\main\java\phonestore\DAO\DAOInterface.java
 C:\vd_store\store\src\main\java\phonestore\DTO\SuplierDTO.java
-C:\vd_store\store\src\main\java\phonestore\BUS\SuplierBUS.java
+C:\vd_store\store\src\main\java\phonestore\GUI\InvoiceGUI.java
 C:\vd_store\store\src\main\java\phonestore\DAO\InvoiceDAO.java
+C:\vd_store\store\src\main\java\phonestore\GUI\UserGUI.java
 C:\vd_store\store\src\main\java\phonestore\BUS\InvoiceBUS.java
+C:\vd_store\store\src\main\java\phonestore\GUI\ProductGUI.java
+C:\vd_store\store\src\main\java\phonestore\config\JDBCUtil.java
+C:\vd_store\store\src\main\java\phonestore\BUS\SuplierBUS.java
+C:\vd_store\store\src\main\java\phonestore\DTO\invoiceDetailDTO.java
 C:\vd_store\store\src\main\java\phonestore\DAO\SuplierDAO.java

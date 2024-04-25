@@ -31,7 +31,7 @@ public class InvoiceDAO implements DAOInterface<InvoiceDTO> {
             ps.setBigDecimal(5, t.getTotalAmount());
             ps.setInt(6, 1);
             result = ps.executeUpdate();
-            ps.close();
+            // ps.close();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
