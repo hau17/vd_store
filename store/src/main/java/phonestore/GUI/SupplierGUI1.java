@@ -12,7 +12,7 @@ import phonestore.DTO.SuplierDTO;
 
 /**
  *
- * @author congh
+ * @author conghau
  */
 //vidu
 public class SupplierGUI1 extends javax.swing.JFrame {
