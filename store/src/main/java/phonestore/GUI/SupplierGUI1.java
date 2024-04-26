@@ -44,15 +44,15 @@ public class SupplierGUI1 extends javax.swing.JFrame {
                 }
         }
 
-        public void showDataSuplier(int row) {
-                ArrayList<SuplierDTO> arrSearch = ArrObjectInTable();
-                SuplierDTO suplierDTO = arrSearch.get(row);
-                textFieldId.setText(Integer.toString(suplierDTO.getSuplierId()));
-                textFieldName.setText(suplierDTO.getSuplierName());
-                textFieldPhone.setText(suplierDTO.getPhoneNumber());
-                textFieldEmail.setText(suplierDTO.getEmailAddress());
-                textFieldAddress.setText(suplierDTO.getAddress());
-        }
+//        public void showDataSuplier(int row) {
+//                ArrayList<SuplierDTO> arrSearch = ArrObjectInTable();
+//                SuplierDTO suplierDTO = arrSearch.get(row);
+//                textFieldId.setText(Integer.toString(suplierDTO.getSuplierId()));
+//                textFieldName.setText(suplierDTO.getSuplierName());
+//                textFieldPhone.setText(suplierDTO.getPhoneNumber());
+//                textFieldEmail.setText(suplierDTO.getEmailAddress());
+//                textFieldAddress.setText(suplierDTO.getAddress());
+//        }
 
         public void showDataSearch(ArrayList<SuplierDTO> suplierDTOs) {
                 defaultTableModel.setRowCount(0);
@@ -67,21 +67,21 @@ public class SupplierGUI1 extends javax.swing.JFrame {
                 }
         }
 
-        public ArrayList<SuplierDTO> ArrObjectInTable() {
-                int rowcount = defaultTableModel.getRowCount();
-                ArrayList<SuplierDTO> arr = new ArrayList<>();
-                for (int i = 0; i < rowcount; i++) {
-                        Object id = defaultTableModel.getValueAt(i, 0);
-                        Object name = defaultTableModel.getValueAt(i, 1);
-                        Object emai = defaultTableModel.getValueAt(i, 2);
-                        Object phone = defaultTableModel.getValueAt(i, 3);
-                        Object address = defaultTableModel.getValueAt(i, 4);
-                        SuplierDTO suplierDTO = new SuplierDTO(Integer.parseInt(id.toString()), name.toString(),
-                                        emai.toString(), phone.toString(), address.toString(), 1);
-                        arr.add(suplierDTO);
-                }
-                return arr;
-        }
+//        public ArrayList<SuplierDTO> ArrObjectInTable() {
+//                int rowcount = defaultTableModel.getRowCount();
+//                ArrayList<SuplierDTO> arr = new ArrayList<>();
+//                for (int i = 0; i < rowcount; i++) {
+//                        Object id = defaultTableModel.getValueAt(i, 0);
+//                        Object name = defaultTableModel.getValueAt(i, 1);
+//                        Object emai = defaultTableModel.getValueAt(i, 2);
+//                        Object phone = defaultTableModel.getValueAt(i, 3);
+//                        Object address = defaultTableModel.getValueAt(i, 4);
+//                        SuplierDTO suplierDTO = new SuplierDTO(Integer.parseInt(id.toString()), name.toString(),
+//                                        emai.toString(), phone.toString(), address.toString(), 1);
+//                        arr.add(suplierDTO);
+//                }
+//                return arr;
+//        }
 
 
     /**
@@ -155,6 +155,11 @@ public class SupplierGUI1 extends javax.swing.JFrame {
 
         jButtonInvoice.setBackground(new java.awt.Color(102, 204, 255));
         jButtonInvoice.setText("Invoice");
+        jButtonInvoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInvoiceActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -435,7 +440,15 @@ public class SupplierGUI1 extends javax.swing.JFrame {
     private void jTableSuplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableSuplierMouseClicked
         // TODO add your handling code here:
         int row = jTableSuplier.getSelectedRow();
-        showDataSuplier(row);
+        if(row!=-1){
+            textFieldId.setText(defaultTableModel.getValueAt(row, 0).toString());
+            textFieldName.setText(defaultTableModel.getValueAt(row, 1).toString());
+            textFieldEmail.setText(defaultTableModel.getValueAt(row, 2).toString());
+            textFieldPhone.setText(defaultTableModel.getValueAt(row, 3).toString());
+            textFieldAddress.setText(defaultTableModel.getValueAt(row, 4).toString());
+        
+        }
+        
     }//GEN-LAST:event_jTableSuplierMouseClicked
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
@@ -471,6 +484,12 @@ public class SupplierGUI1 extends javax.swing.JFrame {
         suplierBUS.add_suplier(suplierDTO);
         showAllData();
     }//GEN-LAST:event_jButtonAddActionPerformed
+
+    private void jButtonInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInvoiceActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new InvoiceGUI().setVisible(true);
+    }//GEN-LAST:event_jButtonInvoiceActionPerformed
 
     /**
      * @param args the command line arguments

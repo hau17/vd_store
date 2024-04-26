@@ -54,7 +54,7 @@ public class InvoiceBUS {
             String customerId = Integer.toString(invoiceDTO.getCustomer_id());
             String userId = Integer.toString(invoiceDTO.getUserId());
 
-            if (invoiceId.equals(search) || customerId.equals(search) || userId.equals(search)) {
+            if (invoiceId.equals(search) || customerId.contains(search) || userId.contains(search)) {
                 arr_search.add(invoiceDTO);
             }
         }

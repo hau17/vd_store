@@ -4,6 +4,8 @@ public class invoiceDetailDTO {
     private int invoiceDetailId;
     private int invoiceId;
     private int quantity;
+    private int productId;
+    private int price;
 
     public int getInvoiceDetailId() {
         return invoiceDetailId;
@@ -50,9 +52,6 @@ public class invoiceDetailDTO {
     public void setPrice(int price) {
         this.price = price;
     }
-
-    private int productId;
-    private int price;
 
     public invoiceDetailDTO() {
     }
