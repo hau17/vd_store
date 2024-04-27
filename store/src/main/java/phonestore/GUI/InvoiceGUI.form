@@ -63,7 +63,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jButtonAdd" min="-2" pref="113" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButtonUpdate" min="-2" pref="113" max="-2" attributes="0"/>
+                      <Component id="jButtonInfor" min="-2" pref="113" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButtonDelete" min="-2" pref="125" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -115,7 +115,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButtonAdd" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
-                          <Component id="jButtonUpdate" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
+                          <Component id="jButtonInfor" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
                           <Component id="jButtonDelete" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
                           <Component id="jbuttonExport" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
                           <Component id="jButtonRefresh" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
@@ -342,6 +342,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Product"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonProductActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonUser">
           <Properties>
@@ -350,6 +353,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="User"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUserActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonCustomer">
           <Properties>
@@ -413,15 +419,15 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButtonUpdate">
+    <Component class="javax.swing.JButton" name="jButtonInfor">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="cc" red="66" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Update"/>
+        <Property name="text" type="java.lang.String" value="Infor"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUpdateActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonInforActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textFieldInvoiceId">

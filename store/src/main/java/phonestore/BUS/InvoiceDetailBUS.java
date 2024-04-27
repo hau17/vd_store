@@ -63,4 +63,15 @@ public class InvoiceDetailBUS {
         }
         return arr;
     }
+
+    public ArrayList<invoiceDetailDTO> arrShowDetailDTOByID(int id) {
+        ArrayList<invoiceDetailDTO> arrayList = invoiceDetailDAO.getselectAll();
+        ArrayList<invoiceDetailDTO> arr = new ArrayList<>();
+        for (invoiceDetailDTO invoiceDetailDTO : arrayList) {
+            if (invoiceDetailDTO.getInvoiceId() == id) {
+                arr.add(invoiceDetailDTO);
+            }
+        }
+        return arr;
+    }
 }

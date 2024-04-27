@@ -60,4 +60,8 @@ public class InvoiceBUS {
         }
         return arr_search;
     }
+    public int newID(){
+        int newid= arr_InvoiceDTOs.size();   
+        return  newid;
+    }
 }

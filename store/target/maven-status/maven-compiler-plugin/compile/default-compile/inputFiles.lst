@@ -9,9 +9,13 @@ C:\vd_store\store\src\main\java\phonestore\GUI\InvoiceGUI.java
 C:\vd_store\store\src\main\java\phonestore\DAO\InvoiceDAO.java
 C:\vd_store\store\src\main\java\phonestore\GUI\UserGUI.java
 C:\vd_store\store\src\main\java\phonestore\BUS\InvoiceBUS.java
+C:\vd_store\store\src\main\java\phonestore\DTO\ProductDTO.java
 C:\vd_store\store\src\main\java\phonestore\GUI\ProductGUI.java
 C:\vd_store\store\src\main\java\phonestore\config\JDBCUtil.java
+C:\vd_store\store\src\main\java\phonestore\DAO\ProductDAL.java
 C:\vd_store\store\src\main\java\phonestore\DAO\InvoiceDetailDAO.java
 C:\vd_store\store\src\main\java\phonestore\BUS\SuplierBUS.java
 C:\vd_store\store\src\main\java\phonestore\DTO\invoiceDetailDTO.java
+C:\vd_store\store\src\main\java\phonestore\BUS\ProductBLL.java
+C:\vd_store\store\src\main\java\phonestore\GUI\InvoiceDetailInformationGUI.java
 C:\vd_store\store\src\main\java\phonestore\DAO\SuplierDAO.java
