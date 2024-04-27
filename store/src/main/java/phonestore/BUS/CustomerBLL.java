@@ -1,6 +1,5 @@
 package phonestore.BUS;
 
-import java.util.List;
 import java.util.Vector;
 
 import phonestore.DAO.CustomerDAL;

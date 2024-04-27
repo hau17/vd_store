@@ -2,7 +2,6 @@ package phonestore.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
 
 public class JDBCUtil {
     private static final String url = "jdbc:mysql://localhost:3306/phone_store";
