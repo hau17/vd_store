@@ -54,6 +54,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
         SetjTextFieldInvoiceId();
         showAllDataProduct();
         SetjTextFieldDate();
+        jTextFieldInvoiceId.setEditable(false);
 
     }
 
