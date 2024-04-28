@@ -48,4 +48,9 @@ public class CustomerDTO {
         this.address = address;
     }
 
+    @Override
+    public String toString() {
+        return "CustomerDTO{" + "customer_id=" + customer_id + ", customer_name=" + customer_name + ", phone_number=" + phone_number + ", address=" + address + '}';
+    }
+
 }

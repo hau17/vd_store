@@ -9,8 +9,10 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
+import phonestore.BUS.CustomerBLL;
 
 import phonestore.BUS.InvoiceBUS;
+import phonestore.BUS.UserBUS;
 import phonestore.DTO.InvoiceDTO;
 
 /**
@@ -20,6 +22,8 @@ import phonestore.DTO.InvoiceDTO;
 public class InvoiceGUI extends javax.swing.JFrame {
     InvoiceBUS invoiceBUS = new InvoiceBUS();
     DefaultTableModel defaultTableModel = new DefaultTableModel();
+    CustomerBLL customerBLL=new CustomerBLL();
+    UserBUS userBUS=new UserBUS();
 
     /**
      * Creates new form InvoiceGUI
@@ -36,8 +40,8 @@ public class InvoiceGUI extends javax.swing.JFrame {
         defaultTableModel.setRowCount(0);
         ArrayList<InvoiceDTO> arr = invoiceBUS.getAllInvoice();
         for (InvoiceDTO invoiceDTO : arr) {
-            Object[] objects = new Object[] { invoiceDTO.getInvoiceId(), invoiceDTO.getCustomer_id(),
-                    invoiceDTO.getUserId(), invoiceDTO.getDateOfInvoice(), invoiceDTO.getTotalAmount() };
+            Object[] objects = new Object[] { invoiceDTO.getInvoiceId(), customerBLL.getCustomerNameById(invoiceDTO.getCustomer_id()),
+                    userBUS.getUserNameByID(invoiceDTO.getUserId()), invoiceDTO.getDateOfInvoice(), invoiceDTO.getTotalAmount() };
             defaultTableModel.addRow(objects);
         }
     }
@@ -46,8 +50,8 @@ public class InvoiceGUI extends javax.swing.JFrame {
         defaultTableModel.setRowCount(0);
         ArrayList<InvoiceDTO> arrayList = invoiceBUS.arrSearch(stringSearch);
         for (InvoiceDTO invoiceDTO : arrayList) {
-            Object[] objects = new Object[] { invoiceDTO.getInvoiceId(), invoiceDTO.getCustomer_id(),
-                    invoiceDTO.getUserId(), invoiceDTO.getDateOfInvoice(), invoiceDTO.getTotalAmount() };
+            Object[] objects = new Object[] { invoiceDTO.getInvoiceId(),customerBLL.getCustomerNameById(invoiceDTO.getCustomer_id()) ,
+                    userBUS.getUserNameByID(invoiceDTO.getUserId()), invoiceDTO.getDateOfInvoice(), invoiceDTO.getTotalAmount() };
             defaultTableModel.addRow(objects);
         }
     }
@@ -58,6 +62,12 @@ public class InvoiceGUI extends javax.swing.JFrame {
 
     public int getId() {
         return Integer.parseInt(textFieldInvoiceId.getText());
+    }
+    public String getCustomer(){
+        return TextFieldCustomer.getText();
+    }
+    public String getTotalAmount(){
+        return textFieldTotalAmount.getText();
     }
 
     /**

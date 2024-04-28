@@ -65,9 +65,12 @@ public class UserBUS {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-
             }
         }
         return arr;
+    }
+    public String getUserNameByID(int id){
+        UserDTO userDTO=userDAO.selectById(id);
+        return userDTO.getfull_name();
     }
 }

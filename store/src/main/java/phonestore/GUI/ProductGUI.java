@@ -155,7 +155,7 @@ public class ProductGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Name", "Ram", "Rom", "Battery capacity", "Chip", "Brand ID", "Origin ID", "Image"
+                "Id", "Name", "Ram", "Rom", "Battery capacity", "Chip", "Brand ID", "Origin ID", "image"
             }
         ));
         jTableProduct.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -491,7 +491,7 @@ public class ProductGUI extends javax.swing.JFrame {
             BufferedImage bufferedImage;
             try {
                 bufferedImage = ImageIO.read(file);
-                Image image = bufferedImage.getScaledInstance(200, 300, Image.SCALE_SMOOTH);
+                Image image = bufferedImage.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
                 jLabelImg.setIcon(new ImageIcon(image));
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "please choose file again", "Error", JOptionPane.ERROR_MESSAGE);

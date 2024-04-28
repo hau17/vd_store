@@ -41,5 +41,14 @@ public class CustomerBLL {
     public Vector<CustomerDTO> searchCustomer(String searchText) {
         return cusDAL.searchCustomer(searchText);
     }
-
+    public String getCustomerNameById(int id){
+        CustomerDTO cdto=null;
+        Vector<CustomerDTO> vector= cusDAL.getAllCustomers();
+        for(CustomerDTO customerDTO: vector){
+            if (customerDTO.getCustomer_id() == id) {
+                cdto= customerDTO;
+            }
+        }
+        return cdto.getCustomer_name();
+    }
 }
