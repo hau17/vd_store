@@ -129,8 +129,6 @@ public class InvoiceDAO implements DAOInterface<InvoiceDTO> {
                 int status = rs.getInt("status");
                 invoiceDTO = new InvoiceDTO(invoiceId, customerId, userId, invoiceDate, totalAmount, status);
             }
-            // rs.close();
-            // ps.close();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

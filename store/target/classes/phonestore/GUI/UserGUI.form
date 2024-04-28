@@ -45,17 +45,17 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabelAddress" min="-2" pref="113" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="textFieldAddress" max="32767" attributes="0"/>
+                              <Component id="textFieldDateOfbirth" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabelPhone" min="-2" pref="113" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="textFieldPhone" max="32767" attributes="0"/>
+                              <Component id="textFieldFullName" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabelEmal" min="-2" pref="113" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="textFieldEmail" max="32767" attributes="0"/>
+                              <Component id="textFieldPassword" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -63,18 +63,18 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabeId4" min="-2" pref="113" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="textFieldId3" min="-2" pref="305" max="-2" attributes="0"/>
+                              <Component id="textFieldIdRoleID" min="-2" pref="305" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="jLabeId1" min="-2" pref="113" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="textFieldId2" min="-2" pref="305" max="-2" attributes="0"/>
+                                  <Component id="textFieldIdEmail" min="-2" pref="305" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabeId2" min="-2" pref="113" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="textFieldId" min="-2" pref="305" max="-2" attributes="0"/>
+                                  <Component id="textFieldPhone" min="-2" pref="305" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -113,7 +113,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabeId" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="textFieldId" alignment="3" max="32767" attributes="0"/>
+                              <Component id="textFieldPhone" alignment="3" max="32767" attributes="0"/>
                               <Component id="jLabeId2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <Component id="textFieldId1" alignment="1" max="32767" attributes="0"/>
@@ -123,24 +123,24 @@
                           <Component id="jLabelName" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="textFieldName" alignment="3" max="32767" attributes="0"/>
                           <Component id="jLabeId1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="textFieldId2" alignment="3" max="32767" attributes="0"/>
+                          <Component id="textFieldIdEmail" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabelEmal" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="textFieldEmail" alignment="3" max="32767" attributes="0"/>
+                          <Component id="textFieldPassword" alignment="3" max="32767" attributes="0"/>
                           <Component id="jLabeId4" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="textFieldId3" alignment="3" max="32767" attributes="0"/>
+                          <Component id="textFieldIdRoleID" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabelPhone" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="textFieldPhone" alignment="3" max="32767" attributes="0"/>
+                          <Component id="textFieldFullName" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabelAddress" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="textFieldAddress" alignment="3" max="32767" attributes="0"/>
+                          <Component id="textFieldDateOfbirth" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -451,7 +451,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="textFieldAddress">
+    <Component class="javax.swing.JTextField" name="textFieldDateOfbirth">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>
@@ -500,7 +500,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="textFieldPhone">
+    <Component class="javax.swing.JTextField" name="textFieldFullName">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>
@@ -538,14 +538,14 @@
         <Property name="text" type="java.lang.String" value="Export Excel"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textFieldId">
+    <Component class="javax.swing.JTextField" name="textFieldPhone">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textFieldEmail">
+    <Component class="javax.swing.JTextField" name="textFieldPassword">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>
@@ -610,14 +610,14 @@
         <Property name="text" type="java.lang.String" value="Role id"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textFieldId2">
+    <Component class="javax.swing.JTextField" name="textFieldIdEmail">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textFieldId3">
+    <Component class="javax.swing.JTextField" name="textFieldIdRoleID">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>

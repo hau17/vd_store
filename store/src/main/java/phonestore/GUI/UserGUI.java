@@ -46,22 +46,22 @@ public class UserGUI extends javax.swing.JFrame {
         jButtonInvoice = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableSuplier = new javax.swing.JTable();
-        textFieldAddress = new javax.swing.JTextField();
+        textFieldDateOfbirth = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        textFieldPhone = new javax.swing.JTextField();
+        textFieldFullName = new javax.swing.JTextField();
         jButtonAdd = new javax.swing.JButton();
         jLabeId = new javax.swing.JLabel();
         jbuttonExport = new javax.swing.JButton();
-        textFieldId = new javax.swing.JTextField();
-        textFieldEmail = new javax.swing.JTextField();
+        textFieldPhone = new javax.swing.JTextField();
+        textFieldPassword = new javax.swing.JTextField();
         jButtonDelete = new javax.swing.JButton();
         jLabeId1 = new javax.swing.JLabel();
         textFieldId1 = new javax.swing.JTextField();
         jLabeId2 = new javax.swing.JLabel();
         jLabeId4 = new javax.swing.JLabel();
-        textFieldId2 = new javax.swing.JTextField();
-        textFieldId3 = new javax.swing.JTextField();
+        textFieldIdEmail = new javax.swing.JTextField();
+        textFieldIdRoleID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -202,7 +202,7 @@ public class UserGUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableSuplier);
 
-        textFieldAddress.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        textFieldDateOfbirth.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(0, 204, 255));
 
@@ -228,7 +228,7 @@ public class UserGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        textFieldPhone.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        textFieldFullName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jButtonAdd.setBackground(new java.awt.Color(102, 204, 255));
         jButtonAdd.setText("Add");
@@ -246,9 +246,9 @@ public class UserGUI extends javax.swing.JFrame {
         jbuttonExport.setBackground(new java.awt.Color(102, 204, 255));
         jbuttonExport.setText("Export Excel");
 
-        textFieldId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        textFieldPhone.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        textFieldEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        textFieldPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jButtonDelete.setBackground(new java.awt.Color(102, 204, 255));
         jButtonDelete.setText("Delete");
@@ -281,9 +281,9 @@ public class UserGUI extends javax.swing.JFrame {
         jLabeId4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabeId4.setText("Role id");
 
-        textFieldId2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        textFieldIdEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        textFieldId3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        textFieldIdRoleID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -309,30 +309,30 @@ public class UserGUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldAddress))
+                                .addComponent(textFieldDateOfbirth))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldPhone))
+                                .addComponent(textFieldFullName))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelEmal, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldEmail)))
+                                .addComponent(textFieldPassword)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabeId4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldId3, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(textFieldIdRoleID, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabeId1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(textFieldId2, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(textFieldIdEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabeId2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(textFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(textFieldPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(34, 34, 34))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -363,7 +363,7 @@ public class UserGUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabeId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textFieldId)
+                                .addComponent(textFieldPhone)
                                 .addComponent(jLabeId2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(textFieldId1, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -371,21 +371,21 @@ public class UserGUI extends javax.swing.JFrame {
                             .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldName)
                             .addComponent(jLabeId1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldId2))
+                            .addComponent(textFieldIdEmail))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelEmal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldEmail)
+                            .addComponent(textFieldPassword)
                             .addComponent(jLabeId4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldId3))
+                            .addComponent(textFieldIdRoleID))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldPhone))
+                            .addComponent(textFieldFullName))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldAddress))
+                            .addComponent(textFieldDateOfbirth))
                         .addGap(18, 18, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -498,13 +498,13 @@ public class UserGUI extends javax.swing.JFrame {
     private javax.swing.JTable jTableSuplier;
     private javax.swing.JTextField jTextFieldSearch;
     private javax.swing.JButton jbuttonExport;
-    private javax.swing.JTextField textFieldAddress;
-    private javax.swing.JTextField textFieldEmail;
-    private javax.swing.JTextField textFieldId;
+    private javax.swing.JTextField textFieldDateOfbirth;
+    private javax.swing.JTextField textFieldFullName;
     private javax.swing.JTextField textFieldId1;
-    private javax.swing.JTextField textFieldId2;
-    private javax.swing.JTextField textFieldId3;
+    private javax.swing.JTextField textFieldIdEmail;
+    private javax.swing.JTextField textFieldIdRoleID;
     private javax.swing.JTextField textFieldName;
+    private javax.swing.JTextField textFieldPassword;
     private javax.swing.JTextField textFieldPhone;
     // End of variables declaration//GEN-END:variables
 }
