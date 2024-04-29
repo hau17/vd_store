@@ -4,29 +4,34 @@
  */
 package phonestore.GUI;
 
+import com.sun.tools.javac.jvm.ByteCodes;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import org.jdesktop.swingx.autocomplete.AutoCompleteComboBoxEditor;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import phonestore.BUS.BrandBLL;
 
 import phonestore.BUS.CustomerBLL;
 
 import phonestore.BUS.InvoiceDetailBUS;
+import phonestore.BUS.OriginBLL;
 import phonestore.BUS.ProductBLL;
 import phonestore.DAO.GRNDetailDAO;
+import phonestore.DAO.InvoiceDAO;
 import phonestore.DAO.InvoiceDetailDAO;
+import phonestore.DAO.OriginDAL;
 import phonestore.DAO.ProductDAL;
+import phonestore.DAO.WareHouseDAO;
 import phonestore.DTO.CustomerDTO;
+import phonestore.DTO.InvoiceDTO;
 import phonestore.DTO.ProductDTO;
+import phonestore.DTO.WareHouseDTO;
 import phonestore.DTO.invoiceDetailDTO;
 
 /**
@@ -39,9 +44,12 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
     DefaultTableModel defaultTableModelProduct, defaultTableModelProductNeedSell;
     CustomerBLL customerBLL;
     BrandBLL brandBLL = new BrandBLL();
-    Vector<ProductDTO> arrProductNeedSell = new Vector<>();
     GRNDetailDAO grnDetailDAO = new GRNDetailDAO();
-
+    WareHouseDAO wareHouseDAO = new WareHouseDAO();
+    ArrayList<invoiceDetailDTO> arrIvoiceNeedSell = new ArrayList<>();
+    ArrayList<WareHouseDTO> arrWareHouseDTONeedSell = new ArrayList<>();
+    InvoiceDetailDAO invoiceDetailDAO = new InvoiceDetailDAO();
+    OriginBLL originBLL = new OriginBLL();
     private InvoiceGUI parentGUI;
 
     /**
@@ -57,7 +65,6 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
         showAllCustomer();
         showAllDataProduct();
         SetjTextFieldInvoiceId();
-        // showAllDataProduct();
         SetjTextFieldDate();
         jTextFieldInvoiceId.setEditable(false);
 
@@ -83,9 +90,9 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
                     productDTO.getRam(), productDTO.getRom(), productDTO.getBattery_capacity(),
                     productDTO.getChip(),
                     brandBLL.getBrandDTOByID(productDTO.getBrand_id()).getBrand_name(),
-                    productDTO.getOrigin_id(),
-                    grnDetailDAO.getGRNDetailByProductID(productDTO.getProduct_id()).getPrice().toString(),
-                    grnDetailDAO.getGRNDetailByProductID(productDTO.getProduct_id()).getQuantity()
+                    originBLL.getOriginByID(productDTO.getOrigin_id()).getOrigin_name(),
+                    wareHouseDAO.selectById(productDTO.getProduct_id()).getPrice(),
+                    wareHouseDAO.selectById(productDTO.getProduct_id()).getQuantity()
             };
             defaultTableModelProduct.addRow(objects);
         }
@@ -99,12 +106,23 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
                     productDTO.getRam(), productDTO.getRom(), productDTO.getBattery_capacity(),
                     productDTO.getChip(),
                     brandBLL.getBrandDTOByID(productDTO.getBrand_id()).getBrand_name(),
-                    productDTO.getOrigin_id(),
-                    grnDetailDAO.getGRNDetailByProductID(productDTO.getProduct_id()).getPrice().toString(),
-                    grnDetailDAO.getGRNDetailByProductID(productDTO.getProduct_id()).getQuantity() };
+                    originBLL.getOriginByID(productDTO.getOrigin_id()).getOrigin_name(),
+                    wareHouseDAO.selectById(productDTO.getProduct_id()).getPrice(),
+                    wareHouseDAO.selectById(productDTO.getProduct_id()).getQuantity()
+            };
             defaultTableModelProduct.addRow(objects);
         }
 
+    }
+
+    public void showProductNeedSell() {
+        defaultTableModelProductNeedSell.setRowCount(0);
+        ArrayList<WareHouseDTO> arrayList = arrWareHouseDTONeedSell;
+        for (WareHouseDTO wareHouseDTO : arrayList) {
+            Object[] objects = new Object[] { wareHouseDTO.getProductId(), wareHouseDTO.getQuantity(),
+                    wareHouseDTO.getPrice() };
+            defaultTableModelProductNeedSell.addRow(objects);
+        }
     }
 
     public void showAllCustomer() {
@@ -121,12 +139,68 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
         return vector.get(index).getCustomer_id();
     }
 
+    public void addProductNeedSell(int productID, int quantity, int price) {
+        WareHouseDTO wareHouseDTO = new WareHouseDTO(productID, quantity, new BigDecimal(price));
+        invoiceDetailDTO invoiceDetailDTO = new invoiceDetailDTO(0,
+                Integer.parseInt(jTextFieldInvoiceId.getText()), quantity, productID, price);
+        arrWareHouseDTONeedSell.add(wareHouseDTO);
+        arrIvoiceNeedSell.add(invoiceDetailDTO);
+        showtotalAmount();
+    }
+
+    public void deleteProductNeedSell(int productID, int quantity, int price) {
+        for (int i = 0; i < arrIvoiceNeedSell.size(); i++) {
+            if (arrIvoiceNeedSell.get(i).getProductId() == productID) {
+                arrIvoiceNeedSell.remove(i);
+                break;
+            }
+        }
+        for (int i = 0; i < arrWareHouseDTONeedSell.size(); i++) {
+            if (arrWareHouseDTONeedSell.get(i).getProductId() == productID) {
+                arrWareHouseDTONeedSell.remove(i);
+                break;
+            }
+        }
+        showtotalAmount();
+    }
+
+    public void updateProductNeedSell(int productID, int quantity, int price) {
+        for (int i = 0; i < arrIvoiceNeedSell.size(); i++) {
+            invoiceDetailDTO inDTO = arrIvoiceNeedSell.get(i);
+            if (inDTO.getProductId() == productID) {
+                inDTO.setPrice(price);
+                inDTO.setQuantity(quantity);
+                arrIvoiceNeedSell.set(i, inDTO);
+                break;
+            }
+        }
+        for (int i = 0; i < arrWareHouseDTONeedSell.size(); i++) {
+            WareHouseDTO wareHouseDTO = arrWareHouseDTONeedSell.get(i);
+            if (wareHouseDTO.getProductId() == productID) {
+                wareHouseDTO.setPrice(new BigDecimal(price));
+                wareHouseDTO.setQuantity(quantity);
+                break;
+            }
+        }
+        showtotalAmount();
+    }
+
+    public void showtotalAmount() {
+        jTextFieldTotalAmount.setText("");
+        int Total = 0;
+        for (WareHouseDTO wareHouseDTO : arrWareHouseDTONeedSell) {
+            Total += wareHouseDTO.getQuantity() * wareHouseDTO.getPrice().intValue();
+        }
+        jTextFieldTotalAmount.setText(Integer.toString(Total));
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
@@ -158,8 +232,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
         jTextFieldSearch = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableProduct = new javax.swing.JTable();
-        jButtonSell = new javax.swing.JButton();
-        jButtonUpdate = new javax.swing.JButton();
+        jButtonInvoiceGeneration = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jTextFieldProductId = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -170,6 +243,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
         jTextFieldDate = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextFieldTotalAmount = new javax.swing.JTextField();
+        jButtonUpdate = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -209,9 +283,19 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
 
         jButtonAdd.setBackground(new java.awt.Color(0, 153, 255));
         jButtonAdd.setText("Add");
+        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddActionPerformed(evt);
+            }
+        });
 
         jButtonDelete.setBackground(new java.awt.Color(0, 153, 255));
         jButtonDelete.setText("Delete");
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteActionPerformed(evt);
+            }
+        });
 
         jButtonRefresh.setBackground(new java.awt.Color(0, 153, 255));
         jButtonRefresh.setText("Refresh");
@@ -237,22 +321,26 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
 
         jTableProduct.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][] {
-                        { null, null, null },
-                        { null, null, null },
-                        { null, null, null },
-                        { null, null, null }
+
                 },
                 new String[] {
                         "Product ID", "Quantity", "Price"
                 }));
+        jTableProduct.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableProductMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableProduct);
 
-        jButtonSell.setBackground(new java.awt.Color(0, 153, 255));
-        jButtonSell.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButtonSell.setText("Invoice generation");
-
-        jButtonUpdate.setBackground(new java.awt.Color(0, 153, 255));
-        jButtonUpdate.setText("Update");
+        jButtonInvoiceGeneration.setBackground(new java.awt.Color(0, 153, 255));
+        jButtonInvoiceGeneration.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButtonInvoiceGeneration.setText("Invoice generation");
+        jButtonInvoiceGeneration.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInvoiceGenerationActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Product ID");
 
@@ -281,6 +369,14 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
         });
 
         jLabel9.setText("Total amount");
+
+        jButtonUpdate.setBackground(new java.awt.Color(0, 153, 255));
+        jButtonUpdate.setText("Update");
+        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -367,8 +463,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
                                                                 .addComponent(jButtonDelete,
                                                                         javax.swing.GroupLayout.PREFERRED_SIZE, 124,
                                                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addGap(14, 14, 14)
                                                                 .addComponent(jButtonUpdate,
                                                                         javax.swing.GroupLayout.PREFERRED_SIZE, 124,
                                                                         javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -401,7 +496,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
                                                                         javax.swing.GroupLayout.PREFERRED_SIZE, 129,
                                                                         javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addGap(32, 32, 32)
-                                                                .addComponent(jButtonSell,
+                                                                .addComponent(jButtonInvoiceGeneration,
                                                                         javax.swing.GroupLayout.PREFERRED_SIZE, 148,
                                                                         javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addGap(0, 0, Short.MAX_VALUE))
@@ -534,8 +629,8 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jTextFieldTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 36,
                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButtonSell, javax.swing.GroupLayout.PREFERRED_SIZE, 39,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jButtonInvoiceGeneration, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                39, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(23, 23, 23)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 242,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -543,6 +638,63 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonAddActionPerformed
+        // TODO add your handling code here:
+        addProductNeedSell(Integer.parseInt(jTextFieldProductId.getText()),
+                Integer.parseInt(jTextFieldQuantity.getText()), Integer.parseInt(jTextFieldPrice.getText()));
+        showProductNeedSell();
+    }// GEN-LAST:event_jButtonAddActionPerformed
+
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonDeleteActionPerformed
+        // TODO add your handling code here:
+        deleteProductNeedSell(Integer.parseInt(jTextFieldProductId.getText()),
+                Integer.parseInt(jTextFieldQuantity.getText()), Integer.parseInt(jTextFieldPrice.getText()));
+        showProductNeedSell();
+    }// GEN-LAST:event_jButtonDeleteActionPerformed
+
+    private void jTableProductMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTableProductMouseClicked
+        // TODO add your handling code here:
+        int row = jTableProduct.getSelectedRow();
+        jTextFieldProductId.setText(defaultTableModelProductNeedSell.getValueAt(row, 0).toString());
+        jTextFieldQuantity.setText(defaultTableModelProductNeedSell.getValueAt(row, 1).toString());
+        jTextFieldPrice.setText(defaultTableModelProductNeedSell.getValueAt(row, 2).toString());
+    }// GEN-LAST:event_jTableProductMouseClicked
+
+    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonUpdateActionPerformed
+        // TODO add your handling code here:
+        updateProductNeedSell(Integer.parseInt(jTextFieldProductId.getText()),
+                Integer.parseInt(jTextFieldQuantity.getText()), Integer.parseInt(jTextFieldPrice.getText()));
+        showProductNeedSell();
+
+    }// GEN-LAST:event_jButtonUpdateActionPerformed
+
+    private void jButtonInvoiceGenerationActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonInvoiceGenerationActionPerformed
+        // TODO add your handling code here:
+        for (invoiceDetailDTO inDTO : arrIvoiceNeedSell) {
+            int invoiceDetailID = invoiceDetailDAO.getLastInvoiceDetailID();
+            inDTO.setInvoiceDetailId(invoiceDetailID);
+            invoiceDetailBUS.insertInvoiceDetailBUS(inDTO);
+        }
+        for (WareHouseDTO wareHouseDTO : arrWareHouseDTONeedSell) {
+            wareHouseDAO.descreaseProduct(wareHouseDTO.getProductId(), wareHouseDTO.getQuantity());
+        }
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        Date utilDate = null;
+        int invoiceID = 0;
+        try {
+            utilDate = simpleDateFormat.parse(jTextFieldDate.getText());
+            invoiceID = Integer.parseInt(jTextFieldInvoiceId.getText());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+
+        InvoiceDTO invoiceDTO = new InvoiceDTO(invoiceID, getIDCustomer(), 1, sqlDate,
+                new BigDecimal(jTextFieldTotalAmount.getText()), 1);
+        InvoiceDAO.getInstance().insert(invoiceDTO);
+        this.dispose();
+    }// GEN-LAST:event_jButtonInvoiceGenerationActionPerformed
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonSearchActionPerformed
         // TODO add your handling code here:
@@ -645,9 +797,9 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonDelete;
+    private javax.swing.JButton jButtonInvoiceGeneration;
     private javax.swing.JButton jButtonRefresh;
     private javax.swing.JButton jButtonSearch;
-    private javax.swing.JButton jButtonSell;
     private javax.swing.JButton jButtonUpdate;
     private javax.swing.JComboBox<String> jComboBoxCustomer;
     private javax.swing.JLabel jLabel1;

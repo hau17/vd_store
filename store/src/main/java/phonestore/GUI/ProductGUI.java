@@ -88,6 +88,11 @@ public class ProductGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButtonLogout = new javax.swing.JButton();
         jButtonInvoice = new javax.swing.JButton();
+        jButtonBrand = new javax.swing.JButton();
+        jButtonOrigin = new javax.swing.JButton();
+        jButtonwarehouse = new javax.swing.JButton();
+        jButtonwarranty = new javax.swing.JButton();
+        jButtonRole = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         textFieldRom = new javax.swing.JTextField();
@@ -173,7 +178,7 @@ public class ProductGUI extends javax.swing.JFrame {
         textFieldChip.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setForeground(new java.awt.Color(0, 204, 204));
+        jPanel1.setForeground(new java.awt.Color(102, 153, 255));
 
         jButtonProduct.setBackground(new java.awt.Color(102, 204, 255));
         jButtonProduct.setText("Product");
@@ -212,6 +217,46 @@ public class ProductGUI extends javax.swing.JFrame {
             }
         });
 
+        jButtonBrand.setBackground(new java.awt.Color(102, 204, 255));
+        jButtonBrand.setText("Brand");
+        jButtonBrand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBrandActionPerformed(evt);
+            }
+        });
+
+        jButtonOrigin.setBackground(new java.awt.Color(102, 204, 255));
+        jButtonOrigin.setText("Origin");
+        jButtonOrigin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOriginActionPerformed(evt);
+            }
+        });
+
+        jButtonwarehouse.setBackground(new java.awt.Color(102, 204, 255));
+        jButtonwarehouse.setText("Warehouse");
+        jButtonwarehouse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonwarehouseActionPerformed(evt);
+            }
+        });
+
+        jButtonwarranty.setBackground(new java.awt.Color(102, 204, 255));
+        jButtonwarranty.setText("Warranty");
+        jButtonwarranty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonwarrantyActionPerformed(evt);
+            }
+        });
+
+        jButtonRole.setBackground(new java.awt.Color(102, 204, 255));
+        jButtonRole.setText("Role");
+        jButtonRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRoleActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -225,7 +270,12 @@ public class ProductGUI extends javax.swing.JFrame {
                     .addComponent(jButtonGRN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonInvoice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonInvoice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonBrand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonOrigin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonwarehouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonwarranty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonRole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -233,18 +283,28 @@ public class ProductGUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jButtonUser, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jButtonCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jButtonSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonGRN, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonUser, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonGRN, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonwarehouse, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonwarranty, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonRole, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jButtonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -496,6 +556,26 @@ public class ProductGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonInvoiceActionPerformed
 
+    private void jButtonBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBrandActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonBrandActionPerformed
+
+    private void jButtonOriginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOriginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonOriginActionPerformed
+
+    private void jButtonwarehouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonwarehouseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonwarehouseActionPerformed
+
+    private void jButtonwarrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonwarrantyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonwarrantyActionPerformed
+
+    private void jButtonRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRoleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonRoleActionPerformed
+
     private void textFieldLinkActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_textFieldLinkActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_textFieldLinkActionPerformed
@@ -638,17 +718,22 @@ public class ProductGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonAddImg;
+    private javax.swing.JButton jButtonBrand;
     private javax.swing.JButton jButtonCustomer;
     private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonGRN;
     private javax.swing.JButton jButtonInvoice;
     private javax.swing.JButton jButtonLogout;
+    private javax.swing.JButton jButtonOrigin;
     private javax.swing.JButton jButtonProduct;
     private javax.swing.JButton jButtonRefresh;
+    private javax.swing.JButton jButtonRole;
     private javax.swing.JButton jButtonSearch;
     private javax.swing.JButton jButtonSupplier;
     private javax.swing.JButton jButtonUpdate;
     private javax.swing.JButton jButtonUser;
+    private javax.swing.JButton jButtonwarehouse;
+    private javax.swing.JButton jButtonwarranty;
     private javax.swing.JLabel jLabeId;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

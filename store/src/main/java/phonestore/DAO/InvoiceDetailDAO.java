@@ -3,6 +3,7 @@ package phonestore.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import phonestore.DTO.invoiceDetailDTO;
@@ -126,5 +127,23 @@ public class InvoiceDetailDAO implements DAOInterface<invoiceDetailDTO> {
             JDBCUtil.closeConnection(connection);
         }
         return invoiceDetailDTO;
+    }
+    public int getLastInvoiceDetailID(){
+                Connection con = JDBCUtil.getConnection();
+        int lastId = 0;
+        try {
+            String sql = "SELECT * FROM invoice_detail WHERE invoice_detail_id = (SELECT MAX(invoice_detail_id) FROM invoice_detail)";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                lastId = rs.getInt("invoice_detail_id") + 1;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closeConnection(con);
+        }
+        return lastId;
+
     }
 }
