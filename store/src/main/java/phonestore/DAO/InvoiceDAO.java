@@ -88,7 +88,7 @@ public class InvoiceDAO implements DAOInterface<InvoiceDTO> {
         ArrayList<InvoiceDTO> arr = new ArrayList<>();
         Connection con = JDBCUtil.getConnection();
         try {
-            String sql = "SELECT * FROM invoice";
+            String sql = "SELECT * FROM invoice WHERE status= 1";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -135,5 +135,22 @@ public class InvoiceDAO implements DAOInterface<InvoiceDTO> {
             JDBCUtil.closeConnection(con);
         }
         return invoiceDTO;
+    }
+    public int geLastInvoiceIDInDatabase(){
+        Connection con=JDBCUtil.getConnection();
+        int i=0;
+        try {
+            String sql="SELECT * FROM invoice WHERE invoice_id= (SELECT MAX(invoice_id) FROM invoice )";
+            Statement st=con.createStatement();
+            ResultSet rs=st.executeQuery(sql);
+            while (rs.next()) {
+                i=rs.getInt("invoice_id");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            JDBCUtil.closeConnection(con);
+        }
+        return i;
     }
 }

@@ -148,16 +148,25 @@ public class CustomerDAL {
 
         return result;
     }
-    // public static void main(String[] args) {
-    // CustomerDAL customerDAL = new CustomerDAL();
-    // System.out.println(customerDAL.openConnection());
-    // Vector<CustomerDTO> customers = customerDAL.getAllCustomers();
-    // for (CustomerDTO customer : customers) {
-    // System.out.println("Customer ID: " + customer.getCustomer_id());
-    // System.out.println("Customer Name: " + customer.getCustomer_name());
-    // System.out.println("Phone Number: "+ customer.getPhone_number());
-    // System.out.println("Address: "+ customer.getAddress());
-    // System.out.println("-----------------------------");
-    // }
-    // }
+    public CustomerDTO getCustomerByID(int id){
+        CustomerDTO cus=new CustomerDTO();
+        Connection con=JDBCUtil.getConnection();
+        try {
+            String sql="Select * from Customer where customer_id=" + id;
+            Statement statement=con.createStatement();
+            ResultSet rs=statement.executeQuery(sql);
+            while (rs.next()) {                
+                cus.setCustomer_id(rs.getInt("customer_id"));
+                cus.setCustomer_name(rs.getString("customer_name"));
+                cus.setPhone_number(rs.getInt("phone_number"));
+                cus.setAddress(rs.getString("address"));
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closeConnection(con);
+        }
+        return cus;
+    }
 }

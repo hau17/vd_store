@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
+
 import phonestore.DTO.SuplierDTO;
 import phonestore.config.JDBCUtil;
 
@@ -127,5 +130,23 @@ public class SuplierDAO implements DAOInterface<SuplierDTO> {
             JDBCUtil.closeConnection(con);
         }
         return suplierDTO;
+    }
+
+    public int getLastSupplierIDInDatabase() {
+        Connection con = JDBCUtil.getConnection();
+        int lastId = 0;
+        try {
+            String sql = "SELECT * FROM supplier WHERE supplier_id = (SELECT MAX(supplier_id) FROM supplier)";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                lastId = rs.getInt("supplier_id") + 1;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closeConnection(con);
+        }
+        return lastId;
     }
 }

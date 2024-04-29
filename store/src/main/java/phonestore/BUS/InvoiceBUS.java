@@ -72,19 +72,20 @@ public class InvoiceBUS {
         ArrayList<InvoiceDTO> arr_search = new ArrayList<>();
         for (InvoiceDTO invoiceDTO : invoiceDAO.getselectAll()) {
             String invoiceId = Integer.toString(invoiceDTO.getInvoiceId());
-            String customerId = Integer.toString(invoiceDTO.getCustomer_id());
-            String userId = Integer.toString(invoiceDTO.getUserId());
-
-            if (invoiceId.equals(search) || customerId.contains(search) || userId.contains(search)) {
+            String customerName = customerDAL.getCustomerByID(invoiceDTO.getCustomer_id()).getCustomer_name();
+            String userName = userDAO.selectById(invoiceDTO.getUserId()).getfull_name();
+//            Date date= invoiceDTO.getDateOfInvoice();
+//            SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+            if (invoiceId.equals(search) || customerName.contains(search) || userName.contains(search)) {
                 arr_search.add(invoiceDTO);
             }
         }
         return arr_search;
     }
 
-    public int newID() {
-        int newid = arr_InvoiceDTOs.size();
-        return newid;
+    public int getLastInvoiceID() {
+        int id = invoiceDAO.geLastInvoiceIDInDatabase();
+        return id + 1;
     }
 
     public void exportExcel(String path, int id) {

@@ -186,6 +186,11 @@ public class ProductGUI extends javax.swing.JFrame {
 
         jButtonSupplier.setBackground(new java.awt.Color(102, 204, 255));
         jButtonSupplier.setText("Supplier");
+        jButtonSupplier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSupplierActionPerformed(evt);
+            }
+        });
 
         jButtonGRN.setBackground(new java.awt.Color(102, 204, 255));
         jButtonGRN.setText("GRN");
@@ -201,6 +206,11 @@ public class ProductGUI extends javax.swing.JFrame {
 
         jButtonInvoice.setBackground(new java.awt.Color(102, 204, 255));
         jButtonInvoice.setText("Invoice");
+        jButtonInvoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInvoiceActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -475,6 +485,16 @@ public class ProductGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSupplierActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new SupplierGUI1().setVisible(true);
+    }//GEN-LAST:event_jButtonSupplierActionPerformed
+
+    private void jButtonInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInvoiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonInvoiceActionPerformed
 
     private void textFieldLinkActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_textFieldLinkActionPerformed
         // TODO add your handling code here:

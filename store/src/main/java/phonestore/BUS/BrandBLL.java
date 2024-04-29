@@ -41,4 +41,8 @@ public class BrandBLL {
     public Vector<BrandDTO> searchBrand(String searchText) {
         return braDAL.searchBrand(searchText);
     }
+    public BrandDTO getBrandDTOByID(int id){
+        BrandDTO brandDTO=braDAL.getBrandByID(id);
+        return brandDTO;
+    }
 }

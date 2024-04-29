@@ -19,7 +19,7 @@ public class BrandDAL {
                 BrandDTO br = new BrandDTO();
                 br.setBrand_id(rs.getInt("Brand_id"));
                 br.setBrand_name(rs.getString("Brand_name"));
-
+                br.setStatus("active");
                 arr.add(br);
             }
         } catch (SQLException ex) {
@@ -34,10 +34,11 @@ public class BrandDAL {
         boolean result = false;
         Connection con = JDBCUtil.getConnection();
         try {
-            String sql = "Insert into Brand values(?,?)";
+            String sql = "Insert into Brand values(?,?,?)";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, bra.getBrand_id());
             stmt.setString(2, bra.getBrand_name());
+            stmt.setString(3, "active");
             if (stmt.executeUpdate() >= 1)
                 result = true;
         } catch (SQLException ex) {
@@ -137,5 +138,24 @@ public class BrandDAL {
             JDBCUtil.closeConnection(con);
         }
         return result;
+    }
+    public BrandDTO getBrandByID(int id){
+        Connection con= JDBCUtil.getConnection();
+        BrandDTO brandDTO=new BrandDTO();
+        try {
+            String sql = "Select * from Brand where brand_id=" + id;
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {                
+                brandDTO.setBrand_id(rs.getInt("brand_id"));
+                brandDTO.setBrand_name(rs.getString("brand_name"));
+                brandDTO.setStatus("status");
+            }
+
+        } catch (Exception e) {
+        } finally {
+            JDBCUtil.closeConnection(con);
+        }
+        return brandDTO;
     }
 }
