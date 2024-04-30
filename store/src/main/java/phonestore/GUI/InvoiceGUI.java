@@ -9,8 +9,11 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import phonestore.BUS.CustomerBLL;
 
 import phonestore.BUS.InvoiceBUS;
@@ -26,6 +29,7 @@ public class InvoiceGUI extends javax.swing.JFrame {
     DefaultTableModel defaultTableModel = new DefaultTableModel();
     CustomerBLL customerBLL = new CustomerBLL();
     UserBUS userBUS = new UserBUS();
+    TableRowSorter<DefaultTableModel> sorter;
 
     /**
      * Creates new form InvoiceGUI
@@ -34,6 +38,11 @@ public class InvoiceGUI extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         defaultTableModel = (DefaultTableModel) jTableInvoice.getModel();
+        //tạo sort cho table
+        sorter = new TableRowSorter<>(defaultTableModel);
+        jTableInvoice.setRowSorter(sorter);
+        //cho phép table chỉ được chọn một hàng
+        jTableInvoice.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         showAllData();
         
     }
@@ -96,7 +105,6 @@ public class InvoiceGUI extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        textFieldUser = new javax.swing.JTextField();
         jButtonAdd = new javax.swing.JButton();
         jLabeId = new javax.swing.JLabel();
         jbuttonExport = new javax.swing.JButton();
@@ -122,13 +130,14 @@ public class InvoiceGUI extends javax.swing.JFrame {
         jButtonInvoice4 = new javax.swing.JButton();
         jButtonInvoice5 = new javax.swing.JButton();
         jButtonInfor = new javax.swing.JButton();
-        textFieldInvoiceId = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableInvoice = new javax.swing.JTable();
-        TextFieldCustomer = new javax.swing.JTextField();
-        textFieldDate = new javax.swing.JTextField();
-        textFieldTotalAmount = new javax.swing.JTextField();
         jLabelPhone1 = new javax.swing.JLabel();
+        textFieldInvoiceId = new javax.swing.JLabel();
+        TextFieldCustomer = new javax.swing.JLabel();
+        textFieldUser = new javax.swing.JLabel();
+        textFieldDate = new javax.swing.JLabel();
+        textFieldTotalAmount = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -155,10 +164,6 @@ public class InvoiceGUI extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        textFieldUser.setEditable(false);
-        textFieldUser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        textFieldUser.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jButtonAdd.setBackground(new java.awt.Color(102, 204, 255));
         jButtonAdd.setText("Add");
@@ -339,10 +344,6 @@ public class InvoiceGUI extends javax.swing.JFrame {
             }
         });
 
-        textFieldInvoiceId.setEditable(false);
-        textFieldInvoiceId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        textFieldInvoiceId.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
         jTableInvoice.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -357,17 +358,6 @@ public class InvoiceGUI extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTableInvoice);
-
-        TextFieldCustomer.setEditable(false);
-        TextFieldCustomer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        TextFieldCustomer.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        textFieldDate.setEditable(false);
-        textFieldDate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        textFieldDate.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        textFieldTotalAmount.setEditable(false);
-        textFieldTotalAmount.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabelPhone1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelPhone1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -385,29 +375,6 @@ public class InvoiceGUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelEmal, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldUser, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TextFieldCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabeId, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldInvoiceId, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelPhone1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonInfor, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -420,7 +387,30 @@ public class InvoiceGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(119, 119, 119)
+                                .addComponent(textFieldTotalAmount, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabelEmal, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textFieldUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TextFieldCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabeId, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textFieldInvoiceId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabelPhone1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textFieldDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabelPhone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -431,25 +421,25 @@ public class InvoiceGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabeId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldInvoiceId))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabeId, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                            .addComponent(textFieldInvoiceId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextFieldCustomer))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelName, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                            .addComponent(TextFieldCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelEmal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldUser))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelEmal, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                            .addComponent(textFieldUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelPhone1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelPhone1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                            .addComponent(textFieldDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                            .addComponent(textFieldTotalAmount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -513,9 +503,11 @@ public class InvoiceGUI extends javax.swing.JFrame {
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonDeleteActionPerformed
         // TODO add your handling code here:
-        invoiceBUS.deleteInvoice(Integer.parseInt(textFieldInvoiceId.getText()));
-        showAllData();
-
+        int result =JOptionPane.showConfirmDialog(this, "Are you sure you want to delete");
+        if(result == JOptionPane.YES_OPTION){
+            invoiceBUS.deleteInvoice(Integer.parseInt(textFieldInvoiceId.getText()));
+            showAllData();
+        }
     }// GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonSearchActionPerformed
@@ -540,11 +532,16 @@ public class InvoiceGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         int row = jTableInvoice.getSelectedRow();
         if (row != -1) {
-            textFieldInvoiceId.setText(defaultTableModel.getValueAt(row, 0).toString());
-            TextFieldCustomer.setText(defaultTableModel.getValueAt(row, 1).toString());
-            textFieldUser.setText(defaultTableModel.getValueAt(row, 2).toString());
-            textFieldDate.setText(defaultTableModel.getValueAt(row, 3).toString());
-            textFieldTotalAmount.setText(defaultTableModel.getValueAt(row, 4).toString());
+//            textFieldInvoiceId.setText(defaultTableModel.getValueAt(row, 0).toString());
+//            TextFieldCustomer.setText(defaultTableModel.getValueAt(row, 1).toString());
+//            textFieldUser.setText(defaultTableModel.getValueAt(row, 2).toString());
+//            textFieldDate.setText(defaultTableModel.getValueAt(row, 3).toString());
+//            textFieldTotalAmount.setText(defaultTableModel.getValueAt(row, 4).toString());
+              textFieldInvoiceId.setText(defaultTableModel.getValueAt(sorter.convertRowIndexToModel(row),0).toString());
+              TextFieldCustomer.setText(defaultTableModel.getValueAt(sorter.convertRowIndexToModel(row),1).toString());
+              textFieldUser.setText(defaultTableModel.getValueAt(sorter.convertRowIndexToModel(row),2).toString());
+              textFieldDate.setText(defaultTableModel.getValueAt(sorter.convertRowIndexToModel(row),3).toString());
+              textFieldTotalAmount.setText(defaultTableModel.getValueAt(sorter.convertRowIndexToModel(row),4).toString());
 
         }
     }// GEN-LAST:event_jTableInvoiceMouseClicked
@@ -598,7 +595,7 @@ public class InvoiceGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TextFieldCustomer;
+    private javax.swing.JLabel TextFieldCustomer;
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonCustomer;
     private javax.swing.JButton jButtonDelete;
@@ -628,11 +625,11 @@ public class InvoiceGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableInvoice;
     private javax.swing.JButton jbuttonExport;
-    private javax.swing.JTextField textFieldDate;
-    private javax.swing.JTextField textFieldInvoiceId;
+    private javax.swing.JLabel textFieldDate;
+    private javax.swing.JLabel textFieldInvoiceId;
     private javax.swing.JTextField textFieldSearch;
-    private javax.swing.JTextField textFieldTotalAmount;
-    private javax.swing.JTextField textFieldUser;
+    private javax.swing.JLabel textFieldTotalAmount;
+    private javax.swing.JLabel textFieldUser;
     // End of variables declaration//GEN-END:variables
 
 }
