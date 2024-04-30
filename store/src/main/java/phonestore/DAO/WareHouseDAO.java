@@ -117,17 +117,17 @@ public class WareHouseDAO implements DAOInterface<WareHouseDTO> {
     public boolean descreaseProduct(int productID, int quantity){
         Connection connection=JDBCUtil.getConnection();
         boolean result=false;
-        int qtt=0 ;
+        int quantityNow=0 ;
         try {
             String sql="SELECT * FROM warehouse WHERE product_id= "+productID;
             Statement statement=connection.createStatement();
             ResultSet rs=statement.executeQuery(sql);
             while (rs.next()) {                
-                qtt=rs.getInt("quantity");
+                quantityNow=rs.getInt("quantity");
             }
-            if (qtt>=quantity) {
+            if (quantityNow>=quantity) {
                 
-                int newQuantity= qtt-quantity;
+                int newQuantity= quantityNow-quantity;
                 String sqlUpdate="UPDATE warehouse SET quantity = ? WHERE product_id = "+productID;
                 PreparedStatement ps=connection.prepareStatement(sqlUpdate);
                 ps.setInt(1, newQuantity);
@@ -143,15 +143,24 @@ public class WareHouseDAO implements DAOInterface<WareHouseDTO> {
         }
         return result;
     }
-    
-
-    public static void main(String[] args) {
-        // ArrayList<WareHouseDTO> arr = WareHouseDAO.getInstance().getselectAll();
-        // for (WareHouseDTO wareHouseDTO : arr) {
-        // System.out.println(wareHouseDTO.toString());
-        // }
-        // WareHouseDTO wareHouseDTO = new WareHouseDTO();
-        // wareHouseDTO.setProductId(4);
-        // System.out.println(WareHouseDAO.getInstance().selectById(wareHouseDTO.getProductId()).toString());
+    public boolean checkQuantityProduct(int productID,int quantity){
+        Connection connection=JDBCUtil.getConnection();
+        boolean result=true;
+        try {
+            String sql ="SELECT * FROM warehouse";
+            Statement st = connection.createStatement();
+            ResultSet rs =st.executeQuery(sql);
+            while (rs.next()) {                
+                if(rs.getInt("product_id") == productID){
+                    if (rs.getInt("quantity")< quantity) {
+                        return false;
+                    }
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            JDBCUtil.closeConnection(connection);
+        }
+        return result;
     }
 }

@@ -220,8 +220,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldInvoiceId">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldProductName">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldProductNameActionPerformed"/>
       </Events>
@@ -431,6 +437,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldProductId">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldProductIdActionPerformed"/>
       </Events>

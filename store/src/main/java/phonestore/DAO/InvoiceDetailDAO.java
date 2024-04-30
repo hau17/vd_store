@@ -144,6 +144,5 @@ public class InvoiceDetailDAO implements DAOInterface<invoiceDetailDTO> {
             JDBCUtil.closeConnection(con);
         }
         return lastId;
-
     }
 }

@@ -35,7 +35,7 @@ public class InvoiceGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         defaultTableModel = (DefaultTableModel) jTableInvoice.getModel();
         showAllData();
-        textFieldInvoiceId.setEditable(false);
+        
     }
 
     public void showAllData() {
@@ -77,6 +77,7 @@ public class InvoiceGUI extends javax.swing.JFrame {
     public String getTotalAmount() {
         return textFieldTotalAmount.getText();
     }
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -155,7 +156,9 @@ public class InvoiceGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        textFieldUser.setEditable(false);
         textFieldUser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        textFieldUser.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jButtonAdd.setBackground(new java.awt.Color(102, 204, 255));
         jButtonAdd.setText("Add");
@@ -171,7 +174,7 @@ public class InvoiceGUI extends javax.swing.JFrame {
         jLabeId.setText("Invoice ID");
 
         jbuttonExport.setBackground(new java.awt.Color(102, 204, 255));
-        jbuttonExport.setText("Export Excel");
+        jbuttonExport.setText("Export PDF");
         jbuttonExport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbuttonExportActionPerformed(evt);
@@ -336,7 +339,9 @@ public class InvoiceGUI extends javax.swing.JFrame {
             }
         });
 
+        textFieldInvoiceId.setEditable(false);
         textFieldInvoiceId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        textFieldInvoiceId.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jTableInvoice.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -353,9 +358,16 @@ public class InvoiceGUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableInvoice);
 
+        TextFieldCustomer.setEditable(false);
         TextFieldCustomer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TextFieldCustomer.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        textFieldDate.setEditable(false);
         textFieldDate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        textFieldDate.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        textFieldTotalAmount.setEditable(false);
+        textFieldTotalAmount.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabelPhone1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelPhone1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);

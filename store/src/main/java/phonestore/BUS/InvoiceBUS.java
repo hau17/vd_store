@@ -144,8 +144,9 @@ public class InvoiceBUS {
             // pdfPTable.addCell("");
             // pdfPTable.addCell("");
             for (invoiceDetailDTO invoiceDetailDTO : arrInvoiceDetail) {
-                ProductDTO productDTO = productBLL.getProductDTO(invoiceID);
-                String productID = Integer.toString(invoiceDetailDTO.getProductId());
+                ProductDTO productDTO = productBLL.getProductDTO(invoiceDetailDTO.getProductId());
+//                String productID = Integer.toString(invoiceDetailDTO.getProductId());
+                String productID = Integer.toString(productDTO.getProduct_id());
                 String productName = productDTO.getProduct_name();
                 String ram = productDTO.getRam();
                 String rom = productDTO.getRom();
