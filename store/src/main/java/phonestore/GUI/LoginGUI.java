@@ -5,6 +5,7 @@
 package phonestore.GUI;
 import javax.swing.JOptionPane;
 import phonestore.DAO.UserDAO;
+import phonestore.BUS.UserBUS;
 /**
  *
  * @author congh
@@ -107,7 +108,10 @@ public class LoginGUI extends javax.swing.JFrame {
         boolean check= userDAO.checkLogin(user, Integer.parseInt(password));
         if (check) {
             JOptionPane.showMessageDialog(this, "login success");
+            UserBUS userBUS=new UserBUS();
+            userBUS.setUserName(user);
             new InvoiceGUI().setVisible(true);
+            
         }else{
             JOptionPane.showMessageDialog(this, "user name or password is incorrect");
         }

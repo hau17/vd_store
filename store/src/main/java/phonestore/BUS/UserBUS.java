@@ -8,6 +8,7 @@ import phonestore.DTO.UserDTO;
 public class UserBUS {
     public ArrayList<UserDTO> arr_UserDTOs = new ArrayList<>();
     public UserDAO userDAO = new UserDAO();
+    private String userName;
 
     public UserBUS() {
         this.arr_UserDTOs = userDAO.getselectAll();
@@ -72,5 +73,12 @@ public class UserBUS {
     public String getUserNameByID(int id){
         UserDTO userDTO=userDAO.selectById(id);
         return userDTO.getfull_name();
+    }
+
+    public String getUserName(){
+        return userName;
+    }
+    public void setUserName(String userName){
+        this.userName = userName;
     }
 }
