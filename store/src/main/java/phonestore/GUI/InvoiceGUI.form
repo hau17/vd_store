@@ -304,7 +304,7 @@
                       <Component id="jButtonInvoice" alignment="0" max="32767" attributes="0"/>
                       <Component id="jButtonInvoice1" alignment="0" max="32767" attributes="0"/>
                       <Component id="jButtonInvoice2" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jButtonInvoice3" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jButtonWarehouse" alignment="0" max="32767" attributes="0"/>
                       <Component id="jButtonInvoice4" alignment="0" max="32767" attributes="0"/>
                       <Component id="jButtonInvoice5" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -333,7 +333,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButtonInvoice2" min="-2" pref="46" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButtonInvoice3" min="-2" pref="46" max="-2" attributes="0"/>
+                  <Component id="jButtonWarehouse" min="-2" pref="46" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButtonInvoice4" min="-2" pref="46" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -444,13 +444,16 @@
             <Property name="text" type="java.lang.String" value="Origin"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonInvoice3">
+        <Component class="javax.swing.JButton" name="jButtonWarehouse">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="66" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Warehouse"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonWarehouseActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonInvoice4">
           <Properties>
@@ -492,11 +495,11 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="5" rowCount="0">
-                <Column editable="true" title="Id" type="java.lang.Object"/>
-                <Column editable="true" title="Customer" type="java.lang.Object"/>
+                <Column editable="true" title="Id" type="java.lang.Integer"/>
+                <Column editable="true" title="Customer" type="java.lang.Integer"/>
                 <Column editable="true" title="User" type="java.lang.Object"/>
                 <Column editable="true" title="date Of Invoice" type="java.lang.Object"/>
-                <Column editable="true" title="Total amount" type="java.lang.Object"/>
+                <Column editable="true" title="Total amount" type="java.lang.Integer"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

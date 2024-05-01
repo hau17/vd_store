@@ -129,7 +129,7 @@ public class SuplierDAO implements DAOInterface<SuplierDTO> {
         return suplierDTO;
     }
 
-    public int getLastSupplierIDInDatabase() {
+    public int getLastSupplierID() {
         Connection con = JDBCUtil.getConnection();
         int lastId = 0;
         try {

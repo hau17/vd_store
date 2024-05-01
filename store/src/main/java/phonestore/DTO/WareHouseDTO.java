@@ -6,14 +6,16 @@ public class WareHouseDTO {
     private int productId;
     private int quantity;
     private BigDecimal price;
+    private int status;
 
     public WareHouseDTO() {
     }
 
-    public WareHouseDTO(int productId, int quantity, BigDecimal price) {
+    public WareHouseDTO(int productId, int quantity, BigDecimal price, int status) {
         this.productId = productId;
         this.quantity = quantity;
         this.price = price;
+        this.status = status;
     }
 
     public int getProductId() {
@@ -40,9 +42,18 @@ public class WareHouseDTO {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "WareHouseDTO [productId=" + productId + ", quantity=" + quantity + ", price=" + price + "]";
+    public int getStatus() {
+        return status;
     }
 
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "WareHouseDTO{" + "productId=" + productId + ", quantity=" + quantity + ", price=" + price + ", status=" + status + '}';
+    }
+
+    
 }

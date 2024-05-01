@@ -66,8 +66,7 @@ public class SuplierBUS {
     }
 
     public int getLastSupplierID() {
-        SuplierDTO suplierDTO = arr_SuplierDTOs.get(arr_SuplierDTOs.size() - 1);
-        int i = suplierDTO.getSuplierId() + 1;
+        int i = suplierDAO.getLastSupplierID();
         return i;
     }
 }

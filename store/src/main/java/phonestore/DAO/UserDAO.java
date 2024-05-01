@@ -144,4 +144,30 @@ public class UserDAO implements DAOInterface<UserDTO> {
         }
         return userDTO;
     }
+        public boolean checkLogin(String user, int pass) {
+        int check = 0;
+        boolean result = false;
+        Connection con = JDBCUtil.getConnection();
+        try {
+            String sql = "SELECT * FROM user WHERE user_name = ? AND password = ?";
+
+            PreparedStatement st = con.prepareStatement(sql);
+
+            st.setString(1, user);
+            st.setInt(2, pass);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                check = rs.getInt("password");
+
+            }
+            if (check != 0) {
+                result = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closeConnection(con);
+        }
+        return result;
+    }
 }

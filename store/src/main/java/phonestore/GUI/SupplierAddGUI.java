@@ -23,7 +23,7 @@ public class SupplierAddGUI extends javax.swing.JDialog {
                 super(parent, modal);
                 initComponents();
                 supplierGUI1 = (SupplierGUI1) parent;
-                jTextFieldID.setText(Integer.toString(SuplierDAO.getInstance().getLastSupplierIDInDatabase()));
+                jTextFieldID.setText(Integer.toString(SuplierDAO.getInstance().getLastSupplierID()));
                 this.setLocationRelativeTo(null);
         }
 
@@ -37,7 +37,6 @@ public class SupplierAddGUI extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextFieldID = new javax.swing.JTextField();
         jTextFieldName = new javax.swing.JTextField();
         jTextFieldEmail = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -49,6 +48,7 @@ public class SupplierAddGUI extends javax.swing.JDialog {
         jTextFieldPhone = new javax.swing.JTextField();
         jButtonAdd = new javax.swing.JButton();
         jButtonExit = new javax.swing.JButton();
+        jTextFieldID = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -104,7 +104,7 @@ public class SupplierAddGUI extends javax.swing.JDialog {
                             .addComponent(jTextFieldName, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldEmail, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldAddress)
-                            .addComponent(jTextFieldID)))
+                            .addComponent(jTextFieldID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -117,8 +117,8 @@ public class SupplierAddGUI extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextFieldID, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                    .addComponent(jTextFieldID, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,7 +232,7 @@ public class SupplierAddGUI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField jTextFieldAddress;
     private javax.swing.JTextField jTextFieldEmail;
-    private javax.swing.JTextField jTextFieldID;
+    private javax.swing.JLabel jTextFieldID;
     private javax.swing.JTextField jTextFieldName;
     private javax.swing.JTextField jTextFieldPhone;
     // End of variables declaration//GEN-END:variables

@@ -154,7 +154,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
     }
 
     public void addProductNeedSell(int productID, int quantity, int price) {
-        WareHouseDTO wareHouseDTO = new WareHouseDTO(productID, quantity, new BigDecimal(price));
+        WareHouseDTO wareHouseDTO = new WareHouseDTO(productID, quantity, new BigDecimal(price),1);
         invoiceDetailDTO invoiceDetailDTO = new invoiceDetailDTO(0,
                 Integer.parseInt(jTextFieldInvoiceId.getText()), quantity, productID, price);
         arrWareHouseDTONeedSell.add(wareHouseDTO);
@@ -293,7 +293,15 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
             new String [] {
                 "Phone ID", "Phone Name", "Ram", "Rom", "Battery capacity", "Chip", "Brand", "Origin", "Price", "Quality"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jTableSearchProduct.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableSearchProductMouseClicked(evt);
@@ -543,7 +551,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "The number of items and the price must be entered as integers",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
-            addProductNeedSell(Integer.parseInt(jTextFieldProductName.getText()),
+            addProductNeedSell(Integer.parseInt(jTextFieldProductId.getText()),
                     Integer.parseInt(jTextFieldQuantity.getText()), Integer.parseInt(jTextFieldPrice.getText()));
             showProductNeedSell();
         }

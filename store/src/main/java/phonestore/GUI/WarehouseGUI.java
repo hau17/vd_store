@@ -3,18 +3,52 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package phonestore.GUI;
+import java.math.BigDecimal;
+import phonestore.DTO.WareHouseDTO;
+import phonestore.BUS.WarehouseBUS;
+import java.util.ArrayList;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
  * @author congh
  */
 public class WarehouseGUI extends javax.swing.JFrame {
-
+    WarehouseBUS warehouseBUS= new WarehouseBUS();
+    DefaultTableModel defaultTableModel;
+    TableRowSorter<DefaultTableModel> sorter;
     /**
      * Creates new form WarehouseGUI
      */
     public WarehouseGUI() {
         initComponents();
+        this.setVisible(true);
+        defaultTableModel= (DefaultTableModel) jTableWarehouse.getModel();
+        showAllData();
+        sorter =new TableRowSorter<>(defaultTableModel);
+        jTableWarehouse.setRowSorter(sorter);
+        jTableWarehouse.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+    }
+    public void showAllData(){
+        defaultTableModel.setRowCount(0);
+        ArrayList<WareHouseDTO> arrayList= warehouseBUS.getAllWareHouseDTOs();
+        for(WareHouseDTO wareHouseDTO : arrayList){
+            Object[] objects=new Object[]{wareHouseDTO.getProductId(),wareHouseDTO.getQuantity(),
+                wareHouseDTO.getPrice()};
+                defaultTableModel.addRow(objects);
+        }
+    }
+    public void showDataSearch(ArrayList<WareHouseDTO> arr){
+        defaultTableModel.setRowCount(0);
+        for(WareHouseDTO wareHouseDTO : arr){
+            Object[] objects = new Object[]{wareHouseDTO.getProductId(),wareHouseDTO.getQuantity(),
+                wareHouseDTO.getPrice()     
+            };
+            defaultTableModel.addRow(objects);
+        }
     }
 
     /**
@@ -51,12 +85,12 @@ public class WarehouseGUI extends javax.swing.JFrame {
         jbuttonExport = new javax.swing.JButton();
         jButtonUpdate = new javax.swing.JButton();
         jButtonDelete = new javax.swing.JButton();
-        textFieldProductID = new javax.swing.JTextField();
         jLabelName = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTableInvoice = new javax.swing.JTable();
+        jTableWarehouse = new javax.swing.JTable();
         jButtonSearch = new javax.swing.JButton();
         jButtonRefresh = new javax.swing.JButton();
+        textFieldProductID = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -243,26 +277,32 @@ public class WarehouseGUI extends javax.swing.JFrame {
             }
         });
 
-        textFieldProductID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
         jLabelName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabelName.setText("Quantity");
 
-        jTableInvoice.setModel(new javax.swing.table.DefaultTableModel(
+        jTableWarehouse.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Id", "Customer", "User", "date Of Invoice", "Total amount"
+                "Product ID", "Quantity", "Price"
             }
-        ));
-        jTableInvoice.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableInvoiceMouseClicked(evt);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTableInvoice);
+        jTableWarehouse.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableWarehouseMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTableWarehouse);
 
         jButtonSearch.setBackground(new java.awt.Color(102, 204, 255));
         jButtonSearch.setText("Search");
@@ -292,7 +332,7 @@ public class WarehouseGUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane3)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelEmal, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -304,7 +344,7 @@ public class WarehouseGUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabeId, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldProductID, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(textFieldProductID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -330,9 +370,9 @@ public class WarehouseGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabeId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldProductID))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabeId, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                            .addComponent(textFieldProductID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -375,30 +415,54 @@ public class WarehouseGUI extends javax.swing.JFrame {
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         // TODO add your handling code here:
+        new WarehouseAddGUI(this, true).setVisible(true);
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jbuttonExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonExportActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jbuttonExportActionPerformed
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         // TODO add your handling code here:
+        int id = Integer.parseInt(textFieldProductID.getText());
+        int quantity = Integer.parseInt(TextFieldQuantity.getText());
+        BigDecimal price = new BigDecimal(textFieldPrice.getText());
+        WareHouseDTO wareHouseDTO= new WareHouseDTO(id, quantity, price, 1);
+        warehouseBUS.update(wareHouseDTO);
+        showAllData();
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         // TODO add your handling code here:
+        int id = Integer.parseInt(textFieldProductID.getText());
+        int quantity = Integer.parseInt(TextFieldQuantity.getText());
+        BigDecimal price = new BigDecimal(textFieldPrice.getText());
+        WareHouseDTO wareHouseDTO= new WareHouseDTO(id, quantity, price, 1);
+        warehouseBUS.delete(wareHouseDTO);
+        showAllData();
+
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
-    private void jTableInvoiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableInvoiceMouseClicked
+    private void jTableWarehouseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableWarehouseMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTableInvoiceMouseClicked
+        int row = jTableWarehouse.getSelectedRow();
+        textFieldProductID.setText(defaultTableModel.getValueAt(sorter.convertRowIndexToModel(row),0).toString());
+        TextFieldQuantity.setText(defaultTableModel.getValueAt(sorter.convertRowIndexToModel(row),1).toString());
+        textFieldPrice.setText(defaultTableModel.getValueAt(sorter.convertRowIndexToModel(row), 2).toString());
+        
+        
+    }//GEN-LAST:event_jTableWarehouseMouseClicked
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
         // TODO add your handling code here:
+        showDataSearch(warehouseBUS.search(textFieldSearch.getText()));
     }//GEN-LAST:event_jButtonSearchActionPerformed
 
     private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
         // TODO add your handling code here:
+        textFieldSearch.setText("");
+        showAllData();
     }//GEN-LAST:event_jButtonRefreshActionPerformed
 
     /**
@@ -463,10 +527,10 @@ public class WarehouseGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTableInvoice;
+    private javax.swing.JTable jTableWarehouse;
     private javax.swing.JButton jbuttonExport;
     private javax.swing.JTextField textFieldPrice;
-    private javax.swing.JTextField textFieldProductID;
+    private javax.swing.JLabel textFieldProductID;
     private javax.swing.JTextField textFieldSearch;
     // End of variables declaration//GEN-END:variables
 }

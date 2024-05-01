@@ -41,8 +41,8 @@ public class InvoiceGUI extends javax.swing.JFrame {
         //tạo sort cho table
         sorter = new TableRowSorter<>(defaultTableModel);
         jTableInvoice.setRowSorter(sorter);
-        //cho phép table chỉ được chọn một hàng
         jTableInvoice.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        //cho phép table chỉ được chọn một hàng
         showAllData();
         
     }
@@ -126,7 +126,7 @@ public class InvoiceGUI extends javax.swing.JFrame {
         jButtonInvoice = new javax.swing.JButton();
         jButtonInvoice1 = new javax.swing.JButton();
         jButtonInvoice2 = new javax.swing.JButton();
-        jButtonInvoice3 = new javax.swing.JButton();
+        jButtonWarehouse = new javax.swing.JButton();
         jButtonInvoice4 = new javax.swing.JButton();
         jButtonInvoice5 = new javax.swing.JButton();
         jButtonInfor = new javax.swing.JButton();
@@ -275,8 +275,13 @@ public class InvoiceGUI extends javax.swing.JFrame {
         jButtonInvoice2.setBackground(new java.awt.Color(102, 204, 255));
         jButtonInvoice2.setText("Origin");
 
-        jButtonInvoice3.setBackground(new java.awt.Color(102, 204, 255));
-        jButtonInvoice3.setText("Warehouse");
+        jButtonWarehouse.setBackground(new java.awt.Color(102, 204, 255));
+        jButtonWarehouse.setText("Warehouse");
+        jButtonWarehouse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonWarehouseActionPerformed(evt);
+            }
+        });
 
         jButtonInvoice4.setBackground(new java.awt.Color(102, 204, 255));
         jButtonInvoice4.setText("Warranty");
@@ -300,7 +305,7 @@ public class InvoiceGUI extends javax.swing.JFrame {
                     .addComponent(jButtonInvoice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonInvoice1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonInvoice2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonInvoice3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonWarehouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonInvoice4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonInvoice5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -326,7 +331,7 @@ public class InvoiceGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonInvoice2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonInvoice3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonWarehouse, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonInvoice4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -351,7 +356,15 @@ public class InvoiceGUI extends javax.swing.JFrame {
             new String [] {
                 "Id", "Customer", "User", "date Of Invoice", "Total amount"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jTableInvoice.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableInvoiceMouseClicked(evt);
@@ -459,6 +472,13 @@ public class InvoiceGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonWarehouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonWarehouseActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new WarehouseGUI().setVisible(true);
+        
+    }//GEN-LAST:event_jButtonWarehouseActionPerformed
 
     private void jbuttonExportActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jbuttonExportActionPerformed
         // TODO add your handling code here:
@@ -604,7 +624,6 @@ public class InvoiceGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButtonInvoice;
     private javax.swing.JButton jButtonInvoice1;
     private javax.swing.JButton jButtonInvoice2;
-    private javax.swing.JButton jButtonInvoice3;
     private javax.swing.JButton jButtonInvoice4;
     private javax.swing.JButton jButtonInvoice5;
     private javax.swing.JButton jButtonLogout;
@@ -613,6 +632,7 @@ public class InvoiceGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSearch;
     private javax.swing.JButton jButtonSupplier;
     private javax.swing.JButton jButtonUser;
+    private javax.swing.JButton jButtonWarehouse;
     private javax.swing.JLabel jLabeId;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

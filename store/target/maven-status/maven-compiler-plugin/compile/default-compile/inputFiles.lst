@@ -22,6 +22,7 @@ C:\vd_store\store\src\main\java\phonestore\DTO\WareHouseDTO.java
 C:\vd_store\store\src\main\java\phonestore\BUS\CustomerBLL.java
 C:\vd_store\store\src\main\java\phonestore\GUI\ProductGUI.java
 C:\vd_store\store\src\main\java\phonestore\DAO\ProductDAL.java
+C:\vd_store\store\src\main\java\phonestore\BUS\WarehouseBUS.java
 C:\vd_store\store\src\main\java\phonestore\DTO\CustomerDTO.java
 C:\vd_store\store\src\main\java\phonestore\GUI\WarrantyGUI.java
 C:\vd_store\store\src\main\java\phonestore\GUI\SupplierAddGUI.java
@@ -48,6 +49,8 @@ C:\vd_store\store\src\main\java\phonestore\GUI\CustomerGUI.java
 C:\vd_store\store\src\main\java\phonestore\GUI\UserGUI.java
 C:\vd_store\store\src\main\java\phonestore\GUI\BrandGUI.java
 C:\vd_store\store\src\main\java\phonestore\GUI\CustomerAddGUI.java
+C:\vd_store\store\src\main\java\phonestore\GUI\WarehouseAddGUI.java
 C:\vd_store\store\src\main\java\phonestore\DAO\BrandDAL.java
+C:\vd_store\store\src\main\java\phonestore\GUI\LoginGUI.java
 C:\vd_store\store\src\main\java\phonestore\GUI\GRNGUI.java
 C:\vd_store\store\src\main\java\phonestore\GUI\InvoiceDetailInformationGUI.java

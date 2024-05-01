@@ -7,7 +7,9 @@ package phonestore.GUI;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import phonestore.BUS.SuplierBUS;
 import phonestore.DTO.SuplierDTO;
 
@@ -20,6 +22,7 @@ public class SupplierGUI1 extends javax.swing.JFrame {
     public ArrayList<SuplierDTO> arr;
     public SuplierBUS suplierBUS = new SuplierBUS();
     DefaultTableModel defaultTableModel;
+//    TableRowSorter<DefaultTableModel> sorter;
 
     /**
      * Creates new form SupplierGUI1
@@ -29,6 +32,10 @@ public class SupplierGUI1 extends javax.swing.JFrame {
         arr = new ArrayList<>();
         defaultTableModel = (DefaultTableModel) jTableSuplier.getModel();
         showAllData();
+//        sorter =new TableRowSorter<>(defaultTableModel);
+//        jTableSuplier.setRowSorter(sorter);
+        jTableSuplier.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
         setLocationRelativeTo(null);
     }
 
@@ -114,7 +121,6 @@ public class SupplierGUI1 extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabeId = new javax.swing.JLabel();
-        textFieldId = new javax.swing.JTextField();
         jLabelName = new javax.swing.JLabel();
         jLabelAddress = new javax.swing.JLabel();
         jLabelEmal = new javax.swing.JLabel();
@@ -130,6 +136,7 @@ public class SupplierGUI1 extends javax.swing.JFrame {
         jButtonRefresh = new javax.swing.JButton();
         jTextFieldSearch = new javax.swing.JTextField();
         jButtonUpdate = new javax.swing.JButton();
+        textFieldId = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -315,8 +322,6 @@ public class SupplierGUI1 extends javax.swing.JFrame {
         jLabeId.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabeId.setText("Id");
 
-        textFieldId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
         jLabelName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabelName.setText("Name");
@@ -402,11 +407,11 @@ public class SupplierGUI1 extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabeId, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldId, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
+                                .addComponent(textFieldId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldName))
+                                .addComponent(textFieldName, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -446,9 +451,9 @@ public class SupplierGUI1 extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabeId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldId))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabeId, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                            .addComponent(textFieldId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -547,12 +552,13 @@ public class SupplierGUI1 extends javax.swing.JFrame {
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonDeleteActionPerformed
         // TODO add your handling code here:
-        try {
+        int result=JOptionPane.showConfirmDialog(this, "Are you sure you want to delete");
+        if(result == JOptionPane.YES_OPTION){
             suplierBUS.delete_suplier(Integer.parseInt(textFieldId.getText()));
             showAllData();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e);
         }
+//            suplierBUS.delete_suplier(Integer.parseInt(textFieldId.getText()));
+//            showAllData();
     }// GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonAddActionPerformed
@@ -645,7 +651,7 @@ public class SupplierGUI1 extends javax.swing.JFrame {
     private javax.swing.JButton jbuttonExport;
     private javax.swing.JTextField textFieldAddress;
     private javax.swing.JTextField textFieldEmail;
-    private javax.swing.JTextField textFieldId;
+    private javax.swing.JLabel textFieldId;
     private javax.swing.JTextField textFieldName;
     private javax.swing.JTextField textFieldPhone;
     // End of variables declaration//GEN-END:variables

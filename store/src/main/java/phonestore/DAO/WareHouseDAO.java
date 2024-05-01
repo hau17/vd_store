@@ -19,11 +19,12 @@ public class WareHouseDAO implements DAOInterface<WareHouseDTO> {
         int result = 0;
         Connection connection = JDBCUtil.getConnection();
         try {
-            String sql = "INSERT INTO warehouse(product_id, quantity, price) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO warehouse(product_id, quantity, price, status) VALUES (?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, t.getProductId());
             ps.setInt(2, t.getQuantity());
             ps.setBigDecimal(3, t.getPrice());
+            ps.setInt(4, 1);
             result = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -38,9 +39,10 @@ public class WareHouseDAO implements DAOInterface<WareHouseDTO> {
         int result = 0;
         Connection connection = JDBCUtil.getConnection();
         try {
-            String sql = "DELETE FROM warehouse WHERE product_id = ?";
+            String sql = "UPDATE warehouse SET status = ? WHERE product_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, t.getProductId());
+            ps.setInt(1, 0);
+            ps.setInt(2, t.getProductId());
             result = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -74,14 +76,15 @@ public class WareHouseDAO implements DAOInterface<WareHouseDTO> {
         ArrayList<WareHouseDTO> list = new ArrayList<>();
         Connection connection = JDBCUtil.getConnection();
         try {
-            String sql = "SELECT * FROM warehouse";
+            String sql = "SELECT * FROM warehouse WHERE status = 1";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int productId = rs.getInt("product_id");
                 int quantity = rs.getInt("quantity");
                 BigDecimal price = rs.getBigDecimal("price");
-                WareHouseDTO dto = new WareHouseDTO(productId, quantity, price);
+                int status = rs.getInt("status");
+                WareHouseDTO dto = new WareHouseDTO(productId, quantity, price, status);
                 list.add(dto);
             }
         } catch (Exception e) {
@@ -105,7 +108,7 @@ public class WareHouseDAO implements DAOInterface<WareHouseDTO> {
                 int productId = rs.getInt("product_id");
                 int quantity = rs.getInt("quantity");
                 BigDecimal price = rs.getBigDecimal("price");
-                dto = new WareHouseDTO(productId, quantity, price);
+                dto = new WareHouseDTO(productId, quantity, price, 1);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -162,5 +165,21 @@ public class WareHouseDAO implements DAOInterface<WareHouseDTO> {
             JDBCUtil.closeConnection(connection);
         }
         return result;
+    }
+    public int getLastWarehouseID(){
+        int lastID = 0;
+        Connection connection= JDBCUtil.getConnection();
+        try {
+            String sql ="SELECT * FROM warehouse WHERE product_id = (SELECT MAX(product_id) FROM warehouse)";
+            Statement st =connection.createStatement();
+            ResultSet rs =st.executeQuery(sql);
+            while (rs.next()) {
+                lastID = rs.getInt("product_id") +1;
+            }
+        } catch (Exception e) {
+        } finally {
+            JDBCUtil.closeConnection(connection);
+        }
+        return lastID;
     }
 }
