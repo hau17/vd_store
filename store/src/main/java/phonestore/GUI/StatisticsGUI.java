@@ -7,53 +7,68 @@ package phonestore.GUI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import phonestore.BUS.StatisticBUS;
 import phonestore.DAO.ProductDAL;
 import phonestore.DAO.StatistisDAO;
 import phonestore.DTO.StatistisDTO;
+import phonestore.DTO.invoiceDetailDTO;
 
 /**
  *
  * @author congh
  */
 public class StatisticsGUI extends javax.swing.JFrame {
-    DefaultTableModel defaultTableModel;
+    DefaultTableModel productdeDefaultTableModel, invoiceDefaultTableModel;
     StatisticBUS statisticBUS=new StatisticBUS();
     StatistisDAO statistisDAO=new StatistisDAO();
     ProductDAL productDAL=new ProductDAL();
+    TableRowSorter<DefaultTableModel> sorter;
     /**
      * Creates new form StatisticsGUI
      */
     public StatisticsGUI() {
         initComponents();
-        defaultTableModel= (DefaultTableModel) jTableProduct.getModel();
-        showAllData(null,null);
-        showTotal(null,null);
+        productdeDefaultTableModel= (DefaultTableModel) jTableProduct.getModel();
+        invoiceDefaultTableModel= (DefaultTableModel) jTableInvoice.getModel();
+        showAllDataProduct(null,null);
+        showTotalProduct(null,null);
+        showAllDataInvoice(null);
+        showTotalInvoice(null);
+        sorter=new TableRowSorter<>(productdeDefaultTableModel);
+//        jTableProduct.setRowSorter(sorter);
+//        jTableInvoice.setRowSorter(sorter);
+        jTableProduct.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
-    public void showAllData(String fromDate,String toDate){
-        defaultTableModel.setRowCount(0);
-        for(StatistisDTO statistisDTO:statistisDAO.getArrByDateAndDate(fromDate, toDate)){
+    public void showAllDataProduct(String fromDate,String toDate){
+        productdeDefaultTableModel.setRowCount(0);
+        for(StatistisDTO statistisDTO:statistisDAO.getArrProductByDateAndDate(fromDate, toDate)){
             Object[] objects=new Object[]{
                 statistisDTO.getProductID(), productDAL.getProductbyID(statistisDTO.getProductID()).getProduct_name(),
                 statistisDTO.getTotalQuantity(),statistisDTO.getTotalPrice()
             };
-            defaultTableModel.addRow(objects);
+            productdeDefaultTableModel.addRow(objects);
         }
     }
-//    public void showAllData(){
-//        defaultTableModel.setRowCount(0);
-//        for(StatistisDTO statistisDTO:statistisDAO.getArrByDateAndDate(null, null)){
-//            Object[] objects=new Object[]{
-//                statistisDTO.getProductID(), productDAL.getProductbyID(statistisDTO.getProductID()).getProduct_name(),
-//                statistisDTO.getTotalQuantity(),statistisDTO.getTotalPrice()
-//            };
-//            defaultTableModel.addRow(objects);
-//        }
-//    }
-    public void showTotal(String fromDate, String toDate){
-        jLabelTongsoluong.setText(Integer.toString(statisticBUS.getTotalQuantity(fromDate, toDate)));
-        jLabelTongdoanhthu.setText(Integer.toString(statisticBUS.getTotalPrice(fromDate, toDate)));
+    public void showAllDataInvoice(String date){
+        invoiceDefaultTableModel.setRowCount(0);
+        for(invoiceDetailDTO inDTO: statistisDAO.getArrInvoiceByDate(date)){
+            Object[] objects=new Object[]{
+                inDTO.getProductId(),productDAL.getProductbyID(inDTO.getProductId()).getProduct_name(),
+                inDTO.getQuantity(),inDTO.getPrice()
+            };
+            invoiceDefaultTableModel.addRow(objects);
+        }
+    }
+    public void showTotalInvoice(String date){
+        jLabeltongdoanhthumotngay.setText(Integer.toString(statisticBUS.getTotalPriceinvoice(date)));
+        jLabeltongsoluongmotngay.setText(Integer.toString(statisticBUS.getTotalQuantityInvoice(date)));
+    }
+    public void showTotalProduct(String fromDate, String toDate){
+        jLabelTongsoluongsanpham.setText(Integer.toString(statisticBUS.getTotalQuantityProduct(fromDate, toDate)));
+        jLabelTongdoanhthusanpham.setText(Integer.toString(statisticBUS.getTotalPriceProduct(fromDate, toDate)));
 
     }
     /**
@@ -90,11 +105,21 @@ public class StatisticsGUI extends javax.swing.JFrame {
         jButtonSearchProduct = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabelTongdoanhthu = new javax.swing.JLabel();
-        jLabelTongsoluong = new javax.swing.JLabel();
+        jLabelTongdoanhthusanpham = new javax.swing.JLabel();
+        jLabelTongsoluongsanpham = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableProduct = new javax.swing.JTable();
         jButtonRefreshProduct = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableInvoice = new javax.swing.JTable();
+        jDateChooserInvoice = new com.toedter.calendar.JDateChooser();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jButtonSearchInvoice = new javax.swing.JButton();
+        jButtonRefreshInvoice = new javax.swing.JButton();
+        jLabeltongdoanhthumotngay = new javax.swing.JLabel();
+        jLabeltongsoluongmotngay = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -187,7 +212,7 @@ public class StatisticsGUI extends javax.swing.JFrame {
         });
 
         jButtonwarranty.setBackground(new java.awt.Color(102, 204, 255));
-        jButtonwarranty.setText("Warranty");
+        jButtonwarranty.setText("Statistics");
         jButtonwarranty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonwarrantyActionPerformed(evt);
@@ -266,6 +291,7 @@ public class StatisticsGUI extends javax.swing.JFrame {
 
         jDateChooserProductFrom.setDateFormatString("yyyy-MM-dd");
 
+        jButtonSearchProduct.setBackground(new java.awt.Color(153, 255, 255));
         jButtonSearchProduct.setText("Search");
         jButtonSearchProduct.setPreferredSize(new java.awt.Dimension(40, 15));
         jButtonSearchProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -280,9 +306,9 @@ public class StatisticsGUI extends javax.swing.JFrame {
         jLabel13.setText("total revenue");
         jLabel13.setPreferredSize(new java.awt.Dimension(40, 15));
 
-        jLabelTongdoanhthu.setPreferredSize(new java.awt.Dimension(40, 15));
+        jLabelTongdoanhthusanpham.setPreferredSize(new java.awt.Dimension(40, 15));
 
-        jLabelTongsoluong.setPreferredSize(new java.awt.Dimension(40, 15));
+        jLabelTongsoluongsanpham.setPreferredSize(new java.awt.Dimension(40, 15));
 
         jTableProduct.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -292,7 +318,7 @@ public class StatisticsGUI extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Phone ID", "Phone Name", "Quantity", "total amount"
+                "Phone ID", "Phone Name", "Total quantity", "Total amount"
             }
         ) {
             Class[] types = new Class [] {
@@ -305,6 +331,7 @@ public class StatisticsGUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableProduct);
 
+        jButtonRefreshProduct.setBackground(new java.awt.Color(153, 255, 255));
         jButtonRefreshProduct.setText("Refresh");
         jButtonRefreshProduct.setPreferredSize(new java.awt.Dimension(40, 15));
         jButtonRefreshProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -333,8 +360,8 @@ public class StatisticsGUI extends javax.swing.JFrame {
                                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelTongsoluong, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelTongdoanhthu, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabelTongsoluongsanpham, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelTongdoanhthusanpham, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(115, 115, 115)))
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -363,16 +390,118 @@ public class StatisticsGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelTongdoanhthu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelTongdoanhthusanpham, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelTongsoluong, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTongsoluongsanpham, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Product", jPanel2);
+
+        jTableInvoice.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Phone ID", "Phone Name", "Quantity", "price"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTableInvoice);
+
+        jDateChooserInvoice.setDateFormatString("yyyy-MM-dd");
+
+        jLabel14.setText("total revenue");
+        jLabel14.setPreferredSize(new java.awt.Dimension(40, 15));
+
+        jLabel15.setText("quantity of products sold");
+        jLabel15.setPreferredSize(new java.awt.Dimension(40, 15));
+
+        jButtonSearchInvoice.setBackground(new java.awt.Color(153, 255, 255));
+        jButtonSearchInvoice.setText("Search");
+        jButtonSearchInvoice.setPreferredSize(new java.awt.Dimension(40, 15));
+        jButtonSearchInvoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchInvoiceActionPerformed(evt);
+            }
+        });
+
+        jButtonRefreshInvoice.setBackground(new java.awt.Color(153, 255, 255));
+        jButtonRefreshInvoice.setText("Refresh");
+        jButtonRefreshInvoice.setPreferredSize(new java.awt.Dimension(40, 15));
+        jButtonRefreshInvoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRefreshInvoiceActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 273, Short.MAX_VALUE)
+                        .addComponent(jDateChooserInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(jButtonSearchInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(jButtonRefreshInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(251, 251, 251))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabeltongdoanhthumotngay, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabeltongsoluongmotngay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDateChooserInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonSearchInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonRefreshInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabeltongdoanhthumotngay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(jLabeltongsoluongmotngay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Invoice", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -401,6 +530,7 @@ public class StatisticsGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSupplierActionPerformed
@@ -441,17 +571,36 @@ public class StatisticsGUI extends javax.swing.JFrame {
             fromDate= simpleDateFormat.format(jDateChooserProductFrom.getDate());
             toDate= simpleDateFormat.format(jDateChooserProductTo.getDate());
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Select full dates please");
+            JOptionPane.showMessageDialog(this, "Please Select full dates");
         }
-        showAllData(fromDate, toDate);
-        showTotal(fromDate, toDate);
+        showAllDataProduct(fromDate, toDate);
+        showTotalProduct(fromDate, toDate);
     }//GEN-LAST:event_jButtonSearchProductActionPerformed
 
     private void jButtonRefreshProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshProductActionPerformed
         // TODO add your handling code here:
-        showAllData(null, null);
-        showTotal(null, null);
+        showAllDataProduct(null, null);
+        showTotalProduct(null, null);
     }//GEN-LAST:event_jButtonRefreshProductActionPerformed
+
+    private void jButtonSearchInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchInvoiceActionPerformed
+        // TODO add your handling code here:
+        String date="";
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        try {
+           date= simpleDateFormat.format(jDateChooserInvoice.getDate());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        showAllDataInvoice(date);
+        showTotalInvoice(date);
+    }//GEN-LAST:event_jButtonSearchInvoiceActionPerformed
+
+    private void jButtonRefreshInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshInvoiceActionPerformed
+        // TODO add your handling code here:
+        showAllDataInvoice(null);
+        showTotalInvoice(null);
+    }//GEN-LAST:event_jButtonRefreshInvoiceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -496,28 +645,38 @@ public class StatisticsGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButtonLogout;
     private javax.swing.JButton jButtonOrigin;
     private javax.swing.JButton jButtonProduct;
+    private javax.swing.JButton jButtonRefreshInvoice;
     private javax.swing.JButton jButtonRefreshProduct;
     private javax.swing.JButton jButtonRole;
+    private javax.swing.JButton jButtonSearchInvoice;
     private javax.swing.JButton jButtonSearchProduct;
     private javax.swing.JButton jButtonSupplier;
     private javax.swing.JButton jButtonUser;
     private javax.swing.JButton jButtonwarehouse;
     private javax.swing.JButton jButtonwarranty;
+    private com.toedter.calendar.JDateChooser jDateChooserInvoice;
     private com.toedter.calendar.JDateChooser jDateChooserProductFrom;
     private com.toedter.calendar.JDateChooser jDateChooserProductTo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabelTongdoanhthu;
-    private javax.swing.JLabel jLabelTongsoluong;
+    private javax.swing.JLabel jLabelTongdoanhthusanpham;
+    private javax.swing.JLabel jLabelTongsoluongsanpham;
+    private javax.swing.JLabel jLabeltongdoanhthumotngay;
+    private javax.swing.JLabel jLabeltongsoluongmotngay;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTableInvoice;
     private javax.swing.JTable jTableProduct;
     // End of variables declaration//GEN-END:variables
 }
