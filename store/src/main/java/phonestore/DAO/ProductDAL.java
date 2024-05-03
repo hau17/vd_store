@@ -172,4 +172,32 @@ public class ProductDAL {
 
         return result;
     }
+    public ProductDTO getProductbyID(int id){
+            ProductDTO product = null;
+            Connection con = JDBCUtil.getConnection();
+            try {
+                String sql = "SELECT * FROM Product WHERE product_id=?";
+                PreparedStatement stmt = con.prepareStatement(sql);
+                stmt.setInt(1, id);
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    product = new ProductDTO();
+                    product.setProduct_id(rs.getInt("product_id"));
+                    product.setProduct_name(rs.getString("product_name"));
+                    product.setRam(rs.getString("ram"));
+                    product.setRom(rs.getString("rom"));
+                    product.setBattery_capacity(rs.getString("battery_capacity"));
+                    product.setChip(rs.getString("chip"));
+                    product.setBrand_id(rs.getInt("brand_id"));
+                    product.setOrigin_id(rs.getInt("origin_id"));
+                    product.setImage_path(rs.getString("image_path"));
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex);
+            } finally {
+                JDBCUtil.closeConnection(con);
+            }
+            return product;
+
+    }
 }

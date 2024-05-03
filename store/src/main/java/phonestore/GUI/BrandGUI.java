@@ -27,15 +27,9 @@ public class BrandGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         TextFieldCustomer = new javax.swing.JTextField();
-        jLabelEmal = new javax.swing.JLabel();
-        textFieldDate = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         textFieldSearch = new javax.swing.JTextField();
-        textFieldTotalAmount = new javax.swing.JTextField();
-        jLabelPhone = new javax.swing.JLabel();
-        jLabelPhone1 = new javax.swing.JLabel();
-        textFieldUser = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jButtonProduct = new javax.swing.JButton();
         jButtonUser = new javax.swing.JButton();
@@ -66,12 +60,6 @@ public class BrandGUI extends javax.swing.JFrame {
 
         TextFieldCustomer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jLabelEmal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabelEmal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabelEmal.setText("User");
-
-        textFieldDate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
         jPanel2.setBackground(new java.awt.Color(0, 204, 255));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -97,16 +85,6 @@ public class BrandGUI extends javax.swing.JFrame {
         );
 
         textFieldSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        jLabelPhone.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabelPhone.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabelPhone.setText("totalAmount");
-
-        jLabelPhone1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabelPhone1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabelPhone1.setText("Date");
-
-        textFieldUser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(0, 204, 204));
@@ -268,7 +246,7 @@ public class BrandGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Customer", "User", "date Of Invoice", "Total amount"
+                "Id", "Customer"
             }
         ));
         jTableInvoice.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -308,25 +286,13 @@ public class BrandGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelEmal, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldUser, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(TextFieldCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabeId, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldInvoiceId, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelPhone1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(textFieldInvoiceId, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -359,19 +325,7 @@ public class BrandGUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TextFieldCustomer))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelEmal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldUser))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelPhone1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(137, 137, 137)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonInfor, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -488,19 +442,13 @@ public class BrandGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabeId;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabelEmal;
     private javax.swing.JLabel jLabelName;
-    private javax.swing.JLabel jLabelPhone;
-    private javax.swing.JLabel jLabelPhone1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTableInvoice;
     private javax.swing.JButton jbuttonExport;
-    private javax.swing.JTextField textFieldDate;
     private javax.swing.JTextField textFieldInvoiceId;
     private javax.swing.JTextField textFieldSearch;
-    private javax.swing.JTextField textFieldTotalAmount;
-    private javax.swing.JTextField textFieldUser;
     // End of variables declaration//GEN-END:variables
 }
