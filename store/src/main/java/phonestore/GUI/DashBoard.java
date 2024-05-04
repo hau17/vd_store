@@ -252,6 +252,9 @@ public class DashBoard extends javax.swing.JFrame {
 
         jPanelBrand.setBackground(new java.awt.Color(0, 0, 0));
         jPanelBrand.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanelBrandMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelBrandMousePressed(evt);
             }
@@ -748,6 +751,13 @@ public class DashBoard extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jPanelLogoutMouseClicked
+
+    private void jPanelBrandMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelBrandMouseClicked
+        // TODO add your handling code here:
+        Brand1GUI brand1GUI=new Brand1GUI();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(brand1GUI).setVisible(true);
+    }//GEN-LAST:event_jPanelBrandMouseClicked
 
     /**
      * @param args the command line arguments

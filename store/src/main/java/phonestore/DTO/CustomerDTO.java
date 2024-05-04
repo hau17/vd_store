@@ -5,15 +5,17 @@ public class CustomerDTO {
     private String customer_name;
     private int phone_number;
     private String address;
+    private String status;
 
-    public CustomerDTO(int customer_id, String customer_name, int phone_number, String address) {
+    public CustomerDTO() {
+    }
+
+    public CustomerDTO(int customer_id, String customer_name, int phone_number, String address, String status) {
         this.customer_id = customer_id;
         this.customer_name = customer_name;
         this.phone_number = phone_number;
         this.address = address;
-    }
-
-    public CustomerDTO() {
+        this.status = status;
     }
 
     public int getCustomer_id() {
@@ -48,9 +50,17 @@ public class CustomerDTO {
         this.address = address;
     }
 
-    @Override
-    public String toString() {
-        return "CustomerDTO{" + "customer_id=" + customer_id + ", customer_name=" + customer_name + ", phone_number=" + phone_number + ", address=" + address + '}';
+    public String getStatus() {
+        return status;
     }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "CustomerDTO{" + "customer_id=" + customer_id + ", customer_name=" + customer_name + ", phone_number=" + phone_number + ", address=" + address + ", status=" + status + '}';
+    }
+    
 }

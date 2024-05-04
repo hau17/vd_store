@@ -110,6 +110,7 @@ public class Statistic1GUI extends javax.swing.JInternalFrame {
         jButtonRefreshInvoice = new javax.swing.JButton();
         jLabeltongdoanhthumotngay = new javax.swing.JLabel();
         jLabeltongsoluongmotngay = new javax.swing.JLabel();
+        jButtonExportExcel = new javax.swing.JButton();
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("To");
@@ -284,6 +285,16 @@ public class Statistic1GUI extends javax.swing.JInternalFrame {
             }
         });
 
+        jButtonExportExcel.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonExportExcel.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonExportExcel.setText("Export Excel");
+        jButtonExportExcel.setPreferredSize(new java.awt.Dimension(40, 15));
+        jButtonExportExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExportExcelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -298,7 +309,9 @@ public class Statistic1GUI extends javax.swing.JInternalFrame {
                         .addComponent(jButtonSearchInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
                         .addComponent(jButtonRefreshInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(251, 251, 251))
+                        .addGap(31, 31, 31)
+                        .addComponent(jButtonExportExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(115, 115, 115))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -313,7 +326,7 @@ public class Statistic1GUI extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,7 +336,8 @@ public class Statistic1GUI extends javax.swing.JInternalFrame {
                     .addComponent(jDateChooserInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonSearchInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonRefreshInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonRefreshInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonExportExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabeltongdoanhthumotngay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -413,8 +427,13 @@ public class Statistic1GUI extends javax.swing.JInternalFrame {
         showTotalInvoice(null);
     }//GEN-LAST:event_jButtonRefreshInvoiceActionPerformed
 
+    private void jButtonExportExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportExcelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonExportExcelActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonExportExcel;
     private javax.swing.JButton jButtonRefreshInvoice;
     private javax.swing.JButton jButtonRefreshProduct;
     private javax.swing.JButton jButtonSearchInvoice;

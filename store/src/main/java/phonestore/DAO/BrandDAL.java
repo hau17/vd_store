@@ -54,10 +54,11 @@ public class BrandDAL {
         boolean result = false;
         Connection con = JDBCUtil.getConnection();
         try {
-            String sql = "UPDATE Brand SET brand_name=? WHERE brand_id=?";
+            String sql = "UPDATE Brand SET brand_name=?, status=? WHERE brand_id=?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, bra.getBrand_name());
-            stmt.setInt(2, bra.getBrand_id());
+            stmt.setString(2, bra.getStatus());
+            stmt.setInt(3, bra.getBrand_id());
             if (stmt.executeUpdate() >= 1)
                 result = true;
         } catch (SQLException ex) {

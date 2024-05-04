@@ -36,12 +36,13 @@ public class CustomerDAL {
         boolean result = false;
         Connection con = JDBCUtil.getConnection();
         try {
-            String sql = "Insert into Customer values(?,?,?,?)";
+            String sql = "Insert into Customer values(?,?,?,?,?)";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, cus.getCustomer_id());
             stmt.setString(2, cus.getCustomer_name());
             stmt.setInt(3, cus.getPhone_number());
             stmt.setString(4, cus.getAddress());
+            stmt.setString(5, cus.getStatus());
             if (stmt.executeUpdate() >= 1)
                 result = true;
         } catch (SQLException ex) {
@@ -57,12 +58,13 @@ public class CustomerDAL {
         boolean result = false;
         Connection con = JDBCUtil.getConnection();
         try {
-            String sql = "UPDATE Customer SET customer_name=?, phone_number=?, address=? WHERE customer_id=?";
+            String sql = "UPDATE Customer SET customer_name=?, phone_number=?, address=?, status=? WHERE customer_id=?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, cus.getCustomer_name());
             stmt.setInt(2, cus.getPhone_number());
             stmt.setString(3, cus.getAddress());
-            stmt.setInt(4, cus.getCustomer_id());
+            stmt.setString(4, cus.getStatus());
+            stmt.setInt(5, cus.getCustomer_id());
             if (stmt.executeUpdate() >= 1)
                 result = true;
         } catch (SQLException ex) {
