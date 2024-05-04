@@ -371,7 +371,7 @@ public class ProductGUI extends javax.swing.JFrame {
 
         jLabelAddress2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelAddress2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabelAddress2.setText("Brand ID");
+        jLabelAddress2.setText("Brand");
 
         jLabelAddress3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelAddress3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);

@@ -20,6 +20,7 @@ public class DashBoard extends javax.swing.JFrame {
     public DashBoard() {
         initComponents();
         setColor();
+        
     }
     public void setColor(){
         defaultColor=new Color(0,0,0);
@@ -230,6 +231,9 @@ public class DashBoard extends javax.swing.JFrame {
 
         jPanelProduct.setBackground(new java.awt.Color(0, 0, 0));
         jPanelProduct.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanelProductMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelProductMousePressed(evt);
             }
@@ -758,6 +762,13 @@ public class DashBoard extends javax.swing.JFrame {
         jDesktopPane1.removeAll();
         jDesktopPane1.add(brand1GUI).setVisible(true);
     }//GEN-LAST:event_jPanelBrandMouseClicked
+
+    private void jPanelProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelProductMouseClicked
+        // TODO add your handling code here:
+        Product1GUI product1GUI=new Product1GUI();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(product1GUI).setVisible(true);
+    }//GEN-LAST:event_jPanelProductMouseClicked
 
     /**
      * @param args the command line arguments
