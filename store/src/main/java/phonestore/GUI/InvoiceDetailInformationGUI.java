@@ -25,31 +25,23 @@ public class InvoiceDetailInformationGUI extends javax.swing.JDialog {
     /**
      * Creates new form InvoiceDetailInformationGUI
      */
-    public InvoiceDetailInformationGUI(java.awt.Frame parent, boolean modal) {
+    public InvoiceDetailInformationGUI(java.awt.Frame parent, boolean modal, int invoiceID) {
         super(parent, modal);
-        this.invoiceGUI = (InvoiceGUI) parent;
+//        this.invoiceGUI = (InvoiceGUI) parent;
         initComponents();
-        setInvoiceId();
-        setCustomer();
-        setTotalAmount();
+        setInvoiceId(invoiceID);
+//        setCustomer();
+//        setTotalAmount();
         defaultTableModel = (DefaultTableModel) jTableProduct.getModel();
         invoiceDetailBUS = new InvoiceDetailBUS();
         showAllData();
     }
-
-    public void setInvoiceId() {
-        int id = invoiceGUI.getId();
+    
+    public void setInvoiceId(int id) {
+        
         jTextFieldInvoiceId.setText(Integer.toString(id));
     }
-    public void setCustomer(){
-        String customerString= invoiceGUI.getCustomer();
-        jTextFieldCustomerName.setText(customerString);
-    }
-    public void setTotalAmount()
-    {
-        String totalString= invoiceGUI.getTotalAmount();
-        jTextFieldTotalAmount.setText(totalString);
-    }
+
     public void showAllData() {
         defaultTableModel.setRowCount(0);
         ArrayList<invoiceDetailDTO> arrayList = invoiceDetailBUS
@@ -73,14 +65,14 @@ public class InvoiceDetailInformationGUI extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextFieldInvoiceId = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableProduct = new javax.swing.JTable();
-        jTextFieldCustomerName = new javax.swing.JTextField();
-        jTextFieldTotalAmount = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jTextFieldInvoiceId = new javax.swing.JLabel();
+        jTextFieldCustomerName = new javax.swing.JLabel();
+        jTextFieldTotalAmount = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -113,28 +105,27 @@ public class InvoiceDetailInformationGUI extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldInvoiceId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(10, 10, 10))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldCustomerName, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                            .addComponent(jTextFieldTotalAmount)
-                            .addComponent(jTextFieldInvoiceId))
-                        .addGap(505, 505, 505))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2)))
-                .addContainerGap())
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(511, 549, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,7 +139,7 @@ public class InvoiceDetailInformationGUI extends javax.swing.JDialog {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(93, 93, 93)
@@ -200,18 +191,18 @@ public class InvoiceDetailInformationGUI extends javax.swing.JDialog {
         // </editor-fold>
 
         /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                InvoiceDetailInformationGUI dialog = new InvoiceDetailInformationGUI(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                InvoiceDetailInformationGUI dialog = new InvoiceDetailInformationGUI(new javax.swing.JFrame(), true);
+//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//                    @Override
+//                    public void windowClosing(java.awt.event.WindowEvent e) {
+//                        System.exit(0);
+//                    }
+//                });
+//                dialog.setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -220,8 +211,8 @@ public class InvoiceDetailInformationGUI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableProduct;
-    private javax.swing.JTextField jTextFieldCustomerName;
-    private javax.swing.JTextField jTextFieldInvoiceId;
-    private javax.swing.JTextField jTextFieldTotalAmount;
+    private javax.swing.JLabel jTextFieldCustomerName;
+    private javax.swing.JLabel jTextFieldInvoiceId;
+    private javax.swing.JLabel jTextFieldTotalAmount;
     // End of variables declaration//GEN-END:variables
 }

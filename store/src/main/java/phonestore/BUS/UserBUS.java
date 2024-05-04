@@ -1,5 +1,6 @@
 package phonestore.BUS;
 
+import com.sun.org.apache.bcel.internal.generic.InstructionConst;
 import java.util.ArrayList;
 
 import phonestore.DAO.UserDAO;
@@ -9,6 +10,8 @@ public class UserBUS {
     public ArrayList<UserDTO> arr_UserDTOs = new ArrayList<>();
     public UserDAO userDAO = new UserDAO();
     private String userName;
+    public void setUserName(String userName){
+    }
 
     public UserBUS() {
         this.arr_UserDTOs = userDAO.getselectAll();
@@ -75,10 +78,20 @@ public class UserBUS {
         return userDTO.getfull_name();
     }
 
-    public String getUserName(){
-        return userName;
-    }
-    public void setUserName(String userName){
-        this.userName = userName;
+//    public String getUserName(){
+//        return userName;
+//    }
+//    public void setUserName(String userName){
+//        this.userName = userName;
+//    }
+    public UserDTO getUserIDByUserName(String username){
+        UserDTO userDTO=null;
+        for(UserDTO udto: userDAO.getselectAll()){
+            if (udto.getuser_name().equals(username)) {
+                userDTO= udto;
+                break;
+            }
+        }
+        return userDTO;
     }
 }

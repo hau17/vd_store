@@ -543,8 +543,8 @@ public class InvoiceGUI extends javax.swing.JFrame {
 
     private void jButtonInforActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonUpdateActionPerformed
         // TODO add your handling code here:
-        InvoiceDetailInformationGUI informationGUI = new InvoiceDetailInformationGUI(this, true);
-        informationGUI.setVisible(true);
+//        InvoiceDetailInformationGUI informationGUI = new InvoiceDetailInformationGUI(this, true,int 1);
+//        informationGUI.setVisible(true);
 
     }// GEN-LAST:event_jButtonUpdateActionPerformed
 
@@ -552,11 +552,6 @@ public class InvoiceGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         int row = jTableInvoice.getSelectedRow();
         if (row != -1) {
-//            textFieldInvoiceId.setText(defaultTableModel.getValueAt(row, 0).toString());
-//            TextFieldCustomer.setText(defaultTableModel.getValueAt(row, 1).toString());
-//            textFieldUser.setText(defaultTableModel.getValueAt(row, 2).toString());
-//            textFieldDate.setText(defaultTableModel.getValueAt(row, 3).toString());
-//            textFieldTotalAmount.setText(defaultTableModel.getValueAt(row, 4).toString());
               textFieldInvoiceId.setText(defaultTableModel.getValueAt(sorter.convertRowIndexToModel(row),0).toString());
               TextFieldCustomer.setText(defaultTableModel.getValueAt(sorter.convertRowIndexToModel(row),1).toString());
               textFieldUser.setText(defaultTableModel.getValueAt(sorter.convertRowIndexToModel(row),2).toString());

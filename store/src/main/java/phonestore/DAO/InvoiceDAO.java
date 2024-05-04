@@ -144,7 +144,7 @@ public class InvoiceDAO implements DAOInterface<InvoiceDTO> {
             Statement st=con.createStatement();
             ResultSet rs=st.executeQuery(sql);
             while (rs.next()) {
-                i=rs.getInt("invoice_id");
+                i=rs.getInt("invoice_id")+1;
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -26,6 +26,7 @@ import phonestore.BUS.CustomerBLL;
 import phonestore.BUS.InvoiceDetailBUS;
 import phonestore.BUS.OriginBLL;
 import phonestore.BUS.ProductBLL;
+import phonestore.BUS.UserBUS;
 import phonestore.DAO.GRNDetailDAO;
 import phonestore.DAO.InvoiceDAO;
 import phonestore.DAO.InvoiceDetailDAO;
@@ -37,6 +38,7 @@ import phonestore.DTO.InvoiceDTO;
 import phonestore.DTO.ProductDTO;
 import phonestore.DTO.WareHouseDTO;
 import phonestore.DTO.invoiceDetailDTO;
+import phonestore.InformationLogin.InformationLogin;
 
 /**
  *
@@ -48,7 +50,8 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
     DefaultTableModel defaultTableModelProduct, defaultTableModelProductNeedSell;
     CustomerBLL customerBLL;
     BrandBLL brandBLL = new BrandBLL();
-   
+   InvoiceDAO invoiceDAO=new InvoiceDAO();
+    UserBUS userBUS=new UserBUS();
     GRNDetailDAO grnDetailDAO = new GRNDetailDAO();
     WareHouseDAO wareHouseDAO = new WareHouseDAO();
      //mảng lưu trữ dữ liệu trước khi thay đổi dữ liệu lên database
@@ -66,7 +69,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
      */
     public InvoicDetailGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        this.parentGUI = (InvoiceGUI) parent;
+//        this.parentGUI = (InvoiceGUI) parent;
         initComponents();
         //lấy model từ table
         defaultTableModelProduct = (DefaultTableModel) jTableSearchProduct.getModel();
@@ -77,6 +80,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
         //chỉ cho cái table chọn được một hàng
         jTableSearchProduct.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         customerBLL = new CustomerBLL();
+        jTextFieldUser.setText(InformationLogin.getInstance().getUserName());
         showAllCustomer();
         showAllDataProduct();
         SetjTextFieldInvoiceId();
@@ -85,8 +89,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
     }
 
     public void SetjTextFieldInvoiceId() {
-        int id = parentGUI.createNewID();
-        jTextFieldInvoiceId.setText(Integer.toString(id));
+        jTextFieldInvoiceId.setText(Integer.toString(invoiceDAO.geLastInvoiceIDInDatabase()));
     }
 
     public void SetjTextFieldDate() {
@@ -260,7 +263,6 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jComboBoxCustomer = new javax.swing.JComboBox<>();
-        jTextFieldUser = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jTextFieldDate = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -270,6 +272,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
         jTextFieldInvoiceId = new javax.swing.JLabel();
         jTextFieldProductId = new javax.swing.JLabel();
         jTextFieldProductName = new javax.swing.JLabel();
+        jTextFieldUser = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -309,7 +312,8 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jTableSearchProduct);
 
-        jButtonAdd.setBackground(new java.awt.Color(0, 153, 255));
+        jButtonAdd.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonAdd.setForeground(new java.awt.Color(255, 255, 255));
         jButtonAdd.setText("Add");
         jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -317,7 +321,8 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
             }
         });
 
-        jButtonDelete.setBackground(new java.awt.Color(0, 153, 255));
+        jButtonDelete.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonDelete.setForeground(new java.awt.Color(255, 255, 255));
         jButtonDelete.setText("Delete");
         jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -325,7 +330,8 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
             }
         });
 
-        jButtonRefresh.setBackground(new java.awt.Color(0, 153, 255));
+        jButtonRefresh.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonRefresh.setForeground(new java.awt.Color(255, 255, 255));
         jButtonRefresh.setText("Refresh");
         jButtonRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -333,7 +339,8 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
             }
         });
 
-        jButtonSearch.setBackground(new java.awt.Color(0, 153, 255));
+        jButtonSearch.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonSearch.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSearch.setText("Search product");
         jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -362,8 +369,9 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
         });
         jScrollPane2.setViewportView(jTableProduct);
 
-        jButtonInvoiceGeneration.setBackground(new java.awt.Color(0, 153, 255));
+        jButtonInvoiceGeneration.setBackground(new java.awt.Color(0, 102, 102));
         jButtonInvoiceGeneration.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButtonInvoiceGeneration.setForeground(new java.awt.Color(255, 255, 255));
         jButtonInvoiceGeneration.setText("Invoice generation");
         jButtonInvoiceGeneration.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -393,7 +401,8 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
 
         jLabel9.setText("Total amount");
 
-        jButtonUpdate.setBackground(new java.awt.Color(0, 153, 255));
+        jButtonUpdate.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonUpdate.setForeground(new java.awt.Color(255, 255, 255));
         jButtonUpdate.setText("Update");
         jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -446,15 +455,13 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
                                 .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(14, 14, 14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextFieldUser, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 1, Short.MAX_VALUE))
-                            .addComponent(jComboBoxCustomer, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldDate))
+                            .addComponent(jComboBoxCustomer, javax.swing.GroupLayout.Alignment.TRAILING, 0, 140, Short.MAX_VALUE)
+                            .addComponent(jTextFieldDate)
+                            .addComponent(jTextFieldUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
@@ -484,15 +491,15 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(14, Short.MAX_VALUE)
+                        .addContainerGap(24, Short.MAX_VALUE)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
@@ -503,8 +510,8 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextFieldUser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldUser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -527,12 +534,12 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                             .addComponent(jTextFieldPrice))
-                        .addGap(26, 26, 26)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)))
+                            .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -560,7 +567,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonDeleteActionPerformed
         // TODO add your handling code here:
-        deleteProductNeedSell(Integer.parseInt(jTextFieldProductName.getText()),
+        deleteProductNeedSell(Integer.parseInt(jTextFieldProductId.getText()),
                 Integer.parseInt(jTextFieldQuantity.getText()), Integer.parseInt(jTextFieldPrice.getText()));
         showProductNeedSell();
     }// GEN-LAST:event_jButtonDeleteActionPerformed
@@ -581,7 +588,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "The number of items and the price must be entered as integers",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
-            updateProductNeedSell(Integer.parseInt(jTextFieldProductName.getText()),
+            updateProductNeedSell(Integer.parseInt(jTextFieldProductId.getText()),
                     Integer.parseInt(jTextFieldQuantity.getText()), Integer.parseInt(jTextFieldPrice.getText()));
             showProductNeedSell();
         }
@@ -614,7 +621,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
             }
             java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-            InvoiceDTO invoiceDTO = new InvoiceDTO(invoiceID, getIDCustomer(), 1, sqlDate,
+            InvoiceDTO invoiceDTO = new InvoiceDTO(invoiceID, getIDCustomer(), userBUS.getUserIDByUserName(jTextFieldUser.getText()).getuser_id(), sqlDate,
                     new BigDecimal(jTextFieldTotalAmount.getText()), 1);
             InvoiceDAO.getInstance().insert(invoiceDTO);
             for (invoiceDetailDTO inDTO : arrIvoiceNeedSell) {
@@ -760,7 +767,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldQuantity;
     private javax.swing.JTextField jTextFieldSearch;
     private javax.swing.JTextField jTextFieldTotalAmount;
-    private javax.swing.JTextField jTextFieldUser;
+    private javax.swing.JLabel jTextFieldUser;
     // End of variables declaration//GEN-END:variables
 
 }

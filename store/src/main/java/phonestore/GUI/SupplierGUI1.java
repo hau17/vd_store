@@ -32,8 +32,6 @@ public class SupplierGUI1 extends javax.swing.JFrame {
         arr = new ArrayList<>();
         defaultTableModel = (DefaultTableModel) jTableSuplier.getModel();
         showAllData();
-//        sorter =new TableRowSorter<>(defaultTableModel);
-//        jTableSuplier.setRowSorter(sorter);
         jTableSuplier.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         setLocationRelativeTo(null);

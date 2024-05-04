@@ -38,8 +38,6 @@ public class StatisticsGUI extends javax.swing.JFrame {
         showAllDataInvoice(null);
         showTotalInvoice(null);
         sorter=new TableRowSorter<>(productdeDefaultTableModel);
-//        jTableProduct.setRowSorter(sorter);
-//        jTableInvoice.setRowSorter(sorter);
         jTableProduct.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
     public void showAllDataProduct(String fromDate,String toDate){

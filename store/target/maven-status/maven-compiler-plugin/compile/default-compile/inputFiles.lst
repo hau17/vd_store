@@ -21,8 +21,12 @@ C:\vd_store\store\src\main\java\phonestore\GUI\BrandAddGUI.java
 C:\vd_store\store\src\main\java\phonestore\BUS\UserBUS.java
 C:\vd_store\store\src\main\java\phonestore\DTO\WareHouseDTO.java
 C:\vd_store\store\src\main\java\phonestore\DTO\StatistisDTO.java
+C:\vd_store\store\src\main\java\phonestore\GUI\DashBoard.java
 C:\vd_store\store\src\main\java\phonestore\BUS\CustomerBLL.java
+C:\vd_store\store\src\main\java\phonestore\GUI\Statistic1GUI.java
+C:\vd_store\store\src\main\java\phonestore\GUI\Supplier1GUI.java
 C:\vd_store\store\src\main\java\phonestore\GUI\ProductGUI.java
+C:\vd_store\store\src\main\java\phonestore\GUI\Invoice1GUI.java
 C:\vd_store\store\src\main\java\phonestore\DAO\ProductDAL.java
 C:\vd_store\store\src\main\java\phonestore\BUS\WarehouseBUS.java
 C:\vd_store\store\src\main\java\phonestore\DTO\CustomerDTO.java
@@ -39,8 +43,10 @@ C:\vd_store\store\src\main\java\phonestore\BUS\InvoiceDetailBUS.java
 C:\vd_store\store\src\main\java\phonestore\DAO\GRNDetailDAO.java
 C:\vd_store\store\src\main\java\phonestore\DAO\UserDAO.java
 C:\vd_store\store\src\main\java\phonestore\BUS\GRNDetailBUS.java
+C:\vd_store\store\src\main\java\phonestore\GUI\Warehouse1GUI.java
 C:\vd_store\store\src\main\java\phonestore\GUI\RoleAddGUI.java
 C:\vd_store\store\src\main\java\phonestore\GUI\StatisticsGUI.java
+C:\vd_store\store\src\main\java\phonestore\InformationLogin\InformationLogin.java
 C:\vd_store\store\src\main\java\phonestore\GUI\GRNAddGUI.java
 C:\vd_store\store\src\main\java\phonestore\DAO\WareHouseDAO.java
 C:\vd_store\store\src\main\java\phonestore\GUI\UserAddGUI.java
