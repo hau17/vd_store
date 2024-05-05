@@ -629,6 +629,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
                 inDTO.setInvoiceDetailId(invoiceDetailID);
                 invoiceDetailBUS.insertInvoiceDetailBUS(inDTO);
             }
+            JOptionPane.showMessageDialog(parentGUI, "success");
             this.dispose();
         }
     }// GEN-LAST:event_jButtonInvoiceGenerationActionPerformed

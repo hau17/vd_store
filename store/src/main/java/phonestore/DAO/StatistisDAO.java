@@ -83,4 +83,34 @@ public class StatistisDAO {
         }
         return arrayList;
     }
+        public ArrayList<StatistisDTO> getArrStatisticByCustomerID(int id){
+        ArrayList<StatistisDTO> arrayList=new ArrayList<>();
+        Connection connection=JDBCUtil.getConnection();
+        try {
+            String sql ="SELECT ivd.product_id, ivd.quantity, ivd.price"+
+                    " FROM invoice_detail ivd"+
+                    " INNER JOIN invoice iv ON ivd.invoice_id=iv.invoice_id"+
+                    " WHERE ";
+            if(id!=0){
+                sql+="iv.customer_id=id";
+            }else{
+                sql+="1=1";
+            }
+            Statement statement=connection.createStatement();
+            ResultSet rs=statement.executeQuery(sql);
+            while (rs.next()) {                
+                int productID=rs.getInt("product_id");
+                int quantity =rs.getInt("quantity");
+                int price=rs.getInt("price");
+                StatistisDTO sdto=new StatistisDTO(productID, quantity, price);
+                arrayList.add(sdto);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closeConnection(connection);
+        }
+        return arrayList;
+    }
+
 }

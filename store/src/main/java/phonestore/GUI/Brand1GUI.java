@@ -89,6 +89,8 @@ public void showAllData() {
         });
         jScrollPane1.setViewportView(jTableBrand);
 
+        jButtonSearch.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonSearch.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSearch.setText("Search");
         jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,6 +98,8 @@ public void showAllData() {
             }
         });
 
+        jButtonRefresh.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonRefresh.setForeground(new java.awt.Color(255, 255, 255));
         jButtonRefresh.setText("Refresh");
         jButtonRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,6 +107,8 @@ public void showAllData() {
             }
         });
 
+        jButtonAdd.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonAdd.setForeground(new java.awt.Color(255, 255, 255));
         jButtonAdd.setText("Add");
         jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,6 +116,8 @@ public void showAllData() {
             }
         });
 
+        jButtonUpdate.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonUpdate.setForeground(new java.awt.Color(255, 255, 255));
         jButtonUpdate.setText("Update");
         jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,6 +125,8 @@ public void showAllData() {
             }
         });
 
+        jButtonDelete.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonDelete.setForeground(new java.awt.Color(255, 255, 255));
         jButtonDelete.setText("Delete");
         jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +134,8 @@ public void showAllData() {
             }
         });
 
+        jButtonExportExcel.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonExportExcel.setForeground(new java.awt.Color(255, 255, 255));
         jButtonExportExcel.setText("Export Excel");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

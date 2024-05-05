@@ -363,7 +363,6 @@ public class Invoice1GUI extends javax.swing.JInternalFrame {
               textFieldUser.setText(defaultTableModel.getValueAt(sorter.convertRowIndexToModel(row),2).toString());
               textFieldDate.setText(defaultTableModel.getValueAt(sorter.convertRowIndexToModel(row),3).toString());
               textFieldTotalAmount.setText(defaultTableModel.getValueAt(sorter.convertRowIndexToModel(row),4).toString());
-
         }
     }//GEN-LAST:event_jTableInvoiceMouseClicked
 

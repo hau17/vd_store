@@ -174,7 +174,8 @@ public class Product1GUI extends javax.swing.JInternalFrame {
 
         jLabel2.setText("LINK");
 
-        jButtonAddImg.setBackground(new java.awt.Color(102, 204, 255));
+        jButtonAddImg.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonAddImg.setForeground(new java.awt.Color(255, 255, 255));
         jButtonAddImg.setText("Choose Image");
         jButtonAddImg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,10 +185,12 @@ public class Product1GUI extends javax.swing.JInternalFrame {
 
         textfieldSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jbuttonExport.setBackground(new java.awt.Color(102, 204, 255));
+        jbuttonExport.setBackground(new java.awt.Color(0, 102, 102));
+        jbuttonExport.setForeground(new java.awt.Color(255, 255, 255));
         jbuttonExport.setText("Export Excel");
 
-        jButtonDelete.setBackground(new java.awt.Color(102, 204, 255));
+        jButtonDelete.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonDelete.setForeground(new java.awt.Color(255, 255, 255));
         jButtonDelete.setText("Delete");
         jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,7 +198,8 @@ public class Product1GUI extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonUpdate.setBackground(new java.awt.Color(102, 204, 255));
+        jButtonUpdate.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonUpdate.setForeground(new java.awt.Color(255, 255, 255));
         jButtonUpdate.setText("Update");
         jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,7 +207,8 @@ public class Product1GUI extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonAdd.setBackground(new java.awt.Color(102, 204, 255));
+        jButtonAdd.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonAdd.setForeground(new java.awt.Color(255, 255, 255));
         jButtonAdd.setText("Add");
         jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,7 +216,8 @@ public class Product1GUI extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonSearch.setBackground(new java.awt.Color(102, 204, 255));
+        jButtonSearch.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonSearch.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSearch.setText("Search");
         jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,7 +225,8 @@ public class Product1GUI extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonRefresh.setBackground(new java.awt.Color(102, 204, 255));
+        jButtonRefresh.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonRefresh.setForeground(new java.awt.Color(255, 255, 255));
         jButtonRefresh.setText("Refresh");
         jButtonRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

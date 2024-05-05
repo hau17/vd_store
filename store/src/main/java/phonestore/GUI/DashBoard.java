@@ -184,6 +184,12 @@ public class DashBoard extends javax.swing.JFrame {
 
         jPanelCustomer.setBackground(new java.awt.Color(0, 0, 0));
         jPanelCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanelCustomerMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanelCustomerMouseEntered(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelCustomerMousePressed(evt);
             }
@@ -730,7 +736,10 @@ public class DashBoard extends javax.swing.JFrame {
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
         // TODO add your handling code here:
-        this.dispose();
+        int result=JOptionPane.showConfirmDialog(rootPane, "do you want to exit?");
+        if(result==JOptionPane.YES_OPTION){
+            System.exit(0);
+        }
     }//GEN-LAST:event_jPanel6MouseClicked
 
     private void jPanelWarehouseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelWarehouseMouseClicked
@@ -749,9 +758,9 @@ public class DashBoard extends javax.swing.JFrame {
 
     private void jPanelLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelLogoutMouseClicked
         // TODO add your handling code here:
-        int result=JOptionPane.showConfirmDialog(rootPane, "do you want do exit?");
+        int result=JOptionPane.showConfirmDialog(rootPane, "do you want do logout?");
         if(result==JOptionPane.YES_OPTION){
-            System.exit(0);
+            this.dispose();
         }
         
     }//GEN-LAST:event_jPanelLogoutMouseClicked
@@ -769,6 +778,17 @@ public class DashBoard extends javax.swing.JFrame {
         jDesktopPane1.removeAll();
         jDesktopPane1.add(product1GUI).setVisible(true);
     }//GEN-LAST:event_jPanelProductMouseClicked
+
+    private void jPanelCustomerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCustomerMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanelCustomerMouseEntered
+
+    private void jPanelCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCustomerMouseClicked
+        // TODO add your handling code here:
+        Customer1GUI customer1GUI=new Customer1GUI();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(customer1GUI).setVisible(true);
+    }//GEN-LAST:event_jPanelCustomerMouseClicked
 
     /**
      * @param args the command line arguments
