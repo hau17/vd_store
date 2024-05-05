@@ -102,7 +102,7 @@
                           <Component id="jButtonAdd" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="jButtonUpdate" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="jButtonDelete" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                          <Component id="jButtonSearch" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="jButtonSearch" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="jButtonRefresh" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                   </Group>

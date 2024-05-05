@@ -105,7 +105,7 @@ public class InvoiceBUS {
         BigDecimal totalAmount = invoiceDTO.getTotalAmount();
         String userName = userDTO.getfull_name();
         Date date = invoiceDTO.getDateOfInvoice();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
         String customerName = "";
         int customerPhone = 0;
@@ -132,7 +132,6 @@ public class InvoiceBUS {
             body.add(new Paragraph("Customer Address:" + customerAddress));
             body.add(new Paragraph(new Chunk("\n")));
             PdfPTable pdfPTable = new PdfPTable(8);
-            // pdfPTable.setTotalWidth(null);
             pdfPTable.addCell("ID");
             pdfPTable.addCell("Name");
             pdfPTable.addCell("Ram");
@@ -141,20 +140,14 @@ public class InvoiceBUS {
             pdfPTable.addCell("Brand");
             pdfPTable.addCell("Quantity");
             pdfPTable.addCell("Price");
-            // pdfPTable.addCell("");
-            // pdfPTable.addCell("");
             for (invoiceDetailDTO invoiceDetailDTO : arrInvoiceDetail) {
                 ProductDTO productDTO = productBLL.getProductDTO(invoiceDetailDTO.getProductId());
-//                String productID = Integer.toString(invoiceDetailDTO.getProductId());
                 String productID = Integer.toString(productDTO.getProduct_id());
                 String productName = productDTO.getProduct_name();
                 String ram = productDTO.getRam();
                 String rom = productDTO.getRom();
-                // String battery= productDTO.getBattery_capacity();
                 String chip = productDTO.getChip();
                 String brand = brandBLL.getBrandDTOByID(productDTO.getBrand_id()).getBrand_name();
-                // String origin=
-                // originBLL.getOriginByID(productDTO.getOrigin_id()).getOrigin_name();
                 String quantity = Integer.toString(invoiceDetailDTO.getQuantity());
                 String price = Integer.toString(invoiceDetailDTO.getPrice());
                 pdfPTable.addCell(productID);

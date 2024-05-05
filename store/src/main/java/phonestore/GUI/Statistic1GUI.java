@@ -4,13 +4,20 @@
  */
 package phonestore.GUI;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import javax.swing.BorderFactory;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
+//import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import phonestore.BUS.StatisticBUS;
 import phonestore.DAO.ProductDAL;
 import phonestore.DAO.StatistisDAO;
@@ -429,6 +436,18 @@ public class Statistic1GUI extends javax.swing.JInternalFrame {
 
     private void jButtonExportExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportExcelActionPerformed
         // TODO add your handling code here:
+//        JFileChooser fileChooser=new JFileChooser();
+//        FileNameExtensionFilter filter=new FileNameExtensionFilter("PDF Files", "pdf");
+//        fileChooser.setFileFilter(filter);
+//        int result= fileChooser.showSaveDialog(this);
+//        if (result == JFileChooser.APPROVE_OPTION) {
+//            String path = fileChooser.getSelectedFile().getPath()+".xlsx";
+//            try {
+//                Workbook workbook = new XSSFWorkbook();
+//            } catch (Exception e) {
+//                
+//            }
+//            }
     }//GEN-LAST:event_jButtonExportExcelActionPerformed
 
 
