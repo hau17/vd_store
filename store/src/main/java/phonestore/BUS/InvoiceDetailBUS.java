@@ -74,4 +74,7 @@ public class InvoiceDetailBUS {
         }
         return arr;
     }
+    public int getLastInvoiceDetailID(){
+        return invoiceDetailDAO.getLastInvoiceDetailID();
+    }
 }

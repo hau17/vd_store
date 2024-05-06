@@ -171,4 +171,21 @@ public class CustomerDAL {
         }
         return cus;
     }
+    public int getLastCustomerID(){
+        int i=0;
+        Connection connection=JDBCUtil.getConnection();
+        try {
+            String sql ="SELECT customer_id"+
+                    " FROM customer"+
+                    " WHERE customer_id= (SELECT MAX(customer_id) FROM customer)";
+            Statement statement=connection.createStatement();
+            ResultSet resultSet=statement.executeQuery(sql);
+            while (resultSet.next()) {                
+                i = resultSet.getInt("customer_id")+1;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
 }

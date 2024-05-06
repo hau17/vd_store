@@ -62,7 +62,7 @@ public class Invoice1GUI extends javax.swing.JInternalFrame {
 
     public void showSearchData(String stringSearch) {
         defaultTableModel.setRowCount(0);
-        ArrayList<InvoiceDTO> arrayList = invoiceBUS.arrSearch(stringSearch);
+        ArrayList<InvoiceDTO> arrayList = invoiceBUS.getArrSearch(stringSearch);
         for (InvoiceDTO invoiceDTO : arrayList) {
             Object[] objects = new Object[] { invoiceDTO.getInvoiceId(),
                     customerBLL.getCustomerNameById(invoiceDTO.getCustomer_id()),
@@ -343,13 +343,13 @@ public class Invoice1GUI extends javax.swing.JInternalFrame {
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
         // TODO add your handling code here:
-                showSearchData(textFieldSearch.getText());
+            showSearchData(textFieldSearch.getText());
 
     }//GEN-LAST:event_jButtonSearchActionPerformed
 
     private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
         // TODO add your handling code here:
-                textFieldSearch.setText("");
+        textFieldSearch.setText("");
         showAllData();
 
     }//GEN-LAST:event_jButtonRefreshActionPerformed
@@ -368,16 +368,26 @@ public class Invoice1GUI extends javax.swing.JInternalFrame {
 
     private void jbuttonExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonExportActionPerformed
         // TODO add your handling code here:
+        boolean check=false;
                 JFileChooser fileChooser = new JFileChooser();
+                
         FileNameExtensionFilter filter = new FileNameExtensionFilter("PDF Files", "pdf");
         fileChooser.setDialogTitle("save file");
         fileChooser.setFileFilter(filter);
         int result = fileChooser.showSaveDialog(this);
         if (result == JFileChooser.APPROVE_OPTION) {
             String path = fileChooser.getSelectedFile().getPath() + ".pdf";
-            invoiceBUS.exportExcel(path, Integer.parseInt(textFieldInvoiceId.getText()));
+            try {
+                check=invoiceBUS.exportExcel(path, Integer.parseInt(textFieldInvoiceId.getText()));
+                if (check) {
+                    JOptionPane.showMessageDialog(rootPane, "export pdf success");
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "error");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "error:"+e.getMessage());
+            }
         }
-
     }//GEN-LAST:event_jbuttonExportActionPerformed
 
 

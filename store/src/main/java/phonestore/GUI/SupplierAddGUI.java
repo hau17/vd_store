@@ -16,7 +16,6 @@ import phonestore.DTO.SuplierDTO;
  * @author congh
  */
 public class SupplierAddGUI extends javax.swing.JDialog {
-        SupplierGUI1 supplierGUI1;
         SuplierBUS suplierBUS = new SuplierBUS();
 
         /**
@@ -26,7 +25,7 @@ public class SupplierAddGUI extends javax.swing.JDialog {
                 super(parent, modal);
                 initComponents();
 //                supplierGUI1 = (SupplierGUI1) parent;
-                jTextFieldID.setText(Integer.toString(SuplierDAO.getInstance().getLastSupplierID()));
+                jTextFieldID.setText(Integer.toString(suplierBUS.getLastSupplierID()));
                 this.setLocationRelativeTo(null);
         }
         public boolean checkEmpty(){
@@ -228,7 +227,6 @@ public class SupplierAddGUI extends javax.swing.JDialog {
         private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonExitActionPerformed
                 // TODO add your handling code here:
                 this.dispose();
-                supplierGUI1.showAllData();
         }// GEN-LAST:event_jButtonExitActionPerformed
 
         /**

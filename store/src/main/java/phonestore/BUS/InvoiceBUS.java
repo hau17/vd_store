@@ -70,7 +70,7 @@ public class InvoiceBUS {
         return check;
     }
 
-    public ArrayList<InvoiceDTO> arrSearch(String search) {
+    public ArrayList<InvoiceDTO> getArrSearch(String search) {
         ArrayList<InvoiceDTO> arr_search = new ArrayList<>();
         for (InvoiceDTO invoiceDTO : invoiceDAO.getselectAll()) {
             String invoiceId = Integer.toString(invoiceDTO.getInvoiceId());
@@ -88,10 +88,11 @@ public class InvoiceBUS {
 
     public int getLastInvoiceID() {
         int id = invoiceDAO.geLastInvoiceIDInDatabase();
-        return id + 1;
+        return id;
     }
 
-    public void exportExcel(String path, int id) {
+    public boolean exportExcel(String path, int id) {
+        boolean check=false;
         InvoiceDTO invoiceDTO = InvoiceDAO.getInstance().selectById(id);
         UserDTO userDTO = UserDAO.getInstance().selectById(invoiceDTO.getUserId());
         Vector<ProductDTO> vectorProduct = productDAL.getAllProducts();
@@ -167,8 +168,10 @@ public class InvoiceBUS {
             document.add(pdfPTable);
             document.add(footer);
             document.close();
+            check =true;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return check;
     }
 }

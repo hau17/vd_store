@@ -49,10 +49,9 @@ public class Supplier1GUI extends javax.swing.JInternalFrame {
             defaultTableModel.addRow(object);
         }
     }
- public void showDataSearch(ArrayList<SuplierDTO> suplierDTOs) {
+ public void showAllDataSearch(String searchString) {
         defaultTableModel.setRowCount(0);
-        ArrayList<SuplierDTO> arrSearch = suplierDTOs;
-        for (SuplierDTO suplierDTO : arrSearch) {
+        for (SuplierDTO suplierDTO : suplierBUS.getArrSearch(searchString)) {
             Object[] object = new Object[] {
                     suplierDTO.getSuplierId(), suplierDTO.getSuplierName(),
                     suplierDTO.getEmailAddress(), suplierDTO.getPhoneNumber(),
@@ -296,9 +295,7 @@ public class Supplier1GUI extends javax.swing.JInternalFrame {
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
         // TODO add your handling code here:
-        String searString = jTextFieldSearch.getText();
-        ArrayList<SuplierDTO> arrayList = suplierBUS.arr_search_suplier(searString);
-        showDataSearch(arrayList);
+        showAllDataSearch(jTextFieldSearch.getText());
     }//GEN-LAST:event_jButtonSearchActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
@@ -312,13 +309,20 @@ public class Supplier1GUI extends javax.swing.JInternalFrame {
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         // TODO add your handling code here:
+        boolean check=false;
         int id = Integer.parseInt(textFieldId.getText());
         String nameString = textFieldName.getText();
         String phoneString = textFieldPhone.getText();
         String emailString = textFieldEmail.getText();
         String addressString = textFieldAddress.getText();
         SuplierDTO suplierDTO = new SuplierDTO(id, nameString, emailString, phoneString, addressString, 1);
-        suplierBUS.update_suplier(suplierDTO);
+        check=suplierBUS.update_suplier(suplierDTO);
+        if (check) {
+            JOptionPane.showMessageDialog(rootPane, "update success","success",JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "error","ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+        
         showAllData();
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 

@@ -22,6 +22,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import phonestore.BUS.BrandBLL;
 
 import phonestore.BUS.CustomerBLL;
+import phonestore.BUS.InvoiceBUS;
 
 import phonestore.BUS.InvoiceDetailBUS;
 import phonestore.BUS.OriginBLL;
@@ -50,14 +51,14 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
     DefaultTableModel defaultTableModelProduct, defaultTableModelProductNeedSell;
     CustomerBLL customerBLL;
     BrandBLL brandBLL = new BrandBLL();
-   InvoiceDAO invoiceDAO=new InvoiceDAO();
+    InvoiceBUS invoiceBUS=new InvoiceBUS();
     UserBUS userBUS=new UserBUS();
     GRNDetailDAO grnDetailDAO = new GRNDetailDAO();
     WareHouseDAO wareHouseDAO = new WareHouseDAO();
      //mảng lưu trữ dữ liệu trước khi thay đổi dữ liệu lên database
     ArrayList<invoiceDetailDTO> arrIvoiceNeedSell = new ArrayList<>();
     ArrayList<WareHouseDTO> arrWareHouseDTONeedSell = new ArrayList<>();
-    InvoiceDetailDAO invoiceDetailDAO = new InvoiceDetailDAO();
+//    InvoiceDetailDAO invoiceDetailDAO = new InvoiceDetailDAO();
     OriginBLL originBLL = new OriginBLL();
     TableRowSorter<DefaultTableModel> sorter;
     
@@ -89,7 +90,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
     }
 
     public void SetjTextFieldInvoiceId() {
-        jTextFieldInvoiceId.setText(Integer.toString(invoiceDAO.geLastInvoiceIDInDatabase()));
+        jTextFieldInvoiceId.setText(Integer.toString(invoiceBUS.getLastInvoiceID()));
     }
 
     public void SetjTextFieldDate() {
@@ -625,10 +626,13 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
                     new BigDecimal(jTextFieldTotalAmount.getText()), 1);
             InvoiceDAO.getInstance().insert(invoiceDTO);
             for (invoiceDetailDTO inDTO : arrIvoiceNeedSell) {
-                int invoiceDetailID = invoiceDetailDAO.getLastInvoiceDetailID();
-                inDTO.setInvoiceDetailId(invoiceDetailID);
+//                int invoiceDetailID = invoiceDetailDAO.getLastInvoiceDetailID();
+//                inDTO.setInvoiceDetailId(invoiceDetailID);
+                  int invoiceDetailID= invoiceDetailBUS.getLastInvoiceDetailID();
+                  inDTO.setInvoiceDetailId(invoiceDetailID);
                 invoiceDetailBUS.insertInvoiceDetailBUS(inDTO);
             }
+            
             JOptionPane.showMessageDialog(parentGUI, "success");
             this.dispose();
         }

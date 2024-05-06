@@ -48,7 +48,7 @@ public class SuplierBUS {
         return check;
     }
 
-    public ArrayList<SuplierDTO> arr_search_suplier(String object) {
+    public ArrayList<SuplierDTO> getArrSearch(String object) {
         ArrayList<SuplierDTO> arr = new ArrayList<>();
         for (SuplierDTO suplierDTO : arr_SuplierDTOs) {
             String id = Integer.toString(suplierDTO.getSuplierId());

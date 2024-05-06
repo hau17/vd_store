@@ -518,8 +518,8 @@ public class SupplierGUI1 extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         String searString = jTextFieldSearch.getText();
-        ArrayList<SuplierDTO> arrayList = suplierBUS.arr_search_suplier(searString);
-        showDataSearch(arrayList);
+//        ArrayList<SuplierDTO> arrayList = suplierBUS.arr_search_suplier(searString);
+//        showDataSearch(arrayList);
     }// GEN-LAST:event_jButtonSearchActionPerformed
 
     private void jTableSuplierMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTableSuplierMouseClicked

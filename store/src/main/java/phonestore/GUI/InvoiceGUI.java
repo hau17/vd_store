@@ -61,14 +61,14 @@ public class InvoiceGUI extends javax.swing.JFrame {
 
     public void showSearchData(String stringSearch) {
         defaultTableModel.setRowCount(0);
-        ArrayList<InvoiceDTO> arrayList = invoiceBUS.arrSearch(stringSearch);
-        for (InvoiceDTO invoiceDTO : arrayList) {
-            Object[] objects = new Object[] { invoiceDTO.getInvoiceId(),
-                    customerBLL.getCustomerNameById(invoiceDTO.getCustomer_id()),
-                    userBUS.getUserNameByID(invoiceDTO.getUserId()), invoiceDTO.getDateOfInvoice(),
-                    invoiceDTO.getTotalAmount() };
-            defaultTableModel.addRow(objects);
-        }
+//        ArrayList<InvoiceDTO> arrayList = invoiceBUS.arrSearch(stringSearch);
+//        for (InvoiceDTO invoiceDTO : arrayList) {
+//            Object[] objects = new Object[] { invoiceDTO.getInvoiceId(),
+//                    customerBLL.getCustomerNameById(invoiceDTO.getCustomer_id()),
+//                    userBUS.getUserNameByID(invoiceDTO.getUserId()), invoiceDTO.getDateOfInvoice(),
+//                    invoiceDTO.getTotalAmount() };
+//            defaultTableModel.addRow(objects);
+//        }
     }
 
     public int createNewID() {

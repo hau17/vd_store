@@ -287,6 +287,9 @@ public class DashBoard extends javax.swing.JFrame {
 
         jPanelOrigin.setBackground(new java.awt.Color(0, 0, 0));
         jPanelOrigin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanelOriginMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelOriginMousePressed(evt);
             }
@@ -309,6 +312,9 @@ public class DashBoard extends javax.swing.JFrame {
 
         jPanelUser.setBackground(new java.awt.Color(0, 0, 0));
         jPanelUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanelUserMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelUserMousePressed(evt);
             }
@@ -789,6 +795,20 @@ public class DashBoard extends javax.swing.JFrame {
         jDesktopPane1.removeAll();
         jDesktopPane1.add(customer1GUI).setVisible(true);
     }//GEN-LAST:event_jPanelCustomerMouseClicked
+
+    private void jPanelOriginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelOriginMouseClicked
+        // TODO add your handling code here:
+        Origin1GUI origin1GUI=new Origin1GUI();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(origin1GUI).setVisible(true);
+    }//GEN-LAST:event_jPanelOriginMouseClicked
+
+    private void jPanelUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelUserMouseClicked
+        // TODO add your handling code here:
+        User1GUI user1GUI=new User1GUI();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(user1GUI).setVisible(true);
+    }//GEN-LAST:event_jPanelUserMouseClicked
 
     /**
      * @param args the command line arguments

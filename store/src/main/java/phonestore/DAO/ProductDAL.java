@@ -198,6 +198,6 @@ public class ProductDAL {
                 JDBCUtil.closeConnection(con);
             }
             return product;
-
     }
+    
 }

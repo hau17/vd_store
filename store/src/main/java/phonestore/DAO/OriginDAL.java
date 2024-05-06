@@ -33,14 +33,15 @@ public class OriginDAL {
         return arr;
     }
 
-    public boolean addOrigin(OriginDTO bra) {
+    public boolean addOrigin(OriginDTO org) {
         boolean result = false;
         Connection con = JDBCUtil.getConnection();
         try {
-            String sql = "Insert into Origin values(?,?)";
+            String sql = "Insert into Origin values(?,?,?)";
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, bra.getOrigin_id());
-            stmt.setString(2, bra.getOrigin_name());
+            stmt.setInt(1, org.getOrigin_id());
+            stmt.setString(2, org.getOrigin_name());
+            stmt.setString(3, "active");
             if (stmt.executeUpdate() >= 1)
                 result = true;
         } catch (SQLException ex) {

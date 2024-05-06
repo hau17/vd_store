@@ -58,7 +58,7 @@ public class Statistic1GUI extends javax.swing.JInternalFrame {
         showTotalInvoice(null);
         sorter=new TableRowSorter<>(productdeDefaultTableModel);
         jTableProduct.setRowSorter(sorter);
-        jTableInvoice.setRowSorter(sorter);
+//        jTableInvoice.setRowSorter(sorter);
         jTableProduct.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jTableInvoice.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -77,7 +77,7 @@ public class Statistic1GUI extends javax.swing.JInternalFrame {
         invoiceDefaultTableModel.setRowCount(0);
         for(invoiceDetailDTO inDTO: statistisDAO.getArrInvoiceByDate(date)){
             Object[] objects=new Object[]{
-                inDTO.getProductId(),productDAL.getProductbyID(inDTO.getProductId()).getProduct_name(),
+                inDTO.getInvoiceId(),inDTO.getProductId(),productDAL.getProductbyID(inDTO.getProductId()).getProduct_name(),
                 inDTO.getQuantity(),inDTO.getPrice()
             };
             invoiceDefaultTableModel.addRow(objects);
@@ -271,17 +271,14 @@ public class Statistic1GUI extends javax.swing.JInternalFrame {
 
         jTableInvoice.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Phone ID", "Phone Name", "Quantity", "price"
+                "Invoice ID", "Phone ID", "Phone Name", "Quantity", "price"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -471,33 +468,44 @@ public class Statistic1GUI extends javax.swing.JInternalFrame {
         if (result == JFileChooser.APPROVE_OPTION) {
             String path = fileChooser.getSelectedFile().getPath()+".xlsx";
             Date date=jDateChooserInvoice.getDate();
-            check=statisticBUS.ExportExcel(path, date);
+            try {
+                check=statisticBUS.ExportExcel(path, date);
+                if (check) {
+                    JOptionPane.showMessageDialog(rootPane, "export Excel success");
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "error");
+                }
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "error "+e.getMessage());
+            }
+            
         }
-        if (check) {
-            JOptionPane.showMessageDialog(rootPane, "export excel success");
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "error");
-        }
+        
     }//GEN-LAST:event_jButtonExportExcelActionPerformed
 
     private void jButtonExportExcelProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportExcelProductActionPerformed
         // TODO add your handling code here:
-        boolean check=false;
-        JFileChooser fileChooser=new JFileChooser();
-        FileNameExtensionFilter filter=new FileNameExtensionFilter("EXCEL FILES", "xlsx");
-        fileChooser.setFileFilter(filter);
-        int resutl=fileChooser.showSaveDialog(jPanel1);
-        if (resutl==JFileChooser.APPROVE_OPTION) {
-            String path =fileChooser.getSelectedFile().getPath()+".xlsx";
-            Date fromDate = jDateChooserProductFrom.getDate();
-            Date toDate = jDateChooserProductTo.getDate();
+         boolean check = false;
+    JFileChooser fileChooser = new JFileChooser();
+    FileNameExtensionFilter filter = new FileNameExtensionFilter("EXCEL FILES", "xlsx");
+    fileChooser.setFileFilter(filter);
+    int resutl = fileChooser.showSaveDialog(jPanel1);
+    if (resutl == JFileChooser.APPROVE_OPTION) {
+        String path = fileChooser.getSelectedFile().getPath() + ".xlsx";
+        Date fromDate = jDateChooserProductFrom.getDate();
+        Date toDate = jDateChooserProductTo.getDate();
+        try {
             check = statisticBUS.ExportExcel(path, fromDate, toDate);
+            if (check) {
+                JOptionPane.showMessageDialog(rootPane, "Export Excel success");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Error");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Error: " + e.getMessage());
         }
-        if(check){
-            JOptionPane.showMessageDialog(rootPane, "export Excel success");
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "Error");
-        }
+    }
     }//GEN-LAST:event_jButtonExportExcelProductActionPerformed
 
 
