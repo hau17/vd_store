@@ -45,4 +45,7 @@ public class BrandBLL {
         BrandDTO brandDTO=braDAL.getBrandByID(id);
         return brandDTO;
     }
+    public int getLastBrandID(){
+        return braDAL.getLastBrandID();
+    }
 }

@@ -353,7 +353,7 @@ public class Customer1GUI extends javax.swing.JInternalFrame {
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         // TODO add your handling code here:
         try {
-            if(textFieldId.getText().trim().equals("") || textFieldName.getText().trim().equals("") || textFieldPhone.getText().trim().equals("") || textFieldAddress.getText().trim().equals("")) {
+            if(textFieldName.getText().trim().equals("") || textFieldPhone.getText().trim().equals("") || textFieldAddress.getText().trim().equals("")) {
                 JOptionPane.showMessageDialog(this, "Please enter all required information");
             } else {
                 CustomerDTO customerDTO = new CustomerDTO();

@@ -94,4 +94,7 @@ public class UserBUS {
         }
         return userDTO;
     }
+    public int getLastUserID(){
+        return userDAO.getLastUserID();
+    }
 }

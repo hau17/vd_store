@@ -199,5 +199,22 @@ public class ProductDAL {
             }
             return product;
     }
+    public int getLastProductID(){
+        int i=0;
+        Connection connection=JDBCUtil.getConnection();
+        try {
+            String sql ="SELECT product_id"+
+                    " FROM product"+
+                    " WHERE product_id= (SELECT MAX(product_id) FROM product)";
+            Statement statement=connection.createStatement();
+            ResultSet resultSet=statement.executeQuery(sql);
+            while (resultSet.next()) {                
+                i = resultSet.getInt("product_id")+1;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
     
 }

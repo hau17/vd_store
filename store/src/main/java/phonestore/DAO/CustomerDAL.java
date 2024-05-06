@@ -63,7 +63,7 @@ public class CustomerDAL {
             stmt.setString(1, cus.getCustomer_name());
             stmt.setInt(2, cus.getPhone_number());
             stmt.setString(3, cus.getAddress());
-            stmt.setString(4, cus.getStatus());
+            stmt.setString(4, "disable");
             stmt.setInt(5, cus.getCustomer_id());
             if (stmt.executeUpdate() >= 1)
                 result = true;

@@ -5,7 +5,11 @@
 package phonestore.GUI;
 
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
+import phonestore.BUS.UserBUS;
+import phonestore.DTO.UserDTO;
 
 /**
  *
@@ -16,13 +20,29 @@ public class User1GUI extends javax.swing.JInternalFrame {
     /**
      * Creates new form User1GUI
      */
+    DefaultTableModel defaultTableModel;
+    UserBUS userBUS=new UserBUS();
     public User1GUI() {
         initComponents();
         this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI ui =(BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
+        defaultTableModel=(DefaultTableModel) jTableUser.getModel();
+        showAllData();
     }
-    
+    public void showAllData() {
+        defaultTableModel.setRowCount(0);
+        for (UserDTO udto:userBUS.getAllUser() ) {
+            Object[] objects = new Object[] { 
+                udto.getuser_id(),udto.getuser_name(),
+                udto.getPassword(),udto.getfull_name(),
+                udto.getdate_of_birth(),udto.getphone_number(),
+                udto.getemail_address(),udto.getrole_id(),
+            };
+            defaultTableModel.addRow(objects);
+        }
+    }
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,7 +71,6 @@ public class User1GUI extends javax.swing.JInternalFrame {
         jLabelPhone2 = new javax.swing.JLabel();
         jLabelPhone3 = new javax.swing.JLabel();
         jLabelPhone4 = new javax.swing.JLabel();
-        jTextFieldID = new javax.swing.JTextField();
         jTextFieldUserName = new javax.swing.JTextField();
         jTextFieldPassword = new javax.swing.JTextField();
         jTextFieldFullName = new javax.swing.JTextField();
@@ -59,8 +78,10 @@ public class User1GUI extends javax.swing.JInternalFrame {
         jTextFieldPhoneNumber = new javax.swing.JTextField();
         jTextFieldEmail = new javax.swing.JTextField();
         jTextFieldRole = new javax.swing.JTextField();
+        jTextFieldID = new javax.swing.JLabel();
 
-        jbuttonExport.setBackground(new java.awt.Color(102, 204, 255));
+        jbuttonExport.setBackground(new java.awt.Color(0, 102, 102));
+        jbuttonExport.setForeground(new java.awt.Color(255, 255, 255));
         jbuttonExport.setText("Export Excel");
 
         jLabelName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -76,7 +97,8 @@ public class User1GUI extends javax.swing.JInternalFrame {
         jLabelPhone.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabelPhone.setText("Full name");
 
-        jButtonSearch.setBackground(new java.awt.Color(102, 204, 255));
+        jButtonSearch.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonSearch.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSearch.setText("Search");
         jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,7 +108,8 @@ public class User1GUI extends javax.swing.JInternalFrame {
 
         jTextFieldSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jButtonAdd.setBackground(new java.awt.Color(102, 204, 255));
+        jButtonAdd.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonAdd.setForeground(new java.awt.Color(255, 255, 255));
         jButtonAdd.setText("Add");
         jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +121,8 @@ public class User1GUI extends javax.swing.JInternalFrame {
         jLabelEmal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabelEmal.setText("Password");
 
-        jButtonDelete.setBackground(new java.awt.Color(102, 204, 255));
+        jButtonDelete.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonDelete.setForeground(new java.awt.Color(255, 255, 255));
         jButtonDelete.setText("Delete");
         jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +130,8 @@ public class User1GUI extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonUpdate.setBackground(new java.awt.Color(102, 204, 255));
+        jButtonUpdate.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonUpdate.setForeground(new java.awt.Color(255, 255, 255));
         jButtonUpdate.setText("Update");
         jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +139,8 @@ public class User1GUI extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonRefresh.setBackground(new java.awt.Color(102, 204, 255));
+        jButtonRefresh.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonRefresh.setForeground(new java.awt.Color(255, 255, 255));
         jButtonRefresh.setText("Refresh");
         jButtonRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,72 +208,71 @@ public class User1GUI extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelPhone3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(125, 125, 125)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelPhone4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jbuttonExport, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelPhone2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldRole, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelPhone1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldDateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(93, 93, 93))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbuttonExport, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
-                .addComponent(jTextFieldSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jButtonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addComponent(jTextFieldSearch)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jButtonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelPhone3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelPhone4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelPhone2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldRole, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelPhone1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldDateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(93, 93, 93))))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabeId, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(311, 311, 311))
+                        .addComponent(jLabeId, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabelPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabelEmal, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(879, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldDateOfBirth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPhone1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jTextFieldDateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelPhone1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextFieldID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(6, 6, 6)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPhone3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -267,18 +292,17 @@ public class User1GUI extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbuttonExport, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18))
+                            .addComponent(jbuttonExport, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)))
+                            .addComponent(jButtonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,22 +338,123 @@ public class User1GUI extends javax.swing.JInternalFrame {
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         // TODO add your handling code here:
+        boolean check=false;
+        try {
+            if(jTextFieldUserName.getText().trim().equals("") || jTextFieldPhoneNumber.getText().trim().equals("")
+                    || jTextFieldFullName.getText().trim().equals("") || jTextFieldDateOfBirth.getText().trim().equals("") 
+                    || jTextFieldPhoneNumber.getText().trim().equals("") || jTextFieldEmail.getText().trim().equals("")
+                    || jTextFieldRole.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(this, "Please enter all required information");
+            } else {
+                UserDTO userDTO = new UserDTO();
+                userDTO.setuser_id(userBUS.getLastUserID());
+                userDTO.setuser_name(jTextFieldUserName.getText());
+                userDTO.setPassword(Integer.parseInt(jTextFieldPassword.getText())); // Password not being set in this action?
+                userDTO.setfull_name(jTextFieldFullName.getText());
+                userDTO.setdate_of_birth(jTextFieldDateOfBirth.getText());
+                userDTO.setphone_number(jTextFieldPhoneNumber.getText());
+                userDTO.setemail_address(jTextFieldEmail.getText());
+                userDTO.setrole_id(Integer.parseInt(jTextFieldRole.getText()));
+                userDTO.setStatus(1);
+                check = userBUS.add_User(userDTO);
+                if (check) {
+                    JOptionPane.showMessageDialog(rootPane, "add success");
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "error");
+                }
+                showAllData();
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Invalid information");
+        }
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         // TODO add your handling code here:
+        boolean check=false;
+            try {
+        if(jTextFieldUserName.getText().trim().equals("") || jTextFieldPhoneNumber.getText().trim().equals("")
+                || jTextFieldFullName.getText().trim().equals("") || jTextFieldDateOfBirth.getText().trim().equals("") 
+                || jTextFieldPhoneNumber.getText().trim().equals("") || jTextFieldEmail.getText().trim().equals("")
+                || jTextFieldRole.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter all required information");
+        } else {
+            UserDTO userDTO = new UserDTO();
+            userDTO.setuser_id(Integer.parseInt(jLabeId.getText()));
+            userDTO.setuser_name(jTextFieldUserName.getText());
+            userDTO.setfull_name(jTextFieldFullName.getText());
+            userDTO.setdate_of_birth(jTextFieldDateOfBirth.getText());
+            userDTO.setphone_number(jTextFieldPhoneNumber.getText());
+            userDTO.setemail_address(jTextFieldEmail.getText());
+            userDTO.setrole_id(Integer.parseInt(jTextFieldRole.getText()));
+            userDTO.setStatus(0);
+            check= userBUS.delete_user(userDTO.getuser_id());
+            if (check) {
+                    JOptionPane.showMessageDialog(rootPane, "add success");
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "error");
+                }
+            showAllData();
+        }
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(this, "Invalid information");
+    }
+
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         // TODO add your handling code here:
+        boolean check=false;
+        try {
+        if(jTextFieldUserName.getText().trim().equals("") || jTextFieldPhoneNumber.getText().trim().equals("")
+                || jTextFieldFullName.getText().trim().equals("") || jTextFieldDateOfBirth.getText().trim().equals("") 
+                || jTextFieldPhoneNumber.getText().trim().equals("") || jTextFieldEmail.getText().trim().equals("")
+                || jTextFieldRole.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter all required information");
+        } else {
+            UserDTO userDTO = new UserDTO();
+            userDTO.setuser_id(Integer.parseInt(jLabeId.getText())); 
+            userDTO.setuser_name(jTextFieldUserName.getText());
+            userDTO.setfull_name(jTextFieldFullName.getText());
+            userDTO.setdate_of_birth(jTextFieldDateOfBirth.getText());
+            userDTO.setphone_number(jTextFieldPhoneNumber.getText());
+            userDTO.setemail_address(jTextFieldEmail.getText());
+            userDTO.setrole_id(Integer.parseInt(jTextFieldRole.getText()));
+            userDTO.setStatus(1);
+            
+            check= userBUS.update_user(userDTO);
+            if (check) {
+                    JOptionPane.showMessageDialog(rootPane, "update success");
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "error");
+                }
+
+            showAllData();
+        }
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(this, "Invalid information");
+    }
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
         // TODO add your handling code here:
+        defaultTableModel.setRowCount(0);
+        showAllData();
+
     }//GEN-LAST:event_jButtonRefreshActionPerformed
 
     private void jTableUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableUserMouseClicked
         // TODO add your handling code here:
+        int row=jTableUser.getSelectedRow();
+        jLabeId.setText(defaultTableModel.getValueAt(row, 0).toString()); // Assuming jLabelUserID is used to display the user ID
+        jTextFieldUserName.setText(defaultTableModel.getValueAt(row, 1).toString());
+        jTextFieldPassword.setText(defaultTableModel.getValueAt(row, 2).toString());
+        jTextFieldFullName.setText(defaultTableModel.getValueAt(row, 3).toString());
+        jTextFieldDateOfBirth.setText(defaultTableModel.getValueAt(row, 4).toString());
+        jTextFieldPhoneNumber.setText(defaultTableModel.getValueAt(row, 5).toString());
+        jTextFieldEmail.setText(defaultTableModel.getValueAt(row, 6).toString());
+        jTextFieldRole.setText(defaultTableModel.getValueAt(row, 7).toString());
+
     }//GEN-LAST:event_jTableUserMouseClicked
 
     private void jTextFieldUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUserNameActionPerformed
@@ -361,7 +486,7 @@ public class User1GUI extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextFieldDateOfBirth;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldFullName;
-    private javax.swing.JTextField jTextFieldID;
+    private javax.swing.JLabel jTextFieldID;
     private javax.swing.JTextField jTextFieldPassword;
     private javax.swing.JTextField jTextFieldPhoneNumber;
     private javax.swing.JTextField jTextFieldRole;

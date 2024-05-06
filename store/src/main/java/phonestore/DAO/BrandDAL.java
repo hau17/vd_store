@@ -159,4 +159,21 @@ public class BrandDAL {
         }
         return brandDTO;
     }
+    public int getLastBrandID(){
+        int i=0;
+        Connection connection=JDBCUtil.getConnection();
+        try {
+            String sql ="SELECT brand_id"+
+                    " FROM brand"+
+                    " WHERE brand_id= (SELECT MAX(brand_id) FROM brand)";
+            Statement statement=connection.createStatement();
+            ResultSet resultSet=statement.executeQuery(sql);
+            while (resultSet.next()) {                
+                i = resultSet.getInt("brand_id")+1;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
 }

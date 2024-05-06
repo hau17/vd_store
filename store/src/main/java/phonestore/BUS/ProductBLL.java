@@ -52,5 +52,7 @@ public class ProductBLL {
         }
         return pro;
     }
-
+    public int getLastProductID(){
+        return prDAL.getLastProductID();
+    }
 }

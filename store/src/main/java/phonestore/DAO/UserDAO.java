@@ -3,6 +3,7 @@ package phonestore.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import phonestore.DTO.UserDTO;
@@ -170,4 +171,24 @@ public class UserDAO implements DAOInterface<UserDTO> {
         }
         return result;
     }
+        
+        public int getLastUserID(){
+            int i=0;
+            Connection connection=JDBCUtil.getConnection();
+            try {
+                String sql ="SELECT user_id"+
+                        " FROM user"+
+                        " WHERE user_id= (SELECT MAX(user_id) FROM user)";
+                Statement statement=connection.createStatement();
+                ResultSet resultSet=statement.executeQuery(sql);
+                while (resultSet.next()) {                
+                    i = resultSet.getInt("user_id")+1;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return i;
+    }
+
+        
 }

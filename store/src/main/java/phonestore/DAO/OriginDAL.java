@@ -142,4 +142,22 @@ public class OriginDAL {
         }
         return result;
     }
+        public int getLastOriginID(){
+        int i=0;
+        Connection connection=JDBCUtil.getConnection();
+        try {
+            String sql ="SELECT origin_id"+
+                    " FROM origin"+
+                    " WHERE origin_id= (SELECT MAX(origin_id) FROM origin)";
+            Statement statement=connection.createStatement();
+            ResultSet resultSet=statement.executeQuery(sql);
+            while (resultSet.next()) {
+                i = resultSet.getInt("origin_id")+1;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
+
 }

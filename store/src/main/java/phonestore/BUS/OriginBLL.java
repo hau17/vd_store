@@ -52,4 +52,7 @@ public class OriginBLL {
         }
         return org;
     }
+    public int getLastOriginID(){
+        return braDAL.getLastOriginID();
+    }
 }
