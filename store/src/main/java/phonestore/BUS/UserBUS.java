@@ -84,7 +84,7 @@ public class UserBUS {
 //    public void setUserName(String userName){
 //        this.userName = userName;
 //    }
-    public UserDTO getUserIDByUserName(String username){
+    public UserDTO getUserDTOByUserName(String username){
         UserDTO userDTO=null;
         for(UserDTO udto: userDAO.getselectAll()){
             if (udto.getuser_name().equals(username)) {

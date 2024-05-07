@@ -148,19 +148,18 @@ public class WareHouseDAO implements DAOInterface<WareHouseDTO> {
     }
     public boolean checkQuantityProduct(int productID,int quantity){
         Connection connection=JDBCUtil.getConnection();
-        boolean result=true;
+        boolean result=false;
         try {
-            String sql ="SELECT * FROM warehouse";
+            String sql ="SELECT * FROM warehouse WHERE product_id= "+productID;
             Statement st = connection.createStatement();
             ResultSet rs =st.executeQuery(sql);
-            while (rs.next()) {                
-                if(rs.getInt("product_id") == productID){
-                    if (rs.getInt("quantity")< quantity) {
-                        return false;
-                    }
+            while (rs.next()) {         
+                if (rs.getInt("quantity")>= quantity) {
+                    return true;
                 }
             }
         } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             JDBCUtil.closeConnection(connection);
         }

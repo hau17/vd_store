@@ -415,6 +415,7 @@ public class User1GUI extends javax.swing.JInternalFrame {
             UserDTO userDTO = new UserDTO();
             userDTO.setuser_id(Integer.parseInt(jLabeId.getText())); 
             userDTO.setuser_name(jTextFieldUserName.getText());
+            userDTO.setPassword(Integer.parseInt(jTextFieldPassword.getText()));
             userDTO.setfull_name(jTextFieldFullName.getText());
             userDTO.setdate_of_birth(jTextFieldDateOfBirth.getText());
             userDTO.setphone_number(jTextFieldPhoneNumber.getText());

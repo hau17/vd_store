@@ -4,6 +4,7 @@
  */
 package phonestore.InformationLogin;
 
+
 /**
  *
  * @author congh
@@ -23,5 +24,4 @@ public class InformationLogin {
     public String getUserName(){
         return userName;
     }
-    
 }

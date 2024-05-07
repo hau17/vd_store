@@ -28,6 +28,7 @@ import phonestore.BUS.InvoiceDetailBUS;
 import phonestore.BUS.OriginBLL;
 import phonestore.BUS.ProductBLL;
 import phonestore.BUS.UserBUS;
+import phonestore.BUS.WarehouseBUS;
 import phonestore.DAO.GRNDetailDAO;
 import phonestore.DAO.InvoiceDAO;
 import phonestore.DAO.InvoiceDetailDAO;
@@ -54,7 +55,8 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
     InvoiceBUS invoiceBUS=new InvoiceBUS();
     UserBUS userBUS=new UserBUS();
     GRNDetailDAO grnDetailDAO = new GRNDetailDAO();
-    WareHouseDAO wareHouseDAO = new WareHouseDAO();
+//    WareHouseDAO wareHouseDAO = new WareHouseDAO();
+    WarehouseBUS warehouseBUS=new WarehouseBUS();
      //mảng lưu trữ dữ liệu trước khi thay đổi dữ liệu lên database
     ArrayList<invoiceDetailDTO> arrIvoiceNeedSell = new ArrayList<>();
     ArrayList<WareHouseDTO> arrWareHouseDTONeedSell = new ArrayList<>();
@@ -86,7 +88,6 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
         showAllDataProduct();
         SetjTextFieldInvoiceId();
         SetjTextFieldDate();
-
     }
 
     public void SetjTextFieldInvoiceId() {
@@ -109,8 +110,8 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
                     productDTO.getChip(),
                     brandBLL.getBrandDTOByID(productDTO.getBrand_id()).getBrand_name(),
                     originBLL.getOriginByID(productDTO.getOrigin_id()).getOrigin_name(),
-                    wareHouseDAO.selectById(productDTO.getProduct_id()).getPrice(),
-                    wareHouseDAO.selectById(productDTO.getProduct_id()).getQuantity()
+                    warehouseBUS.getWareHouseDTOByID(productDTO.getProduct_id()).getPrice(),
+                    warehouseBUS.getWareHouseDTOByID(productDTO.getProduct_id()).getQuantity()
             };
             defaultTableModelProduct.addRow(objects);
         }
@@ -125,12 +126,11 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
                     productDTO.getChip(),
                     brandBLL.getBrandDTOByID(productDTO.getBrand_id()).getBrand_name(),
                     originBLL.getOriginByID(productDTO.getOrigin_id()).getOrigin_name(),
-                    wareHouseDAO.selectById(productDTO.getProduct_id()).getPrice(),
-                    wareHouseDAO.selectById(productDTO.getProduct_id()).getQuantity()
+                    warehouseBUS.getWareHouseDTOByID(productDTO.getProduct_id()).getPrice(),
+                    warehouseBUS.getWareHouseDTOByID(productDTO.getProduct_id()).getQuantity()
             };
             defaultTableModelProduct.addRow(objects);
         }
-
     }
 
     public void showProductNeedSell() {
@@ -600,7 +600,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
         boolean check = true;
         for (WareHouseDTO wareHouseDTO : arrWareHouseDTONeedSell) {
-            if (!wareHouseDAO.checkQuantityProduct(wareHouseDTO.getProductId(), wareHouseDTO.getQuantity())) {
+            if (!warehouseBUS.checkQuantityProduct(wareHouseDTO.getProductId(), wareHouseDTO.getQuantity())) {
                 check = false;
                 JOptionPane.showMessageDialog(this, "Insufficient quantity of products", "ERROR",
                         JOptionPane.ERROR_MESSAGE);
@@ -609,7 +609,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
         }
         if (check) {
             for (WareHouseDTO wareHouseDTO : arrWareHouseDTONeedSell) {
-                wareHouseDAO.descreaseProduct(wareHouseDTO.getProductId(), wareHouseDTO.getQuantity());
+                warehouseBUS.descreaseProduct(wareHouseDTO.getProductId(), wareHouseDTO.getQuantity());
             }
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date utilDate = null;
@@ -622,7 +622,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
             }
             java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-            InvoiceDTO invoiceDTO = new InvoiceDTO(invoiceID, getIDCustomer(), userBUS.getUserIDByUserName(jTextFieldUser.getText()).getuser_id(), sqlDate,
+            InvoiceDTO invoiceDTO = new InvoiceDTO(invoiceID, getIDCustomer(), userBUS.getUserDTOByUserName(jTextFieldUser.getText()).getuser_id(), sqlDate,
                     new BigDecimal(jTextFieldTotalAmount.getText()), 1);
             InvoiceDAO.getInstance().insert(invoiceDTO);
             for (invoiceDetailDTO inDTO : arrIvoiceNeedSell) {

@@ -5,15 +5,19 @@
 package phonestore.GUI;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
-import jdk.internal.util.StaticProperty;
+import phonestore.BUS.UserBUS;
+import phonestore.InformationLogin.InformationLogin;
 
 /**
  *
  * @author congh
  */
 public class DashBoard extends javax.swing.JFrame {
-    public Color defaultColor, checkColor;
+    public Color defaultColor, checkColor,disableColor;
+    UserBUS userBUS=new UserBUS();
 
     /**
      * Creates new form DashBoard
@@ -21,15 +25,42 @@ public class DashBoard extends javax.swing.JFrame {
     public DashBoard() {
         initComponents();
         setColor();
-
+        setRole();
     }
 
     public void setColor() {
         defaultColor = new Color(0, 0, 0);
         checkColor = new Color(102, 102, 102);
+        disableColor = new Color(255,255,255);
 
     }
+    public void setRole(){
+        int role= userBUS.getUserDTOByUserName(InformationLogin.getInstance().getUserName()).getrole_id();
+            
+        if(role==2){
+                    jPanelBrand.removeAll();
+                    jPanelGRN.removeAll();
+                    jPanelProduct.removeAll();
+                    jPanelRole.removeAll();
+                    jPanelSupplier.removeAll();
+                    jPanelUser.removeAll();
+                    jPanelWarehouse.removeAll();
+                    jPanelOrigin.removeAll();
 
+
+        }
+        else if (role==3) {
+                    jPanelCustomer.removeAll();
+                    jPanelInvoice.removeAll();
+                    jPanelRole.removeAll();
+                    jPanelUser.removeAll();
+                    jPanelWarehouse.removeAll();
+        }
+        else{
+            
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -130,7 +161,7 @@ public class DashBoard extends javax.swing.JFrame {
                 .addGap(0, 27, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel3.setBackground(new java.awt.Color(0, 0, 0));
 
         jPanelGRN.setBackground(new java.awt.Color(0, 0, 0));
         jPanelGRN.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -542,6 +573,18 @@ public class DashBoard extends javax.swing.JFrame {
 
     private void jPanelRoleMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelRoleMousePressed
         // TODO add your handling code here:
+        jPanelInvoice.setBackground(defaultColor);
+        jPanelGRN.setBackground(defaultColor);
+        jPanelCustomer.setBackground(defaultColor);
+        jPanelSupplier.setBackground(defaultColor);
+        jPanelProduct.setBackground(defaultColor);
+        jPanelOrigin.setBackground(defaultColor);
+        jPanelBrand.setBackground(defaultColor);
+        jPanelUser.setBackground(defaultColor);
+        jPanelWarehouse.setBackground(defaultColor);
+        jPanelRole.setBackground(checkColor);
+        jPanelSaleStatistic.setBackground(defaultColor);
+        jPanelLogout.setBackground(defaultColor);
     }//GEN-LAST:event_jPanelRoleMousePressed
 
     private void jPanelUserMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelUserMousePressed
@@ -563,7 +606,9 @@ public class DashBoard extends javax.swing.JFrame {
 
     private void jPanelRoleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelRoleMouseClicked
         // TODO add your handling code here:
-        
+        Role1GUI role1GUI=new Role1GUI();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(role1GUI).setVisible(true);
     }//GEN-LAST:event_jPanelRoleMouseClicked
     // TODO add your handling code here:
 

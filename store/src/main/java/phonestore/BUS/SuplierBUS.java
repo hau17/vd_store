@@ -64,7 +64,7 @@ public class SuplierBUS {
         }
         return arr;
     }
-
+    
     public int getLastSupplierID() {
         int i = suplierDAO.getLastSupplierID();
         return i;

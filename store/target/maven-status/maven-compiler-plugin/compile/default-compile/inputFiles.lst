@@ -16,6 +16,7 @@ C:\vd_store\store\src\main\java\phonestore\GUI\RoleGUI.java
 C:\vd_store\store\src\main\java\phonestore\GUI\ProductAddGUI.java
 C:\vd_store\store\src\main\java\phonestore\BUS\SuplierBUS.java
 C:\vd_store\store\src\main\java\phonestore\DAO\CustomerDAL.java
+C:\vd_store\store\src\main\java\phonestore\DAO\RoleDAO.java
 C:\vd_store\store\src\main\java\phonestore\DAO\StatistisDAO.java
 C:\vd_store\store\src\main\java\phonestore\DAO\SuplierDAO.java
 C:\vd_store\store\src\main\java\phonestore\GUI\BrandAddGUI.java
@@ -32,6 +33,7 @@ C:\vd_store\store\src\main\java\phonestore\DAO\ProductDAL.java
 C:\vd_store\store\src\main\java\phonestore\GUI\Origin1GUI.java
 C:\vd_store\store\src\main\java\phonestore\BUS\WarehouseBUS.java
 C:\vd_store\store\src\main\java\phonestore\GUI\User1GUI.java
+C:\vd_store\store\src\main\java\phonestore\BUS\RoleBUS.java
 C:\vd_store\store\src\main\java\phonestore\DTO\CustomerDTO.java
 C:\vd_store\store\src\main\java\phonestore\GUI\WarrantyGUI.java
 C:\vd_store\store\src\main\java\phonestore\GUI\SupplierAddGUI.java
@@ -51,10 +53,12 @@ C:\vd_store\store\src\main\java\phonestore\GUI\Warehouse1GUI.java
 C:\vd_store\store\src\main\java\phonestore\GUI\RoleAddGUI.java
 C:\vd_store\store\src\main\java\phonestore\GUI\StatisticsGUI.java
 C:\vd_store\store\src\main\java\phonestore\InformationLogin\InformationLogin.java
+C:\vd_store\store\src\main\java\phonestore\DTO\RoleDTO.java
 C:\vd_store\store\src\main\java\phonestore\GUI\GRNAddGUI.java
 C:\vd_store\store\src\main\java\phonestore\DAO\WareHouseDAO.java
 C:\vd_store\store\src\main\java\phonestore\GUI\UserAddGUI.java
 C:\vd_store\store\src\main\java\phonestore\BUS\ProductBLL.java
+C:\vd_store\store\src\main\java\phonestore\GUI\Role1GUI.java
 C:\vd_store\store\src\main\java\phonestore\App.java
 C:\vd_store\store\src\main\java\phonestore\GUI\WarehouseGUI.java
 C:\vd_store\store\src\main\java\phonestore\GUI\InvoiceGUI.java
@@ -66,6 +70,7 @@ C:\vd_store\store\src\main\java\phonestore\GUI\BrandGUI.java
 C:\vd_store\store\src\main\java\phonestore\GUI\CustomerAddGUI.java
 C:\vd_store\store\src\main\java\phonestore\GUI\WarehouseAddGUI.java
 C:\vd_store\store\src\main\java\phonestore\DAO\BrandDAL.java
+C:\vd_store\store\src\main\java\phonestore\GUI\GRN1GUI.java
 C:\vd_store\store\src\main\java\phonestore\GUI\LoginGUI.java
 C:\vd_store\store\src\main\java\phonestore\GUI\GRNGUI.java
 C:\vd_store\store\src\main\java\phonestore\GUI\InvoiceDetailInformationGUI.java

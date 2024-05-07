@@ -63,4 +63,20 @@ public class WarehouseBUS {
     public int getLastWarehouseID(){
         return warehouseDAO.getLastWarehouseID();
     }
+    public WareHouseDTO getWareHouseDTOByID(int id){
+        WareHouseDTO wareHouseDTO=null;
+        wareHouseDTO=warehouseDAO.selectById(id);
+        if(wareHouseDTO==null){
+            wareHouseDTO=new WareHouseDTO(0, 0, new BigDecimal(0), 0);
+        }
+        return wareHouseDTO;
+    }
+    public boolean descreaseProduct(int productID,int quantity){
+        return warehouseDAO.descreaseProduct(productID, quantity);
+        
+    }
+    public boolean checkQuantityProduct(int productID,int quantity){
+        return  warehouseDAO.checkQuantityProduct(productID, quantity);
+        
+    }
 }
