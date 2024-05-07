@@ -26,6 +26,7 @@ public class GRNAddGUI extends javax.swing.JDialog {
         productDefaultTableModel=(DefaultTableModel) jTableSearchProduct.getModel();
         grnDefaultTableModel=(DefaultTableModel) jTableGrn.getModel();
         jLabelInvoiceID.setText(Integer.toString(grnbus.getLastGRNID()));
+        showAllDataProduct();
     }
     public void showAllDataProduct(){
         productDefaultTableModel.setRowCount(0);

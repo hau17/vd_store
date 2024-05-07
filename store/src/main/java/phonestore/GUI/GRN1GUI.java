@@ -120,7 +120,7 @@ public class GRN1GUI extends javax.swing.JInternalFrame {
         jLabelPhone.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabelPhone.setText("totalAmount");
 
-        jButtonAdd.setBackground(new java.awt.Color(0, 153, 153));
+        jButtonAdd.setBackground(new java.awt.Color(0, 102, 102));
         jButtonAdd.setForeground(new java.awt.Color(255, 255, 255));
         jButtonAdd.setText("Add");
         jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +129,7 @@ public class GRN1GUI extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonInfor.setBackground(new java.awt.Color(0, 153, 153));
+        jButtonInfor.setBackground(new java.awt.Color(0, 102, 102));
         jButtonInfor.setForeground(new java.awt.Color(255, 255, 255));
         jButtonInfor.setText("Infor");
         jButtonInfor.addActionListener(new java.awt.event.ActionListener() {
@@ -138,7 +138,7 @@ public class GRN1GUI extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonDelete.setBackground(new java.awt.Color(0, 153, 153));
+        jButtonDelete.setBackground(new java.awt.Color(0, 102, 102));
         jButtonDelete.setForeground(new java.awt.Color(255, 255, 255));
         jButtonDelete.setText("Delete");
         jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +147,7 @@ public class GRN1GUI extends javax.swing.JInternalFrame {
             }
         });
 
-        jbuttonExport.setBackground(new java.awt.Color(0, 153, 153));
+        jbuttonExport.setBackground(new java.awt.Color(0, 102, 102));
         jbuttonExport.setForeground(new java.awt.Color(255, 255, 255));
         jbuttonExport.setText("Export Excel");
         jbuttonExport.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +158,7 @@ public class GRN1GUI extends javax.swing.JInternalFrame {
 
         textFieldSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jButtonSearch.setBackground(new java.awt.Color(0, 153, 153));
+        jButtonSearch.setBackground(new java.awt.Color(0, 102, 102));
         jButtonSearch.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSearch.setText("Search");
         jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -167,7 +167,7 @@ public class GRN1GUI extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonRefresh.setBackground(new java.awt.Color(0, 153, 153));
+        jButtonRefresh.setBackground(new java.awt.Color(0, 102, 102));
         jButtonRefresh.setForeground(new java.awt.Color(255, 255, 255));
         jButtonRefresh.setText("Refresh");
         jButtonRefresh.addActionListener(new java.awt.event.ActionListener() {
