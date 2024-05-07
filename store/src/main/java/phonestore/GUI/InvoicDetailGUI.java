@@ -164,7 +164,6 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
         arrWareHouseDTONeedSell.add(wareHouseDTO);
         arrIvoiceNeedSell.add(invoiceDetailDTO);
         showtotalAmount();
-
     }
 
     public void deleteProductNeedSell(int productID, int quantity, int price) {
