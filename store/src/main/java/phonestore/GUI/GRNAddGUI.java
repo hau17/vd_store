@@ -4,6 +4,10 @@
  */
 package phonestore.GUI;
 
+import javax.swing.table.DefaultTableModel;
+import phonestore.BUS.GRNBUS;
+import phonestore.DTO.ProductDTO;
+import phonestore.BUS.ProductBLL;
 /**
  *
  * @author congh
@@ -13,11 +17,38 @@ public class GRNAddGUI extends javax.swing.JDialog {
     /**
      * Creates new form GRNAddGUI
      */
+    ProductBLL productBLL=new ProductBLL();
+    GRNBUS grnbus=new GRNBUS();
+    DefaultTableModel productDefaultTableModel, grnDefaultTableModel;
     public GRNAddGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        productDefaultTableModel=(DefaultTableModel) jTableSearchProduct.getModel();
+        grnDefaultTableModel=(DefaultTableModel) jTableGrn.getModel();
+        jLabelInvoiceID.setText(Integer.toString(grnbus.getLastGRNID()));
     }
-
+    public void showAllDataProduct(){
+        productDefaultTableModel.setRowCount(0);
+        for(ProductDTO productDTO: productBLL.getAllProducts()){
+            Object[] objects=new Object[]{
+                productDTO.getProduct_id(),productDTO.getProduct_name(),productDTO.getRam(),
+                productDTO.getRom(),productDTO.getBattery_capacity(),productDTO.getChip(),
+                productDTO.getBrand_id(),productDTO.getOrigin_id()
+            };
+            productDefaultTableModel.addRow(objects);
+        }
+    }
+    public void showAllDataSearchProduct(String search){
+        productDefaultTableModel.setRowCount(0);
+        for(ProductDTO productDTO: productBLL.searchProduct(search)){
+            Object[] objects=new Object[]{
+                productDTO.getProduct_id(),productDTO.getProduct_name(),productDTO.getRam(),
+                productDTO.getRom(),productDTO.getBattery_capacity(),productDTO.getChip(),
+                productDTO.getBrand_id(),productDTO.getOrigin_id()
+            };
+            productDefaultTableModel.addRow(objects);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,7 +59,6 @@ public class GRNAddGUI extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanelInvoiceID = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -44,7 +74,7 @@ public class GRNAddGUI extends javax.swing.JDialog {
         jLabel10 = new javax.swing.JLabel();
         jTextFieldSearch = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTableProduct = new javax.swing.JTable();
+        jTableGrn = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableSearchProduct = new javax.swing.JTable();
         jButtonRefresh = new javax.swing.JButton();
@@ -59,21 +89,8 @@ public class GRNAddGUI extends javax.swing.JDialog {
         jTextFieldPhoneName = new javax.swing.JTextField();
         jLabelInvoiceID = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jTextFieldRam = new javax.swing.JTextField();
-        jTextFieldRom = new javax.swing.JTextField();
-        jTextFieldBattery = new javax.swing.JTextField();
-        jTextFieldBrand = new javax.swing.JTextField();
-        jTextFieldOrigin = new javax.swing.JTextField();
-        jTextFieldChip = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jLabel2.setText("Ram");
 
         jLabel6.setText("Product ID");
 
@@ -137,7 +154,7 @@ public class GRNAddGUI extends javax.swing.JDialog {
             }
         });
 
-        jTableProduct.setModel(new javax.swing.table.DefaultTableModel(
+        jTableGrn.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -145,29 +162,21 @@ public class GRNAddGUI extends javax.swing.JDialog {
                 "Phone ID", "Phone name", "Ram", "Rom", "Battery", "Chip", "Brand", "Origin", "Quantity", "Price"
             }
         ));
-        jTableProduct.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTableGrn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableProductMouseClicked(evt);
+                jTableGrnMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jTableProduct);
+        jScrollPane2.setViewportView(jTableGrn);
 
         jTableSearchProduct.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Phone ID", "Phone Name", "Ram", "Rom", "Battery capacity", "Chip", "Brand", "Origin", "Price", "Quality"
+                "Phone ID", "Phone Name", "Ram", "Rom", "Battery capacity", "Chip", "Brand", "Origin"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         jTableSearchProduct.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableSearchProductMouseClicked(evt);
@@ -213,16 +222,6 @@ public class GRNAddGUI extends javax.swing.JDialog {
 
         jLabel11.setText("Invoice ID");
 
-        jLabel12.setText("Rom");
-
-        jLabel13.setText("Battery");
-
-        jLabel14.setText("Chip");
-
-        jLabel15.setText("Brand");
-
-        jLabel16.setText("Origin");
-
         javax.swing.GroupLayout jPanelInvoiceIDLayout = new javax.swing.GroupLayout(jPanelInvoiceID);
         jPanelInvoiceID.setLayout(jPanelInvoiceIDLayout);
         jPanelInvoiceIDLayout.setHorizontalGroup(
@@ -254,33 +253,7 @@ public class GRNAddGUI extends javax.swing.JDialog {
                                     .addComponent(jTextFieldProductID, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextFieldPhoneName, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextFieldPrice))
-                                .addGap(33, 33, 33)
-                                .addGroup(jPanelInvoiceIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanelInvoiceIDLayout.createSequentialGroup()
-                                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldOrigin))
-                                    .addGroup(jPanelInvoiceIDLayout.createSequentialGroup()
-                                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldBrand))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInvoiceIDLayout.createSequentialGroup()
-                                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldChip))
-                                    .addGroup(jPanelInvoiceIDLayout.createSequentialGroup()
-                                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldBattery))
-                                    .addGroup(jPanelInvoiceIDLayout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldRam))
-                                    .addGroup(jPanelInvoiceIDLayout.createSequentialGroup()
-                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldRom)))
-                                .addGap(136, 136, 136)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanelInvoiceIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -292,7 +265,7 @@ public class GRNAddGUI extends javax.swing.JDialog {
                                 .addComponent(jTextFieldTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
                                 .addComponent(jButtonGRNGeneration, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 224, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelInvoiceIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldUser, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
@@ -344,49 +317,32 @@ public class GRNAddGUI extends javax.swing.JDialog {
                                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jTextFieldUser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
                             .addGroup(jPanelInvoiceIDLayout.createSequentialGroup()
                                 .addGap(29, 29, 29)
-                                .addGroup(jPanelInvoiceIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanelInvoiceIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextFieldRam, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanelInvoiceIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBoxCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldProductID, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldRom, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jTextFieldProductID, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelInvoiceIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanelInvoiceIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextFieldPhoneName, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextFieldBattery, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextFieldPhoneName, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanelInvoiceIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelInvoiceIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldChip, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelInvoiceIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelInvoiceIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextFieldPrice)
-                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextFieldBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelInvoiceIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(19, 19, 19)
+                            .addComponent(jTextFieldPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(58, 58, 58)
                         .addGroup(jPanelInvoiceIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -435,9 +391,9 @@ public class GRNAddGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldSearchActionPerformed
 
-    private void jTableProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProductMouseClicked
+    private void jTableGrnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableGrnMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTableProductMouseClicked
+    }//GEN-LAST:event_jTableGrnMouseClicked
 
     private void jTableSearchProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableSearchProductMouseClicked
         // TODO add your handling code here:
@@ -516,12 +472,6 @@ public class GRNAddGUI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -533,19 +483,13 @@ public class GRNAddGUI extends javax.swing.JDialog {
     private javax.swing.JPanel jPanelInvoiceID;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTableProduct;
+    private javax.swing.JTable jTableGrn;
     private javax.swing.JTable jTableSearchProduct;
-    private javax.swing.JTextField jTextFieldBattery;
-    private javax.swing.JTextField jTextFieldBrand;
-    private javax.swing.JTextField jTextFieldChip;
     private javax.swing.JTextField jTextFieldDate;
-    private javax.swing.JTextField jTextFieldOrigin;
     private javax.swing.JTextField jTextFieldPhoneName;
     private javax.swing.JTextField jTextFieldPrice;
     private javax.swing.JTextField jTextFieldProductID;
     private javax.swing.JTextField jTextFieldQuantity;
-    private javax.swing.JTextField jTextFieldRam;
-    private javax.swing.JTextField jTextFieldRom;
     private javax.swing.JTextField jTextFieldSearch;
     private javax.swing.JTextField jTextFieldTotalAmount;
     private javax.swing.JLabel jTextFieldUser;

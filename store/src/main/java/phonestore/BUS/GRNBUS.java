@@ -17,7 +17,7 @@ public class GRNBUS {
         this.arrGrnDTOs = grnDAO.getselectAll();
     }
 
-    public static ArrayList<GRNDTO> getAllGRN() {
+    public ArrayList<GRNDTO> getAllGRN() {
         ArrayList<GRNDTO> arr = grnDAO.getselectAll();
         return arr;
     }
@@ -71,14 +71,15 @@ public class GRNBUS {
         return arr;
     }
 
-    public ArrayList<GRNDTO> getGRNByID(int id) {
-        ArrayList<GRNDTO> arrayList = grnDAO.getselectAll();
-        ArrayList<GRNDTO> arr = new ArrayList<>();
-        for (GRNDTO grnDTO : arrayList) {
-            if (grnDTO.getGRN_id() == id) {
-                arr.add(grnDTO);
-            }
-        }
-        return arr;
+    public GRNDTO getGRNByID(int id) {
+        GRNDTO grndto=null;
+        grndto=grnDAO.selectById(id);
+        return grndto;
     }
+    public int getLastGRNID(){
+        return grnDAO.getLastGRNID();
+    }
+//    public boolean ExportExcel(String path, int grnID){
+//        
+//    }
 }

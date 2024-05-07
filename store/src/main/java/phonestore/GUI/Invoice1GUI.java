@@ -72,21 +72,6 @@ public class Invoice1GUI extends javax.swing.JInternalFrame {
         }
     }
 
-//    public int createNewID() {
-//        return invoiceBUS.getLastInvoiceID();
-//    }
-
-//    public int getId() {
-//        return Integer.parseInt(textFieldInvoiceId.getText());
-//    }
-
-//    public String getCustomer() {
-//        return TextFieldCustomer.getText();
-//    }
-
-//    public String getTotalAmount() {
-//        return textFieldTotalAmount.getText();
-//    }
 
     /**
      * This method is called from within the constructor to initialize the form.

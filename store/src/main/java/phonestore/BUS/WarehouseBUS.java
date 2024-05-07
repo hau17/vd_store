@@ -77,6 +77,11 @@ public class WarehouseBUS {
     }
     public boolean checkQuantityProduct(int productID,int quantity){
         return  warehouseDAO.checkQuantityProduct(productID, quantity);
-        
+    }
+    public boolean increaseProduct(int productID, int quantity, int price){
+        return warehouseDAO.increaseProduct(productID, quantity, price);
+    }
+    public boolean hasProductID(int id){
+        return warehouseDAO.hasProductID(id);
     }
 }

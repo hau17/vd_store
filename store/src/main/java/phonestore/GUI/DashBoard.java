@@ -77,8 +77,6 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jPanelGRN = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         jPanelInvoice = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanelCustomer = new javax.swing.JPanel();
@@ -101,6 +99,8 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jPanelUser = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
+        jPanelGRN = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -163,30 +163,6 @@ public class DashBoard extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
 
-        jPanelGRN.setBackground(new java.awt.Color(0, 0, 0));
-        jPanelGRN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanelGRNMousePressed(evt);
-            }
-        });
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Good received note");
-
-        javax.swing.GroupLayout jPanelGRNLayout = new javax.swing.GroupLayout(jPanelGRN);
-        jPanelGRN.setLayout(jPanelGRNLayout);
-        jPanelGRNLayout.setHorizontalGroup(
-            jPanelGRNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGRNLayout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanelGRNLayout.setVerticalGroup(
-            jPanelGRNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-        );
-
         jPanelInvoice.setBackground(new java.awt.Color(0, 0, 0));
         jPanelInvoice.setPreferredSize(new java.awt.Dimension(159, 40));
         jPanelInvoice.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -241,7 +217,7 @@ public class DashBoard extends javax.swing.JFrame {
         );
         jPanelCustomerLayout.setVerticalGroup(
             jPanelCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
         jPanelSupplier.setBackground(new java.awt.Color(0, 0, 0));
@@ -470,6 +446,39 @@ public class DashBoard extends javax.swing.JFrame {
             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
+        jPanelGRN.setBackground(new java.awt.Color(0, 0, 0));
+        jPanelGRN.setForeground(new java.awt.Color(255, 255, 255));
+        jPanelGRN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanelGRNMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanelGRNMousePressed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("GRN");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel3MousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelGRNLayout = new javax.swing.GroupLayout(jPanelGRN);
+        jPanelGRN.setLayout(jPanelGRNLayout);
+        jPanelGRNLayout.setHorizontalGroup(
+            jPanelGRNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGRNLayout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanelGRNLayout.setVerticalGroup(
+            jPanelGRNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -482,7 +491,6 @@ public class DashBoard extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanelRole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanelWarehouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelGRN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanelCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanelSupplier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanelProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -490,7 +498,8 @@ public class DashBoard extends javax.swing.JFrame {
                             .addComponent(jPanelOrigin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanelSaleStatistic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanelInvoice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jPanelUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanelGRN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -619,9 +628,12 @@ public class DashBoard extends javax.swing.JFrame {
         jDesktopPane1.add(user1GUI).setVisible(true);
     }//GEN-LAST:event_jPanelUserMouseClicked
 
-    private void jPanelGRNMousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jPanelGRNMousePressed
+    private void jLabel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MousePressed
         // TODO add your handling code here:
-        jPanelInvoice.setBackground(defaultColor);
+        GRN1GUI grn1gui=new GRN1GUI();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(grn1gui).setVisible(true);
+                        jPanelInvoice.setBackground(defaultColor);
         jPanelGRN.setBackground(checkColor);
         jPanelCustomer.setBackground(defaultColor);
         jPanelSupplier.setBackground(defaultColor);
@@ -633,7 +645,35 @@ public class DashBoard extends javax.swing.JFrame {
         jPanelRole.setBackground(defaultColor);
         jPanelSaleStatistic.setBackground(defaultColor);
         jPanelLogout.setBackground(defaultColor);
-    }// GEN-LAST:event_jPanelGRNMousePressed
+
+    }//GEN-LAST:event_jLabel3MousePressed
+    // TODO add your handling code here:
+
+    private void jPanelGRNMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelGRNMousePressed
+        // TODO add your handling code here:
+                jPanelInvoice.setBackground(defaultColor);
+        jPanelGRN.setBackground(checkColor);
+        jPanelCustomer.setBackground(defaultColor);
+        jPanelSupplier.setBackground(defaultColor);
+        jPanelProduct.setBackground(defaultColor);
+        jPanelOrigin.setBackground(defaultColor);
+        jPanelBrand.setBackground(defaultColor);
+        jPanelUser.setBackground(defaultColor);
+        jPanelWarehouse.setBackground(defaultColor);
+        jPanelRole.setBackground(defaultColor);
+        jPanelSaleStatistic.setBackground(defaultColor);
+        jPanelLogout.setBackground(defaultColor);
+
+    }//GEN-LAST:event_jPanelGRNMousePressed
+
+    private void jPanelGRNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelGRNMouseClicked
+        // TODO add your handling code here:
+//        GRN1GUI grn1gui=new GRN1GUI();
+//        jDesktopPane1.removeAll();
+//        jDesktopPane1.add(grn1gui).setVisible(true);
+    }//GEN-LAST:event_jPanelGRNMouseClicked
+
+    
 
     private void jPanelInvoiceMousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jPanelInvoiceMousePressed
         // TODO add your handling code here:

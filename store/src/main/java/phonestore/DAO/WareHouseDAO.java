@@ -129,7 +129,6 @@ public class WareHouseDAO implements DAOInterface<WareHouseDTO> {
                 quantityNow=rs.getInt("quantity");
             }
             if (quantityNow>=quantity) {
-                
                 int newQuantity= quantityNow-quantity;
                 String sqlUpdate="UPDATE warehouse SET quantity = ? WHERE product_id = "+productID;
                 PreparedStatement ps=connection.prepareStatement(sqlUpdate);
@@ -138,13 +137,55 @@ public class WareHouseDAO implements DAOInterface<WareHouseDTO> {
                 if(kq !=0){
                     result=true;
                 }
-            }   
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             JDBCUtil.closeConnection(connection);
         }
         return result;
+    }
+    
+    public boolean hasProductID(int id){
+        boolean check=false;
+        Connection connection= JDBCUtil.getConnection();
+        try {
+            String sql ="SELECT * FROM warehouse WHERE product_id ="+id;
+            Statement statement=connection.createStatement();
+            ResultSet resultSet=statement.executeQuery(sql);
+            check=resultSet.next();
+        } catch (Exception e) {
+            check=false;
+        } finally {
+            JDBCUtil.closeConnection(connection);
+        }
+        return check;
+    }
+    public boolean increaseProduct(int productID, int quantity, int price){
+        boolean check=false;
+        int quantityNow=0;
+        Connection connection=JDBCUtil.getConnection();
+        try {
+            String sql = "SELECT * FROM warehouse WHERE product_id = "+productID;
+            Statement statement=connection.createStatement();
+            ResultSet resultSet= statement.executeQuery(sql);
+            while (resultSet.next()) {                
+                quantityNow = resultSet.getInt("quantity");
+            }
+            String sqlUpdate ="UPDATE warehouse SET quantity=?, price=? WHERE product_id="+productID;
+            PreparedStatement preparedStatement=connection.prepareStatement(sqlUpdate);
+            preparedStatement.setInt(1, quantityNow+ quantity);
+            preparedStatement.setInt(2, price);
+            int result = preparedStatement.executeUpdate();
+            if (result!=0) {
+                check=true;
+            }
+        } catch (Exception e) {
+            check=false;
+        } finally {
+            JDBCUtil.closeConnection(connection);
+        }
+        return check;
     }
     public boolean checkQuantityProduct(int productID,int quantity){
         Connection connection=JDBCUtil.getConnection();

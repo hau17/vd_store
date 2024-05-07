@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import phonestore.DTO.GRNDetailDTO;
@@ -137,7 +138,7 @@ public class GRNDetailDAO implements DAOInterface<GRNDetailDTO> {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            while(rs.next()) {
                 int grnDetailID = rs.getInt("grn_details_id");
                 int grnID = rs.getInt("grn_id");
                 int quantity = rs.getInt("quantity");
@@ -152,5 +153,22 @@ public class GRNDetailDAO implements DAOInterface<GRNDetailDTO> {
             JDBCUtil.closeConnection(connection);
         }
         return grnDetailDTO;
+    }
+    public int getLastGRNDetailID(){
+        int id=0;
+        Connection connection=JDBCUtil.getConnection();
+        try {
+            String sql ="SELECT grn_details_id FROM grndetail WHERE grn_details_id= (SELECT MAX(grn_details_id) FROM grndetail)";
+            Statement statement=connection.createStatement();
+            ResultSet resultSet=statement.executeQuery(sql);
+            while (resultSet.next()) {                
+                id=resultSet.getInt("grn_details_id")+1;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closeConnection(connection);
+        }
+        return id;
     }
 }

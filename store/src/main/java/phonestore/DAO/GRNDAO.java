@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import phonestore.DTO.GRNDTO;
 import phonestore.config.JDBCUtil;
@@ -136,4 +137,23 @@ public class GRNDAO implements DAOInterface<GRNDTO> {
         }
         return grnDTO;
     }
+    
+        public int getLastGRNID(){
+        int id=0;
+        Connection connection=JDBCUtil.getConnection();
+        try {
+            String sql ="SELECT grn_id FROM grn WHERE grn_id= (SELECT MAX(grn_id) FROM grn)";
+            Statement statement=connection.createStatement();
+            ResultSet resultSet=statement.executeQuery(sql);
+            while (resultSet.next()) {                
+                id=resultSet.getInt("grn_id")+1;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closeConnection(connection);
+        }
+        return id;
+    }
+
 }

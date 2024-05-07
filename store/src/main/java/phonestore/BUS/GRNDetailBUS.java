@@ -74,4 +74,7 @@ public class GRNDetailBUS {
         }
         return arr;
     }
+    public int getLastGRNDetailID(){
+        return grnDetailDAO.getLastGRNDetailID();
+    }
 }
