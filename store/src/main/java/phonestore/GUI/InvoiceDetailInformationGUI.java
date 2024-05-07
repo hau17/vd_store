@@ -20,7 +20,6 @@ public class InvoiceDetailInformationGUI extends javax.swing.JDialog {
     ProductBLL productBLL=new ProductBLL();
     DefaultTableModel defaultTableModel;
     InvoiceDetailBUS invoiceDetailBUS;
-    InvoiceGUI invoiceGUI;
 
     /**
      * Creates new form InvoiceDetailInformationGUI

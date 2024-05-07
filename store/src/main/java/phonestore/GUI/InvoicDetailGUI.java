@@ -65,7 +65,6 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
     TableRowSorter<DefaultTableModel> sorter;
     
 
-    private InvoiceGUI parentGUI;
 
     /**
      * Creates new form InvoicDetailGUI
@@ -632,7 +631,6 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
                 invoiceDetailBUS.insertInvoiceDetailBUS(inDTO);
             }
             
-            JOptionPane.showMessageDialog(parentGUI, "success");
             this.dispose();
         }
     }// GEN-LAST:event_jButtonInvoiceGenerationActionPerformed
