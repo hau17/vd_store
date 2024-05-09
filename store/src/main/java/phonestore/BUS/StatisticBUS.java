@@ -72,6 +72,7 @@ public class StatisticBUS {
             rowHeader.createCell(1).setCellValue("Phone Name");
             rowHeader.createCell(2).setCellValue("Quantity");
             rowHeader.createCell(3).setCellValue("Price");
+            
             int rowNum=2;
             for(invoiceDetailDTO inDTO: arr){
                 Row row =sheet.createRow(rowNum++);

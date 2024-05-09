@@ -155,5 +155,9 @@ public class GRNDAO implements DAOInterface<GRNDTO> {
         }
         return id;
     }
+        public static void main(String[] args) {
+        GRNDAO grndao=new GRNDAO();
+            System.out.println(grndao.getLastGRNID());
+    }
 
 }

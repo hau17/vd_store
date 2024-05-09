@@ -35,10 +35,10 @@ C:\vd_store\store\src\main\java\phonestore\DAO\OriginDAL.java
 C:\vd_store\store\src\main\java\phonestore\DTO\BrandDTO.java
 C:\vd_store\store\src\main\java\phonestore\DTO\invoiceDetailDTO.java
 C:\vd_store\store\src\main\java\phonestore\DTO\InvoiceDTO.java
+C:\vd_store\store\src\main\java\phonestore\Main\main.java
 C:\vd_store\store\src\main\java\phonestore\GUI\Brand1GUI.java
 C:\vd_store\store\src\main\java\phonestore\DAO\DAOInterface.java
 C:\vd_store\store\src\main\java\phonestore\DTO\SuplierDTO.java
-C:\vd_store\store\src\main\java\CHECK\PhoneNumberValidator.java
 C:\vd_store\store\src\main\java\phonestore\BUS\InvoiceDetailBUS.java
 C:\vd_store\store\src\main\java\phonestore\DAO\GRNDetailDAO.java
 C:\vd_store\store\src\main\java\phonestore\DAO\GRNDAO.java
@@ -60,4 +60,5 @@ C:\vd_store\store\src\main\java\phonestore\GUI\WarehouseAddGUI.java
 C:\vd_store\store\src\main\java\phonestore\DAO\BrandDAL.java
 C:\vd_store\store\src\main\java\phonestore\GUI\GRN1GUI.java
 C:\vd_store\store\src\main\java\phonestore\GUI\LoginGUI.java
+C:\vd_store\store\src\main\java\phonestore\CHECK\PhoneNumberValidator.java
 C:\vd_store\store\src\main\java\phonestore\GUI\InvoiceDetailInformationGUI.java

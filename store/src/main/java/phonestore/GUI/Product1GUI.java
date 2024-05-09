@@ -91,7 +91,6 @@ public class Product1GUI extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jButtonAddImg = new javax.swing.JButton();
         textfieldSearch = new javax.swing.JTextField();
-        jbuttonExport = new javax.swing.JButton();
         jButtonDelete = new javax.swing.JButton();
         jButtonUpdate = new javax.swing.JButton();
         jButtonAdd = new javax.swing.JButton();
@@ -184,10 +183,6 @@ public class Product1GUI extends javax.swing.JInternalFrame {
 
         textfieldSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jbuttonExport.setBackground(new java.awt.Color(0, 102, 102));
-        jbuttonExport.setForeground(new java.awt.Color(255, 255, 255));
-        jbuttonExport.setText("Export Excel");
-
         jButtonDelete.setBackground(new java.awt.Color(0, 102, 102));
         jButtonDelete.setForeground(new java.awt.Color(255, 255, 255));
         jButtonDelete.setText("Delete");
@@ -264,9 +259,7 @@ public class Product1GUI extends javax.swing.JInternalFrame {
                                     .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(12, 12, 12)
                                     .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jbuttonExport, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
                                     .addComponent(textfieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -362,7 +355,6 @@ public class Product1GUI extends javax.swing.JInternalFrame {
                         .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jbuttonExport, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButtonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(textfieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -575,7 +567,6 @@ public class Product1GUI extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableProduct;
-    private javax.swing.JButton jbuttonExport;
     private javax.swing.JTextField textFieldBattery;
     private javax.swing.JTextField textFieldBrand;
     private javax.swing.JTextField textFieldChip;

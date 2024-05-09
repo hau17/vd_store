@@ -51,6 +51,9 @@ public class CustomerBLL {
         }
         return cdto.getCustomer_name();
     }
+    public CustomerDTO getCustomerDTOByID(int id){
+        return cusDAL.getCustomerByID(id);
+    }
     public int getLastCustomerID(){
         return cusDAL.getLastCustomerID();
     }

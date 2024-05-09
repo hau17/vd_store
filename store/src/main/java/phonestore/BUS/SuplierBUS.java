@@ -69,4 +69,7 @@ public class SuplierBUS {
         int i = suplierDAO.getLastSupplierID();
         return i;
     }
+    public SuplierDTO getSuplierDTOByID(int id){
+        return suplierDAO.selectById(id);
+    }
 }

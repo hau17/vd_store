@@ -49,12 +49,10 @@
                                   <Component id="jButtonUpdate" min="-2" pref="113" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jButtonDelete" min="-2" pref="125" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jbuttonExport" min="-2" pref="113" max="-2" attributes="0"/>
                               </Group>
                               <Component id="textFieldId" min="-2" pref="303" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="40" max="32767" attributes="0"/>
+                          <EmptySpace pref="100" max="32767" attributes="0"/>
                           <Component id="jTextFieldSearch" min="-2" pref="200" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jButtonSearch" min="-2" pref="113" max="-2" attributes="0"/>
@@ -100,7 +98,6 @@
                       <Component id="jButtonAdd" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="jButtonUpdate" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="jButtonDelete" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                      <Component id="jbuttonExport" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="jTextFieldSearch" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="jButtonSearch" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="jButtonRefresh" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
@@ -259,17 +256,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRefreshActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jbuttonExport">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="66" green="66" red="0" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Export Excel"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonDelete">
           <Properties>

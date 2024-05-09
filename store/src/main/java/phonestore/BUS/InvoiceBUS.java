@@ -118,7 +118,7 @@ public class InvoiceBUS {
 
         Document document = new Document();
         try {
-            PdfWriter.getInstance(document, new FileOutputStream(path));
+            PdfWriter.getInstance(document,new FileOutputStream(path));
             document.open();
             Paragraph header = new Paragraph();
             header.add(new Paragraph("INVOICE"));

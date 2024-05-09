@@ -84,7 +84,7 @@ public class Role1GUI extends javax.swing.JInternalFrame {
 
         textFieldSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jButtonSearch.setBackground(new java.awt.Color(0, 153, 153));
+        jButtonSearch.setBackground(new java.awt.Color(0, 102, 102));
         jButtonSearch.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSearch.setText("Search");
         jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +93,7 @@ public class Role1GUI extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonRefresh.setBackground(new java.awt.Color(0, 153, 153));
+        jButtonRefresh.setBackground(new java.awt.Color(0, 102, 102));
         jButtonRefresh.setForeground(new java.awt.Color(255, 255, 255));
         jButtonRefresh.setText("Refresh");
         jButtonRefresh.addActionListener(new java.awt.event.ActionListener() {

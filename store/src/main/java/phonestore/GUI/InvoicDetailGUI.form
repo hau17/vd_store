@@ -78,8 +78,6 @@
                               <Component id="jButtonAdd" min="-2" pref="124" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jButtonDelete" min="-2" pref="124" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jButtonUpdate" min="-2" pref="124" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -100,8 +98,8 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabel9" min="-2" pref="109" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextFieldTotalAmount" min="-2" pref="129" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="jTextFieldTotalAmount" min="-2" pref="84" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                               <Component id="jButtonInvoiceGeneration" min="-2" pref="148" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
@@ -185,15 +183,14 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButtonAdd" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                           <Component id="jButtonDelete" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                          <Component id="jButtonUpdate" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel9" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                  <Component id="jTextFieldTotalAmount" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                   <Component id="jButtonInvoiceGeneration" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                  <Component id="jTextFieldTotalAmount" min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="242" max="-2" attributes="0"/>
@@ -480,22 +477,6 @@
         <Property name="text" type="java.lang.String" value="Total amount"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldTotalAmount">
-    </Component>
-    <Component class="javax.swing.JButton" name="jButtonUpdate">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="66" green="66" red="0" type="rgb"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Update"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUpdateActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
@@ -509,6 +490,8 @@
     <Component class="javax.swing.JLabel" name="jTextFieldProductName">
     </Component>
     <Component class="javax.swing.JLabel" name="jTextFieldUser">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jTextFieldTotalAmount">
     </Component>
   </SubComponents>
 </Form>

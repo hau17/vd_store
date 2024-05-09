@@ -62,7 +62,6 @@ public void showAllData() {
         jButtonAdd = new javax.swing.JButton();
         jButtonUpdate = new javax.swing.JButton();
         jButtonDelete = new javax.swing.JButton();
-        jButtonExportExcel = new javax.swing.JButton();
         jLabelBrandID = new javax.swing.JLabel();
 
         jLabel1.setText("Brand ID");
@@ -134,10 +133,6 @@ public void showAllData() {
             }
         });
 
-        jButtonExportExcel.setBackground(new java.awt.Color(0, 102, 102));
-        jButtonExportExcel.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonExportExcel.setText("Export Excel");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -155,9 +150,7 @@ public void showAllData() {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonExportExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
@@ -196,8 +189,7 @@ public void showAllData() {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonExportExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -312,7 +304,6 @@ public void showAllData() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonDelete;
-    private javax.swing.JButton jButtonExportExcel;
     private javax.swing.JButton jButtonRefresh;
     private javax.swing.JButton jButtonSearch;
     private javax.swing.JButton jButtonUpdate;

@@ -54,7 +54,6 @@ public class User1GUI extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jbuttonExport = new javax.swing.JButton();
         jLabelName = new javax.swing.JLabel();
         jLabeId = new javax.swing.JLabel();
         jLabelPhone = new javax.swing.JLabel();
@@ -79,10 +78,6 @@ public class User1GUI extends javax.swing.JInternalFrame {
         jTextFieldEmail = new javax.swing.JTextField();
         jTextFieldRole = new javax.swing.JTextField();
         jTextFieldID = new javax.swing.JLabel();
-
-        jbuttonExport.setBackground(new java.awt.Color(0, 102, 102));
-        jbuttonExport.setForeground(new java.awt.Color(255, 255, 255));
-        jbuttonExport.setText("Export Excel");
 
         jLabelName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -222,10 +217,8 @@ public class User1GUI extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbuttonExport, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                        .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jTextFieldSearch)
@@ -294,8 +287,7 @@ public class User1GUI extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbuttonExport, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -493,6 +485,5 @@ public class User1GUI extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextFieldRole;
     private javax.swing.JTextField jTextFieldSearch;
     private javax.swing.JTextField jTextFieldUserName;
-    private javax.swing.JButton jbuttonExport;
     // End of variables declaration//GEN-END:variables
 }

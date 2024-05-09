@@ -29,12 +29,12 @@ import phonestore.BUS.OriginBLL;
 import phonestore.BUS.ProductBLL;
 import phonestore.BUS.UserBUS;
 import phonestore.BUS.WarehouseBUS;
-import phonestore.DAO.GRNDetailDAO;
-import phonestore.DAO.InvoiceDAO;
-import phonestore.DAO.InvoiceDetailDAO;
-import phonestore.DAO.OriginDAL;
-import phonestore.DAO.ProductDAL;
-import phonestore.DAO.WareHouseDAO;
+//import phonestore.DAO.GRNDetailDAO;
+//import phonestore.DAO.InvoiceDAO;
+//import phonestore.DAO.InvoiceDetailDAO;
+//import phonestore.DAO.OriginDAL;
+//import phonestore.DAO.ProductDAL;
+//import phonestore.DAO.WareHouseDAO;
 import phonestore.DTO.CustomerDTO;
 import phonestore.DTO.InvoiceDTO;
 import phonestore.DTO.ProductDTO;
@@ -54,7 +54,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
     BrandBLL brandBLL = new BrandBLL();
     InvoiceBUS invoiceBUS=new InvoiceBUS();
     UserBUS userBUS=new UserBUS();
-    GRNDetailDAO grnDetailDAO = new GRNDetailDAO();
+//    GRNDetailDAO grnDetailDAO = new GRNDetailDAO();
 //    WareHouseDAO wareHouseDAO = new WareHouseDAO();
     WarehouseBUS warehouseBUS=new WarehouseBUS();
      //mảng lưu trữ dữ liệu trước khi thay đổi dữ liệu lên database
@@ -145,7 +145,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
     public void showAllCustomer() {
         Vector<CustomerDTO> vector = customerBLL.getAllCustomers();
         for (CustomerDTO customerDTO : vector) {
-            jComboBoxCustomer.addItem(customerDTO.getCustomer_name());
+            jComboBoxCustomer.addItem(customerDTO.getCustomer_id()+"-"+customerDTO.getCustomer_name());
         }
         AutoCompleteDecorator.decorate(jComboBoxCustomer);
     }
@@ -181,26 +181,26 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
         showtotalAmount();
     }
 
-    public void updateProductNeedSell(int productID, int quantity, int price) {
-        for (int i = 0; i < arrIvoiceNeedSell.size(); i++) {
-            invoiceDetailDTO inDTO = arrIvoiceNeedSell.get(i);
-            if (inDTO.getProductId() == productID) {
-                inDTO.setPrice(price);
-                inDTO.setQuantity(quantity);
-                arrIvoiceNeedSell.set(i, inDTO);
-                break;
-            }
-        }
-        for (int i = 0; i < arrWareHouseDTONeedSell.size(); i++) {
-            WareHouseDTO wareHouseDTO = arrWareHouseDTONeedSell.get(i);
-            if (wareHouseDTO.getProductId() == productID) {
-                wareHouseDTO.setPrice(new BigDecimal(price));
-                wareHouseDTO.setQuantity(quantity);
-                break;
-            }
-        }
-        showtotalAmount();
-    }
+//    public void updateProductNeedSell(int productID, int quantity, int price) {
+//        for (int i = 0; i < arrIvoiceNeedSell.size(); i++) {
+//            invoiceDetailDTO inDTO = arrIvoiceNeedSell.get(i);
+//            if (inDTO.getProductId() == productID) {
+//                inDTO.setPrice(price);
+//                inDTO.setQuantity(quantity);
+//                arrIvoiceNeedSell.set(i, inDTO);
+//                break;
+//            }
+//        }
+//        for (int i = 0; i < arrWareHouseDTONeedSell.size(); i++) {
+//            WareHouseDTO wareHouseDTO = arrWareHouseDTONeedSell.get(i);
+//            if (wareHouseDTO.getProductId() == productID) {
+//                wareHouseDTO.setPrice(new BigDecimal(price));
+//                wareHouseDTO.setQuantity(quantity);
+//                break;
+//            }
+//        }
+//        showtotalAmount();
+//    }
 
     public void showtotalAmount() {
         jTextFieldTotalAmount.setText("");
@@ -265,13 +265,12 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
         jLabel8 = new javax.swing.JLabel();
         jTextFieldDate = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextFieldTotalAmount = new javax.swing.JTextField();
-        jButtonUpdate = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jTextFieldInvoiceId = new javax.swing.JLabel();
         jTextFieldProductId = new javax.swing.JLabel();
         jTextFieldProductName = new javax.swing.JLabel();
         jTextFieldUser = new javax.swing.JLabel();
+        jTextFieldTotalAmount = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -400,15 +399,6 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
 
         jLabel9.setText("Total amount");
 
-        jButtonUpdate.setBackground(new java.awt.Color(0, 102, 102));
-        jButtonUpdate.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonUpdate.setText("Update");
-        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonUpdateActionPerformed(evt);
-            }
-        });
-
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Product");
 
@@ -453,9 +443,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
                                 .addGap(14, 14, 14)
                                 .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxCustomer, javax.swing.GroupLayout.Alignment.TRAILING, 0, 140, Short.MAX_VALUE)
@@ -471,8 +459,8 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
+                                .addComponent(jTextFieldTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(77, 77, 77)
                                 .addComponent(jButtonInvoiceGeneration, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jScrollPane2)
@@ -536,13 +524,12 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(34, 34, 34)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonInvoiceGeneration, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonInvoiceGeneration, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -581,18 +568,18 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
                 .setText(productBLL.getProductDTO(Integer.parseInt(jTextFieldProductName.getText())).getProduct_name());
     }// GEN-LAST:event_jTableProductMouseClicked
 
-    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonUpdateActionPerformed
-        // TODO add your handling code here:
-        if (!checkInteger(jTextFieldQuantity.getText()) || !checkInteger(jTextFieldPrice.getText())) {
-            JOptionPane.showMessageDialog(this, "The number of items and the price must be entered as integers",
-                    "ERROR", JOptionPane.ERROR_MESSAGE);
-        } else {
-            updateProductNeedSell(Integer.parseInt(jTextFieldProductId.getText()),
-                    Integer.parseInt(jTextFieldQuantity.getText()), Integer.parseInt(jTextFieldPrice.getText()));
-            showProductNeedSell();
-        }
-
-    }// GEN-LAST:event_jButtonUpdateActionPerformed
+//    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonUpdateActionPerformed
+//        // TODO add your handling code here:
+//        if (!checkInteger(jTextFieldQuantity.getText()) || !checkInteger(jTextFieldPrice.getText())) {
+//            JOptionPane.showMessageDialog(this, "The number of items and the price must be entered as integers",
+//                    "ERROR", JOptionPane.ERROR_MESSAGE);
+//        } else {
+//            updateProductNeedSell(Integer.parseInt(jTextFieldProductId.getText()),
+//                    Integer.parseInt(jTextFieldQuantity.getText()), Integer.parseInt(jTextFieldPrice.getText()));
+//            showProductNeedSell();
+//        }
+//
+//    }// GEN-LAST:event_jButtonUpdateActionPerformed
 
     private void jButtonInvoiceGenerationActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonInvoiceGenerationActionPerformed
         // TODO add your handling code here:
@@ -622,7 +609,8 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
 
             InvoiceDTO invoiceDTO = new InvoiceDTO(invoiceID, getIDCustomer(), userBUS.getUserDTOByUserName(jTextFieldUser.getText()).getuser_id(), sqlDate,
                     new BigDecimal(jTextFieldTotalAmount.getText()), 1);
-            InvoiceDAO.getInstance().insert(invoiceDTO);
+//            InvoiceDAO.getInstance().insert(invoiceDTO);
+                invoiceBUS.addInvoice(invoiceDTO);
             for (invoiceDetailDTO inDTO : arrIvoiceNeedSell) {
 //                int invoiceDetailID = invoiceDetailDAO.getLastInvoiceDetailID();
 //                inDTO.setInvoiceDetailId(invoiceDetailID);
@@ -745,7 +733,6 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
     private javax.swing.JButton jButtonInvoiceGeneration;
     private javax.swing.JButton jButtonRefresh;
     private javax.swing.JButton jButtonSearch;
-    private javax.swing.JButton jButtonUpdate;
     private javax.swing.JComboBox<String> jComboBoxCustomer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -768,7 +755,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
     private javax.swing.JLabel jTextFieldProductName;
     private javax.swing.JTextField jTextFieldQuantity;
     private javax.swing.JTextField jTextFieldSearch;
-    private javax.swing.JTextField jTextFieldTotalAmount;
+    private javax.swing.JLabel jTextFieldTotalAmount;
     private javax.swing.JLabel jTextFieldUser;
     // End of variables declaration//GEN-END:variables
 

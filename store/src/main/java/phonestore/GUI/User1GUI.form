@@ -57,11 +57,9 @@
                           <Component id="jButtonUpdate" min="-2" pref="113" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jButtonDelete" min="-2" pref="125" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jbuttonExport" min="-2" pref="113" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="56" max="32767" attributes="0"/>
+                  <EmptySpace pref="181" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jTextFieldSearch" max="32767" attributes="0"/>
@@ -149,7 +147,6 @@
                               <Component id="jButtonAdd" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                               <Component id="jButtonUpdate" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                               <Component id="jButtonDelete" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                              <Component id="jbuttonExport" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -182,17 +179,6 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jbuttonExport">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="66" green="66" red="0" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Export Excel"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabelName">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">

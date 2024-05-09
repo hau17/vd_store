@@ -49,8 +49,8 @@ public class GRN1GUI extends javax.swing.JInternalFrame {
         defaultTableModel.setRowCount(0);
         for (GRNDTO grndto: grnbus.getAllGRN()) {
             Object[] objects = new Object[] { 
-                grndto.getGRN_id(),grndto.getSupplier_id(),grndto.getInput_day(),
-                grndto.getUser_id(),grndto.getTotal_amount()
+                grndto.getGRN_id(),suplierBUS.getSuplierDTOByID(grndto.getSupplier_id()).getSuplierName(),grndto.getInput_day(),
+                userBUS.getUserNameByID(grndto.getUser_id()),grndto.getTotal_amount()
             };
             defaultTableModel.addRow(objects);
         }
@@ -59,8 +59,8 @@ public class GRN1GUI extends javax.swing.JInternalFrame {
         defaultTableModel.setRowCount(0);
         for (GRNDTO grndto: grnbus.searchGRN(stringSearch)) {
             Object[] objects = new Object[] { 
-                grndto.getGRN_id(),grndto.getSupplier_id(),grndto.getInput_day(),
-                grndto.getUser_id(),grndto.getTotal_amount()
+                grndto.getGRN_id(),suplierBUS.getSuplierDTOByID(grndto.getSupplier_id()).getSuplierName(),grndto.getInput_day(),
+                userBUS.getUserNameByID(grndto.getUser_id()),grndto.getTotal_amount()
             };
             defaultTableModel.addRow(objects);
         }
@@ -149,7 +149,7 @@ public class GRN1GUI extends javax.swing.JInternalFrame {
 
         jbuttonExport.setBackground(new java.awt.Color(0, 102, 102));
         jbuttonExport.setForeground(new java.awt.Color(255, 255, 255));
-        jbuttonExport.setText("Export Excel");
+        jbuttonExport.setText("Export PDF");
         jbuttonExport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbuttonExportActionPerformed(evt);
@@ -307,6 +307,8 @@ public class GRN1GUI extends javax.swing.JInternalFrame {
 
     private void jButtonInforActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInforActionPerformed
         // TODO add your handling code here:
+        GRNInformationGUI gRNInformationGUI=new GRNInformationGUI((DashBoard) SwingUtilities.getWindowAncestor(this), true, Integer.parseInt(jLabelGRNID.getText()));
+        gRNInformationGUI.setVisible(true);
     }//GEN-LAST:event_jButtonInforActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
@@ -327,7 +329,12 @@ public class GRN1GUI extends javax.swing.JInternalFrame {
         int result= fileChooser.showSaveDialog(this);
         if(result==JFileChooser.APPROVE_OPTION){
             String path =fileChooser.getSelectedFile().getPath()+".pdf";
-//            grnbus.ExportExcel(path, Integer.parseInt(jLabelGRNID.getText()));
+            boolean check=grnbus.exportPdf(path, Integer.parseInt(jLabelGRNID.getText()));
+            if (check) {
+                JOptionPane.showMessageDialog(rootPane, "export pdf success");
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "error");
+            }
         }
     }//GEN-LAST:event_jbuttonExportActionPerformed
 

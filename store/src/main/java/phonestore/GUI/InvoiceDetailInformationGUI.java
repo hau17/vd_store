@@ -26,11 +26,8 @@ public class InvoiceDetailInformationGUI extends javax.swing.JDialog {
      */
     public InvoiceDetailInformationGUI(java.awt.Frame parent, boolean modal, int invoiceID) {
         super(parent, modal);
-//        this.invoiceGUI = (InvoiceGUI) parent;
         initComponents();
         setInvoiceId(invoiceID);
-//        setCustomer();
-//        setTotalAmount();
         defaultTableModel = (DefaultTableModel) jTableProduct.getModel();
         invoiceDetailBUS = new InvoiceDetailBUS();
         showAllData();
@@ -98,19 +95,19 @@ public class InvoiceDetailInformationGUI extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldInvoiceId, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
-                .addGap(511, 549, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldInvoiceId, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 895, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldInvoiceId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
