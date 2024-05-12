@@ -141,7 +141,7 @@ public class LoginGUI extends javax.swing.JFrame {
               InformationLogin.getInstance().setUsername(user);
               DashBoard dashBoard=new DashBoard();
               dashBoard.setVisible(true);
-              
+              this.dispose();
             
         }else{
             JOptionPane.showMessageDialog(this, "user name or password is incorrect");

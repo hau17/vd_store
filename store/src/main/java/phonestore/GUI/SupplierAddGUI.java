@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import phonestore.BUS.SuplierBUS;
+import phonestore.CHECK.Check;
 import phonestore.DAO.SuplierDAO;
 import phonestore.DTO.SuplierDTO;
 
@@ -43,21 +44,16 @@ public class SupplierAddGUI extends javax.swing.JDialog {
             Pattern pattern=Pattern.compile(emailRegex);
             Matcher matcher =pattern.matcher(email);
             if(!matcher.matches()){
-                JOptionPane.showMessageDialog(rootPane, "email is incorrect");
+                JOptionPane.showMessageDialog(rootPane, "invalid email");
                 check=false;
             }
             return check;
         }
         public boolean checkPhoneNumer(String number){
-            boolean check=true;
-            String phoneRegex = "^\\d{10,12}$";
-            Pattern pattern= Pattern.compile(phoneRegex);
-            Matcher matcher=pattern.matcher(number);
-            if(!matcher.matches()){
-                JOptionPane.showMessageDialog(rootPane, "phone number is incorrect");
-                check=false;
+            if (!Check.checkPhoneNumber(number)) {
+                JOptionPane.showMessageDialog(rootPane, "invalid phone number");
             }
-                return check;
+            return Check.checkPhoneNumber(number);
         }
 
         /**
@@ -219,9 +215,12 @@ public class SupplierAddGUI extends javax.swing.JDialog {
                         JOptionPane.showMessageDialog(rootPane, "Add success");
                         this.dispose();
                     }else{
-                        JOptionPane.showMessageDialog(rootPane, "error");
+                        JOptionPane.showMessageDialog(rootPane, "Error");
                     }
                 }       
+                    else{
+                        JOptionPane.showMessageDialog(rootPane, "Error");
+                    }
         }// GEN-LAST:event_jButtonAddActionPerformed
 
         private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonExitActionPerformed

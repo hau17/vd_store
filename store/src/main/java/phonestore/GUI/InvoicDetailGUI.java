@@ -29,12 +29,7 @@ import phonestore.BUS.OriginBLL;
 import phonestore.BUS.ProductBLL;
 import phonestore.BUS.UserBUS;
 import phonestore.BUS.WarehouseBUS;
-//import phonestore.DAO.GRNDetailDAO;
-//import phonestore.DAO.InvoiceDAO;
-//import phonestore.DAO.InvoiceDetailDAO;
-//import phonestore.DAO.OriginDAL;
-//import phonestore.DAO.ProductDAL;
-//import phonestore.DAO.WareHouseDAO;
+import phonestore.CHECK.Check;
 import phonestore.DTO.CustomerDTO;
 import phonestore.DTO.InvoiceDTO;
 import phonestore.DTO.ProductDTO;
@@ -54,13 +49,10 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
     BrandBLL brandBLL = new BrandBLL();
     InvoiceBUS invoiceBUS=new InvoiceBUS();
     UserBUS userBUS=new UserBUS();
-//    GRNDetailDAO grnDetailDAO = new GRNDetailDAO();
-//    WareHouseDAO wareHouseDAO = new WareHouseDAO();
     WarehouseBUS warehouseBUS=new WarehouseBUS();
      //mảng lưu trữ dữ liệu trước khi thay đổi dữ liệu lên database
     ArrayList<invoiceDetailDTO> arrIvoiceNeedSell = new ArrayList<>();
     ArrayList<WareHouseDTO> arrWareHouseDTONeedSell = new ArrayList<>();
-//    InvoiceDetailDAO invoiceDetailDAO = new InvoiceDetailDAO();
     OriginBLL originBLL = new OriginBLL();
     TableRowSorter<DefaultTableModel> sorter;
     
@@ -71,7 +63,6 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
      */
     public InvoicDetailGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-//        this.parentGUI = (InvoiceGUI) parent;
         initComponents();
         //lấy model từ table
         defaultTableModelProduct = (DefaultTableModel) jTableSearchProduct.getModel();
@@ -181,26 +172,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
         showtotalAmount();
     }
 
-//    public void updateProductNeedSell(int productID, int quantity, int price) {
-//        for (int i = 0; i < arrIvoiceNeedSell.size(); i++) {
-//            invoiceDetailDTO inDTO = arrIvoiceNeedSell.get(i);
-//            if (inDTO.getProductId() == productID) {
-//                inDTO.setPrice(price);
-//                inDTO.setQuantity(quantity);
-//                arrIvoiceNeedSell.set(i, inDTO);
-//                break;
-//            }
-//        }
-//        for (int i = 0; i < arrWareHouseDTONeedSell.size(); i++) {
-//            WareHouseDTO wareHouseDTO = arrWareHouseDTONeedSell.get(i);
-//            if (wareHouseDTO.getProductId() == productID) {
-//                wareHouseDTO.setPrice(new BigDecimal(price));
-//                wareHouseDTO.setQuantity(quantity);
-//                break;
-//            }
-//        }
-//        showtotalAmount();
-//    }
+
 
     public void showtotalAmount() {
         jTextFieldTotalAmount.setText("");
@@ -212,12 +184,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
     }
 
     public boolean checkInteger(String inString) {
-        try {
-            Integer.parseInt(inString);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        return Check.checkInteger(inString);
     }
 
     /**
@@ -568,18 +535,6 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
                 .setText(productBLL.getProductDTO(Integer.parseInt(jTextFieldProductName.getText())).getProduct_name());
     }// GEN-LAST:event_jTableProductMouseClicked
 
-//    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonUpdateActionPerformed
-//        // TODO add your handling code here:
-//        if (!checkInteger(jTextFieldQuantity.getText()) || !checkInteger(jTextFieldPrice.getText())) {
-//            JOptionPane.showMessageDialog(this, "The number of items and the price must be entered as integers",
-//                    "ERROR", JOptionPane.ERROR_MESSAGE);
-//        } else {
-//            updateProductNeedSell(Integer.parseInt(jTextFieldProductId.getText()),
-//                    Integer.parseInt(jTextFieldQuantity.getText()), Integer.parseInt(jTextFieldPrice.getText()));
-//            showProductNeedSell();
-//        }
-//
-//    }// GEN-LAST:event_jButtonUpdateActionPerformed
 
     private void jButtonInvoiceGenerationActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonInvoiceGenerationActionPerformed
         // TODO add your handling code here:

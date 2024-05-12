@@ -55,6 +55,7 @@ public class DashBoard extends javax.swing.JFrame {
                     jPanelRole.removeAll();
                     jPanelUser.removeAll();
                     jPanelWarehouse.removeAll();
+                    
         }
         else{
             
@@ -860,7 +861,10 @@ public class DashBoard extends javax.swing.JFrame {
         int result = JOptionPane.showConfirmDialog(rootPane, "do you want do logout?");
         if (result == JOptionPane.YES_OPTION) {
             this.dispose();
+            LoginGUI loginGUI=new LoginGUI();
+            loginGUI.setVisible(true);
         }
+        
 
     }// GEN-LAST:event_jPanelLogoutMouseClicked
 

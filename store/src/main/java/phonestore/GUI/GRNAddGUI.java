@@ -27,6 +27,7 @@ import phonestore.BUS.GRNDetailBUS;
 import phonestore.BUS.UserBUS;
 import phonestore.DTO.WareHouseDTO;
 import phonestore.BUS.WarehouseBUS;
+import phonestore.CHECK.Check;
 import phonestore.InformationLogin.InformationLogin;
 /**
  *
@@ -129,14 +130,8 @@ public class GRNAddGUI extends javax.swing.JDialog {
         }
     }
         public boolean checkInteger(String inString) {
-        try {
-            Integer.parseInt(inString);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+            return Check.checkInteger(inString);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -55,13 +55,13 @@ INSERT INTO `customer` (`customer_id`, `customer_name`, `phone_number`, `address
 	(7, 'Customer 7', '1234567897', 'Address 777', 'disable'),
 	(8, 'Customer 8', '1234567897', 'Address 777', 'active');
 
--- Dumping structure for table phone_store.goodreceivednote
-CREATE TABLE IF NOT EXISTS `goodreceivednote` (
+-- Dumping structure for table phone_store.grn
+CREATE TABLE IF NOT EXISTS `grn` (
   `grn_id` int(11) NOT NULL,
   `supplier_id` int(11) DEFAULT NULL,
   `input_day` date DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `total_amount` int(11) DEFAULT NULL,
+  `total_amount` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`grn_id`),
   KEY `supplier_id` (`supplier_id`),
   KEY `user_id` (`user_id`),
@@ -69,11 +69,19 @@ CREATE TABLE IF NOT EXISTS `goodreceivednote` (
   CONSTRAINT `GoodReceivedNote_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table phone_store.goodreceivednote: ~3 rows (approximately)
-INSERT INTO `goodreceivednote` (`grn_id`, `supplier_id`, `input_day`, `user_id`, `total_amount`) VALUES
-	(1, 1, '2024-04-01', 2, 5000),
-	(2, 2, '2024-04-02', 2, 3000),
-	(3, 3, '2024-04-03', 2, 2000);
+-- Dumping data for table phone_store.grn: ~9 rows (approximately)
+INSERT INTO `grn` (`grn_id`, `supplier_id`, `input_day`, `user_id`, `total_amount`) VALUES
+	(1, 1, '2024-04-01', 2, 5000.00),
+	(2, 2, '2024-04-02', 2, 3000.00),
+	(3, 3, '2024-04-03', 2, 2000.00),
+	(4, 2, '0014-11-14', 3, 500.00),
+	(5, 2, '0014-11-14', 3, 500.00),
+	(6, 2, '0014-11-14', 3, 500.00),
+	(7, 2, '0014-11-14', 3, 500.00),
+	(8, 16, '0014-11-14', 1, 500.00),
+	(9, 16, '0014-11-14', 1, 1.00),
+	(10, 3, '2024-05-09', 1, 50.00),
+	(11, 16, '2024-05-09', 1, 1000.00);
 
 -- Dumping structure for table phone_store.grndetail
 CREATE TABLE IF NOT EXISTS `grndetail` (
@@ -85,11 +93,31 @@ CREATE TABLE IF NOT EXISTS `grndetail` (
   PRIMARY KEY (`grn_details_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table phone_store.grndetail: ~3 rows (approximately)
+-- Dumping data for table phone_store.grndetail: ~19 rows (approximately)
 INSERT INTO `grndetail` (`grn_details_id`, `grn_id`, `quantity`, `product_id`, `price_grn`) VALUES
 	(1, 1, 1, 1, 10000000.00),
 	(2, 2, 2, 2, 20000000.00),
-	(3, 3, 3, 3, 15000000.00);
+	(3, 3, 3, 3, 15000000.00),
+	(4, 4, 10, 1, 10.00),
+	(5, 4, 20, 2, 20.00),
+	(6, 4, 30, 3, 30.00),
+	(7, 4, 10, 1, 10.00),
+	(8, 4, 20, 2, 20.00),
+	(9, 4, 10, 1, 10.00),
+	(10, 4, 20, 2, 20.00),
+	(11, 4, 10, 1, 10.00),
+	(12, 4, 20, 2, 20.00),
+	(13, 4, 10, 1, 10.00),
+	(14, 4, 20, 2, 20.00),
+	(15, 4, 10, 1, 10.00),
+	(16, 4, 20, 2, 20.00),
+	(17, 8, 10, 1, 10.00),
+	(18, 8, 20, 2, 20.00),
+	(19, 9, 1, 1, 1.00),
+	(20, 10, 1, 1, 10.00),
+	(21, 10, 2, 2, 20.00),
+	(22, 11, 6, 6, 60.00),
+	(23, 11, 8, 8, 80.00);
 
 -- Dumping structure for table phone_store.invoice
 CREATE TABLE IF NOT EXISTS `invoice` (
@@ -131,7 +159,8 @@ INSERT INTO `invoice` (`invoice_id`, `customer_id`, `user_id`, `invoice_date`, `
 	(24, 1, 4, '2024-05-06', 190.00, 1),
 	(25, 2, 4, '2024-05-06', 30.00, 1),
 	(26, 1, 1, '2024-05-07', 100.00, 1),
-	(27, 8, 1, '2024-05-07', 10.00, 1);
+	(27, 8, 1, '2024-05-07', 10.00, 1),
+	(28, 4, 1, '2024-05-09', 160.00, 1);
 
 -- Dumping structure for table phone_store.invoice_detail
 CREATE TABLE IF NOT EXISTS `invoice_detail` (
@@ -147,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `invoice_detail` (
   CONSTRAINT `invoice_detail_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table phone_store.invoice_detail: ~43 rows (approximately)
+-- Dumping data for table phone_store.invoice_detail: ~37 rows (approximately)
 INSERT INTO `invoice_detail` (`invoice_detail_id`, `invoice_id`, `quantity`, `product_id`, `price`) VALUES
 	(1, 1, 3, 1, 10),
 	(2, 1, 2, 2, 15),
@@ -191,7 +220,8 @@ INSERT INTO `invoice_detail` (`invoice_detail_id`, `invoice_id`, `quantity`, `pr
 	(40, 25, 3, 3, 3),
 	(41, 25, 4, 4, 4),
 	(42, 26, 1, 6, 100),
-	(43, 27, 1, 1, 10);
+	(43, 27, 1, 1, 10),
+	(44, 28, 4, 4, 40);
 
 -- Dumping structure for table phone_store.origin
 CREATE TABLE IF NOT EXISTS `origin` (
@@ -265,7 +295,7 @@ CREATE TABLE IF NOT EXISTS `supplier` (
   PRIMARY KEY (`supplier_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table phone_store.supplier: ~18 rows (approximately)
+-- Dumping data for table phone_store.supplier: ~15 rows (approximately)
 INSERT INTO `supplier` (`supplier_id`, `supplier_name`, `email_address`, `phone_number`, `address`, `status`) VALUES
 	(1, 'Supplier 1', 'supplier1@example.com', '9876543210', 'Supplier Address 1', 1),
 	(2, 'Supplier 2', 'supplier2@example.com', '9876543211', 'Supplier Address 2', 1),
@@ -322,13 +352,15 @@ CREATE TABLE IF NOT EXISTS `warehouse` (
   `status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table phone_store.warehouse: ~5 rows (approximately)
+-- Dumping data for table phone_store.warehouse: ~7 rows (approximately)
 INSERT INTO `warehouse` (`product_id`, `quantity`, `price`, `status`) VALUES
-	(1, 9, 3000000.00, 1),
-	(2, 18, 6000000.00, 1),
-	(3, 27, 9000000.00, 1),
-	(4, 36, 12000000.00, 1),
-	(5, 50, 15000000.00, 1);
+	(1, 12, 10.00, 1),
+	(2, 22, 20.00, 1),
+	(3, 57, 30.00, 1),
+	(4, 32, 12000000.00, 1),
+	(5, 50, 15000000.00, 1),
+	(6, 6, 60.00, 1),
+	(8, 8, 80.00, 1);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

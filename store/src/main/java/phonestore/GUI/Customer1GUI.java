@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import phonestore.BUS.CustomerBLL;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import phonestore.CHECK.Check;
 import phonestore.DTO.CustomerDTO;
 
 /**
@@ -43,7 +44,9 @@ public class Customer1GUI extends javax.swing.JInternalFrame {
             defaultTableModel.addRow(objects);
         }
     }
-
+       boolean checkPhoneNumber(String check){
+           return Check.checkPhoneNumber(check);
+       }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -347,6 +350,9 @@ public class Customer1GUI extends javax.swing.JInternalFrame {
         try {
             if(textFieldName.getText().trim().equals("") || textFieldPhone.getText().trim().equals("") || textFieldAddress.getText().trim().equals("")) {
                 JOptionPane.showMessageDialog(this, "Please enter all required information");
+            }
+            else if (!checkPhoneNumber(textFieldPhone.getText())) {
+                JOptionPane.showMessageDialog(rootPane, "invalid phone number");
             } else {
                 CustomerDTO customerDTO = new CustomerDTO();
                 customerDTO.setCustomer_id(customerBLL.getLastCustomerID());
