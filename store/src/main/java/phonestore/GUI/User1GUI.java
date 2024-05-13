@@ -4,6 +4,7 @@
  */
 package phonestore.GUI;
 
+import com.sun.tools.javac.code.Type;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -330,7 +331,6 @@ public class User1GUI extends javax.swing.JInternalFrame {
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         // TODO add your handling code here:
-        boolean check=false;
         try {
             if(jTextFieldUserName.getText().trim().equals("") || jTextFieldPhoneNumber.getText().trim().equals("")
                     || jTextFieldFullName.getText().trim().equals("") || jTextFieldDateOfBirth.getText().trim().equals("") 
@@ -348,11 +348,12 @@ public class User1GUI extends javax.swing.JInternalFrame {
                 userDTO.setemail_address(jTextFieldEmail.getText());
                 userDTO.setrole_id(Integer.parseInt(jTextFieldRole.getText()));
                 userDTO.setStatus(1);
-                check = userBUS.add_User(userDTO);
-                if (check) {
-                    JOptionPane.showMessageDialog(rootPane, "add success");
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "error");
+                
+                try {
+                    userBUS.add_User(userDTO);
+                    JOptionPane.showMessageDialog(rootPane, "Add success");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(rootPane, "add error:"+e.getMessage(),"error",JOptionPane.ERROR_MESSAGE);
                 }
                 showAllData();
             }
@@ -363,7 +364,6 @@ public class User1GUI extends javax.swing.JInternalFrame {
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         // TODO add your handling code here:
-        boolean check=false;
             try {
         if(jTextFieldUserName.getText().trim().equals("") || jTextFieldPhoneNumber.getText().trim().equals("")
                 || jTextFieldFullName.getText().trim().equals("") || jTextFieldDateOfBirth.getText().trim().equals("") 
@@ -371,7 +371,9 @@ public class User1GUI extends javax.swing.JInternalFrame {
                 || jTextFieldRole.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Please enter all required information");
         } else {
-            UserDTO userDTO = new UserDTO();
+            int result=JOptionPane.showConfirmDialog(rootPane, "Do you want to delete");
+            if (result==JOptionPane.YES_OPTION) {
+                UserDTO userDTO = new UserDTO();
             userDTO.setuser_id(Integer.parseInt(jLabeId.getText()));
             userDTO.setuser_name(jTextFieldUserName.getText());
             userDTO.setfull_name(jTextFieldFullName.getText());
@@ -380,13 +382,15 @@ public class User1GUI extends javax.swing.JInternalFrame {
             userDTO.setemail_address(jTextFieldEmail.getText());
             userDTO.setrole_id(Integer.parseInt(jTextFieldRole.getText()));
             userDTO.setStatus(0);
-            check= userBUS.delete_user(userDTO.getuser_id());
-            if (check) {
-                    JOptionPane.showMessageDialog(rootPane, "add success");
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "error");
-                }
-            showAllData();
+            try {
+                userBUS.delete_user(userDTO.getuser_id());
+                JOptionPane.showMessageDialog(rootPane, "delete success");
+                showAllData();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "error:"+e.getMessage());
+            }
+            }
+            
         }
     } catch (NumberFormatException ex) {
         JOptionPane.showMessageDialog(this, "Invalid information");
@@ -396,7 +400,6 @@ public class User1GUI extends javax.swing.JInternalFrame {
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         // TODO add your handling code here:
-        boolean check=false;
         try {
         if(jTextFieldUserName.getText().trim().equals("") || jTextFieldPhoneNumber.getText().trim().equals("")
                 || jTextFieldFullName.getText().trim().equals("") || jTextFieldDateOfBirth.getText().trim().equals("") 
@@ -414,15 +417,14 @@ public class User1GUI extends javax.swing.JInternalFrame {
             userDTO.setemail_address(jTextFieldEmail.getText());
             userDTO.setrole_id(Integer.parseInt(jTextFieldRole.getText()));
             userDTO.setStatus(1);
+            try {
+                userBUS.update_user(userDTO);
+                JOptionPane.showMessageDialog(rootPane, "Update success");
+                showAllData();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "Error:"+e.getMessage());
+            }
             
-            check= userBUS.update_user(userDTO);
-            if (check) {
-                    JOptionPane.showMessageDialog(rootPane, "update success");
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "error");
-                }
-
-            showAllData();
         }
     } catch (NumberFormatException ex) {
         JOptionPane.showMessageDialog(this, "Invalid information");

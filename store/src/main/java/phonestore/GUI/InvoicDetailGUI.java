@@ -183,8 +183,15 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
         jTextFieldTotalAmount.setText(Integer.toString(Total));
     }
 
-    public boolean checkInteger(String inString) {
-        return Check.checkInteger(inString);
+    public boolean checkEmpty(String text){
+        return Check.checkEmpty(text);
+        
+    }
+    public boolean checkPostitiveNumber(String text){
+        return Check.checkPositiveNumber(text);
+    }
+    public boolean checkInteger(String text){
+        return Check.checkInteger(text);
     }
 
     /**
@@ -507,15 +514,27 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonAddActionPerformed
         // TODO add your handling code here:
-        if (!checkInteger(jTextFieldQuantity.getText()) || !checkInteger(jTextFieldPrice.getText())) {
-            JOptionPane.showMessageDialog(this, "The number of items and the price must be entered as integers",
-                    "ERROR", JOptionPane.ERROR_MESSAGE);
-        } else {
-            addProductNeedSell(Integer.parseInt(jTextFieldProductId.getText()),
-                    Integer.parseInt(jTextFieldQuantity.getText()), Integer.parseInt(jTextFieldPrice.getText()));
-            showProductNeedSell();
+        boolean check =true;
+        
+        if (checkEmpty(jTextFieldQuantity.getText()) || checkEmpty(jTextFieldPrice.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "not allowed to be empty");
+            check=false;
         }
+        else if (!checkInteger(jTextFieldQuantity.getText()) || !checkInteger(jTextFieldPrice.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "The input number must be integer");
+            check=false;
+        }
+        else if (!checkPostitiveNumber(jTextFieldQuantity.getText()) || !checkPostitiveNumber(jTextFieldPrice.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "The input number must be greater than 0");
+            check=false;
+        }
+        if (check) {
+                addProductNeedSell(Integer.parseInt(jTextFieldProductId.getText()),
+                Integer.parseInt(jTextFieldQuantity.getText()), Integer.parseInt(jTextFieldPrice.getText()));
+            showProductNeedSell();
 
+        }
+        
     }// GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonDeleteActionPerformed

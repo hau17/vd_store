@@ -15,13 +15,11 @@ phonestore\GUI\Product1GUI.class
 phonestore\GUI\WarehouseAddGUI$3$1.class
 phonestore\GUI\Supplier1GUI$1.class
 phonestore\GUI\DashBoard$8.class
-phonestore\GUI\Warehouse1GUI$7.class
 phonestore\GUI\Product1GUI$5.class
 phonestore\GUI\Customer1GUI$5.class
 phonestore\GUI\GRN1GUI.class
 phonestore\GUI\DashBoard.class
 phonestore\GUI\Brand1GUI$6.class
-phonestore\GUI\Warehouse1GUI$6.class
 phonestore\GUI\Origin1GUI$1.class
 phonestore\GUI\DashBoard$2.class
 phonestore\GUI\Brand1GUI.class
@@ -43,7 +41,6 @@ phonestore\GUI\DashBoard$7.class
 phonestore\GUI\Invoice1GUI$6.class
 phonestore\DAO\RoleDAO.class
 phonestore\GUI\Statistic1GUI$3.class
-phonestore\GUI\Warehouse1GUI$8.class
 phonestore\GUI\Product1GUI$1.class
 phonestore\GUI\DashBoard$4.class
 phonestore\DAO\StatistisDAO.class
@@ -51,6 +48,7 @@ phonestore\GUI\Customer1GUI$2.class
 phonestore\GUI\GRN1GUI$1.class
 phonestore\GUI\Product1GUI$2.class
 phonestore\GUI\LoginGUI$1.class
+phonestore\GUI\UserAddGUI$5.class
 phonestore\DTO\GRNDTO.class
 phonestore\GUI\Statistic1GUI$2.class
 phonestore\GUI\Invoice1GUI$7.class
@@ -87,6 +85,7 @@ phonestore\BUS\RoleBUS.class
 phonestore\GUI\Product1GUI$8.class
 phonestore\GUI\DashBoard$10.class
 phonestore\GUI\User1GUI$7.class
+phonestore\GUI\UserAddGUI$5$1.class
 phonestore\GUI\Role1GUI$3.class
 phonestore\GUI\Supplier1GUI$4.class
 phonestore\GUI\GRN1GUI$4.class

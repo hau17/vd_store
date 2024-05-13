@@ -191,7 +191,7 @@ public class WareHouseDAO implements DAOInterface<WareHouseDTO> {
         Connection connection=JDBCUtil.getConnection();
         boolean result=false;
         try {
-            String sql ="SELECT * FROM warehouse WHERE product_id= "+productID;
+            String sql ="SELECT * FROM warehouse WHERE status = 1, product_id= "+productID;
             Statement st = connection.createStatement();
             ResultSet rs =st.executeQuery(sql);
             while (rs.next()) {         

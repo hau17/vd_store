@@ -363,14 +363,10 @@ public class Invoice1GUI extends javax.swing.JInternalFrame {
         if (result == JFileChooser.APPROVE_OPTION) {
             String path = fileChooser.getSelectedFile().getPath() + ".pdf";
             try {
-                check=invoiceBUS.exportExcel(path, Integer.parseInt(textFieldInvoiceId.getText()));
-                if (check) {
-                    JOptionPane.showMessageDialog(rootPane, "export pdf success");
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "error");
-                }
+                invoiceBUS.exportExcel(path, Integer.parseInt(textFieldInvoiceId.getText()));
+                JOptionPane.showMessageDialog(rootPane, "export Excel success");
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(rootPane, "error:"+e.getMessage());
+                JOptionPane.showMessageDialog(rootPane, "error:"+e.getMessage(),"error",JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jbuttonExportActionPerformed

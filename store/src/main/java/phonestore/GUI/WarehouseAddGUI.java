@@ -6,6 +6,8 @@ package phonestore.GUI;
 import phonestore.BUS.WarehouseBUS;
 import phonestore.DTO.WareHouseDTO;
 import java.math.BigDecimal;
+import javax.swing.JOptionPane;
+import phonestore.CHECK.Check;
 
 /**
  *
@@ -23,6 +25,16 @@ public class WarehouseAddGUI extends javax.swing.JDialog {
         jTextFieldId.setText(Integer.toString(warehouseBUS.getLastWarehouseID()));
         warehouseBUS = new WarehouseBUS();
         
+    }
+    public boolean checkEmpty(String text){
+        return Check.checkEmpty(text);
+        
+    }
+    public boolean checkPostitiveNumber(String text){
+        return Check.checkPositiveNumber(text);
+    }
+    public boolean checkInteger(String text){
+        return Check.checkInteger(text);
     }
 
     /**
@@ -51,6 +63,7 @@ public class WarehouseAddGUI extends javax.swing.JDialog {
 
         jLabel3.setText("Price");
 
+        jButtonAdd.setBackground(new java.awt.Color(0, 153, 153));
         jButtonAdd.setText("Add");
         jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,6 +71,7 @@ public class WarehouseAddGUI extends javax.swing.JDialog {
             }
         });
 
+        jButtonExit.setBackground(new java.awt.Color(0, 153, 153));
         jButtonExit.setText("Exit");
         jButtonExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,18 +129,32 @@ public class WarehouseAddGUI extends javax.swing.JDialog {
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         // TODO add your handling code here:
+        boolean check =true;
         
-        try {
+        if (checkEmpty(jTextFieldPrice.getText()) || checkEmpty(jTextFieldQuantity.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "not allowed to be empty");
+            check=false;
+        }
+        else if (!checkInteger(jTextFieldPrice.getText()) || !checkInteger(jTextFieldQuantity.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "The input number must be integer");
+            check=false;
+        }
+        else if (!checkPostitiveNumber(jTextFieldPrice.getText()) || !checkPostitiveNumber(jTextFieldQuantity.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "The input number must be greater than 0");
+            check=false;
+        }
+        
+        if (check) {
             int id= Integer.parseInt(jTextFieldId.getText());
         int quantity = Integer.parseInt(jTextFieldQuantity.getText());
         BigDecimal price = new BigDecimal(jTextFieldPrice.getText());
         int status =1;
         WareHouseDTO wareHouseDTO = new WareHouseDTO(id, quantity, price, status);
         warehouseBUS.insert(wareHouseDTO);
+        JOptionPane.showMessageDialog(rootPane, "add success");
         this.dispose();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+        
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed

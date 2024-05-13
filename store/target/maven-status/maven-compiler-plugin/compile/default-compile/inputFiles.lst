@@ -19,6 +19,7 @@ C:\vd_store\store\src\main\java\phonestore\BUS\UserBUS.java
 C:\vd_store\store\src\main\java\phonestore\DTO\WareHouseDTO.java
 C:\vd_store\store\src\main\java\phonestore\DTO\GRNDTO.java
 C:\vd_store\store\src\main\java\phonestore\DTO\StatistisDTO.java
+C:\vd_store\store\src\main\java\phonestore\CHECK\Check.java
 C:\vd_store\store\src\main\java\phonestore\GUI\DashBoard.java
 C:\vd_store\store\src\main\java\phonestore\BUS\CustomerBLL.java
 C:\vd_store\store\src\main\java\phonestore\GUI\Statistic1GUI.java
@@ -61,5 +62,4 @@ C:\vd_store\store\src\main\java\phonestore\GUI\WarehouseAddGUI.java
 C:\vd_store\store\src\main\java\phonestore\DAO\BrandDAL.java
 C:\vd_store\store\src\main\java\phonestore\GUI\GRN1GUI.java
 C:\vd_store\store\src\main\java\phonestore\GUI\LoginGUI.java
-C:\vd_store\store\src\main\java\phonestore\CHECK\PhoneNumberValidator.java
 C:\vd_store\store\src\main\java\phonestore\GUI\InvoiceDetailInformationGUI.java

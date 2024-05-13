@@ -8,12 +8,14 @@ import java.awt.Frame;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import phonestore.BUS.WarehouseBUS;
+import phonestore.CHECK.Check;
 import phonestore.DTO.WareHouseDTO;
 
 /**
@@ -59,7 +61,16 @@ public class Warehouse1GUI extends javax.swing.JInternalFrame {
             defaultTableModel.addRow(objects);
         }
     }
-
+        public boolean checkEmpty(String text){
+        return Check.checkEmpty(text);
+        
+    }
+    public boolean checkPostitiveNumber(String text){
+        return Check.checkPositiveNumber(text);
+    }
+    public boolean checkInteger(String text){
+        return Check.checkInteger(text);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,10 +87,7 @@ public class Warehouse1GUI extends javax.swing.JInternalFrame {
         TextFieldQuantity = new javax.swing.JTextField();
         jLabelEmal = new javax.swing.JLabel();
         textFieldPrice = new javax.swing.JTextField();
-        jButtonAdd = new javax.swing.JButton();
         jButtonUpdate = new javax.swing.JButton();
-        jButtonDelete = new javax.swing.JButton();
-        jbuttonExport = new javax.swing.JButton();
         textFieldSearch = new javax.swing.JTextField();
         jButtonSearch = new javax.swing.JButton();
         jButtonRefresh = new javax.swing.JButton();
@@ -103,39 +111,12 @@ public class Warehouse1GUI extends javax.swing.JInternalFrame {
 
         textFieldPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jButtonAdd.setBackground(new java.awt.Color(0, 102, 102));
-        jButtonAdd.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonAdd.setText("Add");
-        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAddActionPerformed(evt);
-            }
-        });
-
         jButtonUpdate.setBackground(new java.awt.Color(0, 102, 102));
         jButtonUpdate.setForeground(new java.awt.Color(255, 255, 255));
         jButtonUpdate.setText("Update");
         jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUpdateActionPerformed(evt);
-            }
-        });
-
-        jButtonDelete.setBackground(new java.awt.Color(0, 102, 102));
-        jButtonDelete.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonDelete.setText("Delete");
-        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDeleteActionPerformed(evt);
-            }
-        });
-
-        jbuttonExport.setBackground(new java.awt.Color(0, 102, 102));
-        jbuttonExport.setForeground(new java.awt.Color(255, 255, 255));
-        jbuttonExport.setText("Export Excel");
-        jbuttonExport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbuttonExportActionPerformed(evt);
             }
         });
 
@@ -186,20 +167,16 @@ public class Warehouse1GUI extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 998, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(879, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jbuttonExport, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(114, 114, 114)
+                            .addGap(596, 596, 596)
                             .addComponent(textFieldSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,7 +202,10 @@ public class Warehouse1GUI extends javax.swing.JInternalFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(196, 196, 196)
+                .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -242,10 +222,6 @@ public class Warehouse1GUI extends javax.swing.JInternalFrame {
                         .addComponent(textFieldPrice))
                     .addGap(86, 86, 86)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jbuttonExport, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButtonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(textFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -268,35 +244,37 @@ public class Warehouse1GUI extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-        // TODO add your handling code here:
-        new WarehouseAddGUI((DashBoard) SwingUtilities.getWindowAncestor(this), true).setVisible(true);
-    }//GEN-LAST:event_jButtonAddActionPerformed
-
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         // TODO add your handling code here:
-        int id = Integer.parseInt(textFieldProductID.getText());
-        int quantity = Integer.parseInt(TextFieldQuantity.getText());
-        BigDecimal price = new BigDecimal(textFieldPrice.getText());
-        WareHouseDTO wareHouseDTO= new WareHouseDTO(id, quantity, price, 1);
-        warehouseBUS.update(wareHouseDTO);
-        showAllData();
+        boolean check =true;
+        
+        if (checkEmpty(TextFieldQuantity.getText()) || checkEmpty(textFieldPrice.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "not allowed to be empty");
+            check=false;
+        }
+        else if (!checkInteger(TextFieldQuantity.getText()) || !checkInteger(textFieldPrice.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "The input number must be integer");
+            check=false;
+        }
+        else if (!checkPostitiveNumber(TextFieldQuantity.getText()) || !checkPostitiveNumber(textFieldPrice.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "The input number must be greater than 0");
+            check=false;
+        }
+        if (check) {
+            int result=JOptionPane.showConfirmDialog(rootPane, "Do you want to update");
+        if (result==JOptionPane.YES_OPTION) {
+            int id = Integer.parseInt(textFieldProductID.getText());
+            int quantity = Integer.parseInt(TextFieldQuantity.getText());
+            BigDecimal price = new BigDecimal(textFieldPrice.getText());
+            WareHouseDTO wareHouseDTO= new WareHouseDTO(id, quantity, price, 1);
+            warehouseBUS.update(wareHouseDTO);
+            showAllData();
+            JOptionPane.showMessageDialog(rootPane, "update success");
+        }
+        }
+        
+        
     }//GEN-LAST:event_jButtonUpdateActionPerformed
-
-    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-        // TODO add your handling code here:
-        int id = Integer.parseInt(textFieldProductID.getText());
-        int quantity = Integer.parseInt(TextFieldQuantity.getText());
-        BigDecimal price = new BigDecimal(textFieldPrice.getText());
-        WareHouseDTO wareHouseDTO= new WareHouseDTO(id, quantity, price, 1);
-        warehouseBUS.delete(wareHouseDTO);
-        showAllData();
-    }//GEN-LAST:event_jButtonDeleteActionPerformed
-
-    private void jbuttonExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonExportActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_jbuttonExportActionPerformed
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
         // TODO add your handling code here:
@@ -321,8 +299,6 @@ public class Warehouse1GUI extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TextFieldQuantity;
-    private javax.swing.JButton jButtonAdd;
-    private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonRefresh;
     private javax.swing.JButton jButtonSearch;
     private javax.swing.JButton jButtonUpdate;
@@ -332,7 +308,6 @@ public class Warehouse1GUI extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTableWarehouse;
-    private javax.swing.JButton jbuttonExport;
     private javax.swing.JTextField textFieldPrice;
     private javax.swing.JLabel textFieldProductID;
     private javax.swing.JTextField textFieldSearch;

@@ -317,6 +317,7 @@ public class GRN1GUI extends javax.swing.JInternalFrame {
         if(result == JOptionPane.YES_OPTION){
             grnbus.deleteGRNBUS(grnbus.getGRNByID(Integer.parseInt(jLabelGRNID.getText())));
             showAllData();
+            JOptionPane.showMessageDialog(rootPane, "delete success");
         }
 
     }//GEN-LAST:event_jButtonDeleteActionPerformed
@@ -329,11 +330,12 @@ public class GRN1GUI extends javax.swing.JInternalFrame {
         int result= fileChooser.showSaveDialog(this);
         if(result==JFileChooser.APPROVE_OPTION){
             String path =fileChooser.getSelectedFile().getPath()+".pdf";
-            boolean check=grnbus.exportPdf(path, Integer.parseInt(jLabelGRNID.getText()));
-            if (check) {
-                JOptionPane.showMessageDialog(rootPane, "export pdf success");
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "error");
+            
+            try {
+                grnbus.exportPdf(path, Integer.parseInt(jLabelGRNID.getText()));
+                JOptionPane.showMessageDialog(rootPane, "export Excel success");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "error:"+e.getMessage(),"error",JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jbuttonExportActionPerformed

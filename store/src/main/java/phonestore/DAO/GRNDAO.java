@@ -28,14 +28,15 @@ public class GRNDAO implements DAOInterface<GRNDTO> {
         int result = 0;
         Connection connection = JDBCUtil.getConnection();
         try {
-            String sql = "INSERT INTO grn(GRN_id, supplier_id, input_day, user_id, total_amount) " +
-                    "VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO grn(GRN_id, supplier_id, input_day, user_id, total_amount,status) " +
+                    "VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, t.getGRN_id());
             ps.setInt(2, t.getSupplier_id());
             ps.setDate(3, new java.sql.Date(t.getInput_day().getTime()));
             ps.setInt(4, t.getUser_id());
             ps.setBigDecimal(5, t.getTotal_amount());
+            ps.setInt(6, 1);
             result = ps.executeUpdate();
             ps.close();
         } catch (Exception e) {
@@ -51,9 +52,10 @@ public class GRNDAO implements DAOInterface<GRNDTO> {
         int result = 0;
         Connection connection = JDBCUtil.getConnection();
         try {
-            String sql = "DELETE FROM grn WHERE GRN_id = ?";
+            String sql = "UPDATE grn SET status = ? WHERE grn_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, t.getGRN_id());
+            ps.setInt(1, 0);
+            ps.setInt(2, t.getGRN_id());
             result = ps.executeUpdate();
             ps.close();
         } catch (Exception e) {
@@ -91,7 +93,7 @@ public class GRNDAO implements DAOInterface<GRNDTO> {
         ArrayList<GRNDTO> arr = new ArrayList<>();
         Connection connection = JDBCUtil.getConnection();
         try {
-            String sql = "SELECT * FROM grn";
+            String sql = "SELECT * FROM grn WHERE status = 1";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
