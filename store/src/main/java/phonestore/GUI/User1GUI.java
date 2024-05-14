@@ -5,11 +5,14 @@
 package phonestore.GUI;
 
 import com.sun.tools.javac.code.Type;
+import java.awt.Frame;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import phonestore.BUS.UserBUS;
+import phonestore.CHECK.Check;
 import phonestore.DTO.UserDTO;
 
 /**
@@ -42,6 +45,9 @@ public class User1GUI extends javax.swing.JInternalFrame {
             };
             defaultTableModel.addRow(objects);
         }
+    }
+    public boolean checkPhoneNumber(String text){
+        return Check.checkPhoneNumber(text);
     }
 
     
@@ -331,35 +337,8 @@ public class User1GUI extends javax.swing.JInternalFrame {
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         // TODO add your handling code here:
-        try {
-            if(jTextFieldUserName.getText().trim().equals("") || jTextFieldPhoneNumber.getText().trim().equals("")
-                    || jTextFieldFullName.getText().trim().equals("") || jTextFieldDateOfBirth.getText().trim().equals("") 
-                    || jTextFieldPhoneNumber.getText().trim().equals("") || jTextFieldEmail.getText().trim().equals("")
-                    || jTextFieldRole.getText().trim().equals("")) {
-                JOptionPane.showMessageDialog(this, "Please enter all required information");
-            } else {
-                UserDTO userDTO = new UserDTO();
-                userDTO.setuser_id(userBUS.getLastUserID());
-                userDTO.setuser_name(jTextFieldUserName.getText());
-                userDTO.setPassword(Integer.parseInt(jTextFieldPassword.getText())); // Password not being set in this action?
-                userDTO.setfull_name(jTextFieldFullName.getText());
-                userDTO.setdate_of_birth(jTextFieldDateOfBirth.getText());
-                userDTO.setphone_number(jTextFieldPhoneNumber.getText());
-                userDTO.setemail_address(jTextFieldEmail.getText());
-                userDTO.setrole_id(Integer.parseInt(jTextFieldRole.getText()));
-                userDTO.setStatus(1);
-                
-                try {
-                    userBUS.add_User(userDTO);
-                    JOptionPane.showMessageDialog(rootPane, "Add success");
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(rootPane, "add error:"+e.getMessage(),"error",JOptionPane.ERROR_MESSAGE);
-                }
-                showAllData();
-            }
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Invalid information");
-        }
+            UserAddGUI userAddGUI=new UserAddGUI((DashBoard) SwingUtilities.getWindowAncestor(this), true);
+            userAddGUI.setVisible(true);
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
@@ -406,6 +385,9 @@ public class User1GUI extends javax.swing.JInternalFrame {
                 || jTextFieldPhoneNumber.getText().trim().equals("") || jTextFieldEmail.getText().trim().equals("")
                 || jTextFieldRole.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Please enter all required information");
+        }
+        else if (!checkPhoneNumber(jTextFieldPhoneNumber.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "phone number is incorrect");
         } else {
             UserDTO userDTO = new UserDTO();
             userDTO.setuser_id(Integer.parseInt(jLabeId.getText())); 

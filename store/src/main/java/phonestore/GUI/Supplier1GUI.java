@@ -7,11 +7,13 @@ package phonestore.GUI;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import phonestore.BUS.SuplierBUS;
+import phonestore.CHECK.Check;
 import phonestore.DTO.SuplierDTO;
 
 /**
@@ -60,6 +62,14 @@ public class Supplier1GUI extends javax.swing.JInternalFrame {
             defaultTableModel.addRow(object);
         }
     }
+         public boolean checkEmpty(String text){
+        return Check.checkEmpty(text);
+        
+    }
+    public boolean checkPhoneNumber(String text){
+        return Check.checkPhoneNumber(text);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -302,28 +312,42 @@ public class Supplier1GUI extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         int result=JOptionPane.showConfirmDialog(this, "Are you sure you want to delete");
         if(result == JOptionPane.YES_OPTION){
-            suplierBUS.delete_suplier(Integer.parseInt(textFieldId.getText()));
-            showAllData();
+            try {
+                suplierBUS.delete_suplier(Integer.parseInt(textFieldId.getText()));
+                JOptionPane.showMessageDialog(rootPane, "update success");
+                showAllData();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "Update error","error",JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         // TODO add your handling code here:
-        boolean check=false;
-        int id = Integer.parseInt(textFieldId.getText());
+        boolean check=true;
+        if (checkEmpty(textFieldName.getText()) || checkEmpty(textFieldPhone.getText()) ||checkEmpty(textFieldEmail.getText()) ||checkEmpty(textFieldAddress.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "not allowed to be empty");
+            check=false;
+        }else if (!checkPhoneNumber(textFieldPhone.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "phone number is incorrect");
+            check=false;
+        }
+        if (check) {
+            int id = Integer.parseInt(textFieldId.getText());
         String nameString = textFieldName.getText();
         String phoneString = textFieldPhone.getText();
         String emailString = textFieldEmail.getText();
         String addressString = textFieldAddress.getText();
         SuplierDTO suplierDTO = new SuplierDTO(id, nameString, emailString, phoneString, addressString, 1);
-        check=suplierBUS.update_suplier(suplierDTO);
-        if (check) {
-            JOptionPane.showMessageDialog(rootPane, "update success","success",JOptionPane.INFORMATION_MESSAGE);
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "error","ERROR",JOptionPane.ERROR_MESSAGE);
+            try {
+                suplierBUS.update_suplier(suplierDTO);
+                JOptionPane.showMessageDialog(rootPane, "update success","success",JOptionPane.INFORMATION_MESSAGE);
+                showAllData();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "error","ERROR",JOptionPane.ERROR_MESSAGE);
+
+            }
         }
-        
-        showAllData();
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed

@@ -5,6 +5,7 @@
 package phonestore.GUI;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import phonestore.CHECK.Check;
 import phonestore.BUS.RoleBUS;
@@ -75,7 +76,7 @@ public class UserAddGUI extends javax.swing.JDialog {
         jTextFieldEmail = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setUndecorated(true);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setText("User ID");
 
@@ -227,7 +228,7 @@ public class UserAddGUI extends javax.swing.JDialog {
             check=false;
         }
         else if (!checkPhoneNumber(jTextFieldPhone.getText())) {
-            JOptionPane.showMessageDialog(rootPane, "The input number must be integer");
+            JOptionPane.showMessageDialog(rootPane, "The phone number is incorrect");
             check=false;
         }
         if (check) {
@@ -236,9 +237,9 @@ public class UserAddGUI extends javax.swing.JDialog {
                 userDTO.setuser_name(jTextFieldUserName.getText());
                 userDTO.setPassword(Integer.parseInt(jTextFieldPassword.getText())); // Password not being set in this action?
                 userDTO.setfull_name(jTextFieldFullName.getText());
-//              userDTO.setdate_of_birth(jTextFieldDateOfBirth.getText());
-//              userDTO.setdate_of_birth(new java.sql.Date(jDateChooserDateOfbirth.getDate()));
-                
+                Date utilDate=jDateChooserDateOfbirth.getDate();
+                SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+                userDTO.setdate_of_birth(simpleDateFormat.format(utilDate));
                 userDTO.setphone_number(jTextFieldPhone.getText());
                 userDTO.setemail_address(jTextFieldEmail.getText());
                 userDTO.setrole_id(getDataRole());
@@ -246,6 +247,7 @@ public class UserAddGUI extends javax.swing.JDialog {
                 try {
                 userBUS.add_User(userDTO);
                 JOptionPane.showMessageDialog(rootPane, "Add success");
+                this.dispose();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "Add error:"+e.getMessage(),"error",JOptionPane.ERROR_MESSAGE);
             }

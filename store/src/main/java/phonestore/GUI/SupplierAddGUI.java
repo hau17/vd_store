@@ -25,7 +25,6 @@ public class SupplierAddGUI extends javax.swing.JDialog {
         public SupplierAddGUI(java.awt.Frame parent, boolean modal) {
                 super(parent, modal);
                 initComponents();
-//                supplierGUI1 = (SupplierGUI1) parent;
                 jTextFieldID.setText(Integer.toString(suplierBUS.getLastSupplierID()));
                 this.setLocationRelativeTo(null);
         }
