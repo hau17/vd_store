@@ -93,7 +93,7 @@ public class GRNAddGUI extends javax.swing.JDialog {
     }
     public void showDataSupplier(){
         for(SuplierDTO sdto: suplierBUS.getAllSuplier()){
-            jComboBoxSupplier.addItem(sdto.getSuplierId()+"-"+sdto.getSuplierName());
+            jComboBoxSupplier.addItem(sdto.getSuplierName()+"-"+sdto.getSuplierId());
         }
         AutoCompleteDecorator.decorate(jComboBoxSupplier);
     }

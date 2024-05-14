@@ -125,7 +125,7 @@ public class WareHouseDAO implements DAOInterface<WareHouseDTO> {
             String sql="SELECT * FROM warehouse WHERE product_id= "+productID;
             Statement statement=connection.createStatement();
             ResultSet rs=statement.executeQuery(sql);
-            while (rs.next()) {                
+            while (rs.next()) {
                 quantityNow=rs.getInt("quantity");
             }
             if (quantityNow>=quantity) {

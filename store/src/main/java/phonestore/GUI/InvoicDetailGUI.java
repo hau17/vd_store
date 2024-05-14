@@ -136,7 +136,7 @@ public class InvoicDetailGUI extends javax.swing.JDialog {
     public void showAllCustomer() {
         Vector<CustomerDTO> vector = customerBLL.getAllCustomers();
         for (CustomerDTO customerDTO : vector) {
-            jComboBoxCustomer.addItem(customerDTO.getCustomer_id()+"-"+customerDTO.getCustomer_name());
+            jComboBoxCustomer.addItem(customerDTO.getCustomer_name()+"-"+customerDTO.getCustomer_id());
         }
         AutoCompleteDecorator.decorate(jComboBoxCustomer);
     }

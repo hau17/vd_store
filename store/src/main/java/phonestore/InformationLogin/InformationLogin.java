@@ -12,7 +12,7 @@ package phonestore.InformationLogin;
 public class InformationLogin {
     private static InformationLogin instance;
     private String userName ;
-    public static synchronized InformationLogin getInstance(){
+    public static InformationLogin getInstance(){
         if(instance==null){
             instance=new InformationLogin();
         }
